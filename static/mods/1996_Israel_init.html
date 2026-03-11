@@ -1,4 +1,4 @@
-﻿window.RecReading = true;
+window.RecReading = true;
 e = campaignTrail_temp;
 
 // --- CRITICAL FIX: Initialize ALL required arrays ---
@@ -9,8 +9,8 @@ e.election_json = [{
     "pk": 99,
     "fields": {
         "year": "1996_Israel",
-        "display_year": "1996_Israel",
-        "summary": "<h2><b>Israel 1996 - PM only</b></h2><p>Divided like never before, Israel itches for its very first direct election for prime minister. The already explosive social fabric of Israeli society is now strained by a dramatic development: a gradual peace process with the Palestinians.<br>Collecting himself for a handshake with Yasser Arafat, a man whom he still despises, prime minister Rabin knows his political future and legacy are at a knife's edge. Relentless opposition gathers, in the Knesset and in the streets alike. Who will gain the confidence of the anxious citizen, the negotiators or the alarmists?</p>",
+        "display_year": "1996 Israel",
+        "summary": "<h2><b>1996 Israel - PM only</b></h2><p>Divided like never before, Israel itches for its very first direct election for prime minister. The already explosive social fabric of Israeli society is now strained by a dramatic development: a gradual peace process with the Palestinians.<br>Collecting himself for a handshake with Yasser Arafat, a man whom he still despises, prime minister Rabin knows his political future and legacy are at a knife's edge. Relentless opposition gathers, in the Knesset and in the streets alike. Who will gain the confidence of the anxious citizen, the negotiators or the alarmists?</p>",
         "image_url": "https://i.imgur.com/ygIM0R3.jpeg",
         "winning_electoral_vote_number": 5,
         "advisor_url": "https://i.imgur.com/rE6X6Ro.jpeg",
@@ -19,7 +19,7 @@ e.election_json = [{
     }
 }];
 
-e.temp_election_list = [{ "id": 99, "year": "1996_Israel", "is_premium": 0, "display_year": "1996_Israel" }];
+e.temp_election_list = [{ "id": 99, "year": "1996_Israel", "is_premium": 0, "display_year": "1996 Israel" }];
 window.yearbit = "1996_Israel";
 var yearbit = "1996_Israel";
 
@@ -63,14 +63,14 @@ e.candidate_json = [
         "model": "campaign_trail.candidate", "pk": 1002, "fields": {
             "first_name": "Yitzhak", "last_name": "Rabin", "election": 99, "party": "Labor", "state": "Israel", "priority": 1,
             "description": "<div style='overflow-y:scroll;height:200px;'><b>\"I, Military I.D. No. 30743, Retired General in the Israeli Defense Forces, consider myself to be a soldier in the army of peace today\"</b><br><i>Rabin's congressional address, 1994</i><br><br>The former chief of the general staff during the victorious Six Day War brought himself to a strange position. Not many years had passed since he was the defense minister, trying to crack down on the First Intifada with an iron fist, but political career is like dog life: goes way faster than the years of a mere human creature.<br><br>The first sabra (slang for native born Jews) prime minister, Rabin reigned from 1974 to 1977, resigning just before the election over the Dollar Account affair. He got elected to a second term in the previous 1992 elections, with an optimistic dual promise of keeping Israel safe from terror and bringing a diplomatic breakthrough to the bitter and seemingly hopeless Israeli Palestinian conflict. True to his word, he dared to deliver the second, by greenlighting Yossi Beilin's secret negotiations with Mahmoud Abbas and the Palestine Liberation Organization, setting in motion a process that culminated in the Oslo Accords.<br><br>Now, his chief mission is reassuring the wavering electorate that he had not abandoned the first half of his promise, amid the various accusations from the opposition that his new course endangers the country's long term security.<br><br>Staying in power would prove harder than winning it. However, one thing is clear: In Israeli elections the sky is the limit for a reputable general, as long as he weighs his decisions carefully of course.</div>",
-            "color_hex": "#ff3300", "secondary_color_hex": null, "is_active": 0, "image_url": "https://i.imgur.com/feYKhyh.jpeg",
+            "color_hex": "#ff3300", "secondary_color_hex": null, "is_active": 1, "image_url": "https://i.imgur.com/feYKhyh.jpeg",
             "electoral_victory_message": "<h3>Rabin wins re-election.</h3>", "electoral_loss_message": "<h3>Rabin is defeated.</h3>", "no_electoral_majority_message": "<h3>No majority achieved.</h3>", "candidate_score": 1, "scrollable": true
         }
     },
     {
         "model": "campaign_trail.candidate", "pk": 1003, "fields": {
             "first_name": "Rafael (Raful)", "last_name": "Eitan", "election": 99, "party": "Tzomet", "state": "Jewparta", "priority": 1,
-            "description": "<div style='overflow-y:scroll;height:200px;'><b>\"Each of them needs to look at themselves in the mirror. I don't need to be ashamed on their behalf.\"</b><br><i>Raful on his own party members</i><br><br>In an era of cautious and carefully rehearsed statements, behold the only leader to talk with you in your familiar language.<br><br>Taking a break from his great calling of milking cows, he joined the elite \"Palmach\" unit at 17 and advanced through the ranks way up to the top spot of IDF's chief of staff. Widely associated with the still ongoing, in and out, 20 minute adventure of Israel in Lebanon, his term also included turning Iraq's nuclear reactor to rubble, almost assassinating Arafat 1071 times and launching a new army program to assist soldiers from challenging backgrounds (later dubbed Raful's boys), because you are not a real man without a soft spot for the less well off.<br><br>Returning to civilian life in 1983, the living legend is ready to save Israel once again, this time as a politician. In a surprisingly strong showing, he captured 8 seats in the 1992 election, as leader of the \"Tzomet\" (Road Junction) party. Entirely dominated by his awesome personality, the group was given the nickname: \"Raful and the seven dwarves\".<br><br>Now he is ready to capture the golden crown with a simple, four-point program:<br><br>1. Agriculture is great<br><br>2. Not an inch of territory to the bad guys<br><br>3. Watching your tongue is for virgins<br><br>4. If you don't agree with either of these, go touch some grass, you lazy bum<br><br>Now stop being a fool and vote Raful.</div>",
+            "description": "<div style='overflow-y:scroll;height:200px;'><b>\"Each of them needs to look at themselves in the mirror. I don't need to be ashamed on their behalf.\"</b><br><i>Raful on his own party members</i><br><br>In an era of cautious and carefully rehearsed statements, behold the only leader to talk with you in your familiar language.<br><br>Taking a break from his great calling of milking cows, he joined the elite \"Palmach\" unit at 17 and advanced through the ranks way up to the top spot of IDF's chief of staff. Widely associated with the still ongoing, in and out, 20 minute adventure of Israel in Lebanon, his term also included turning Iraq's nuclear reactor to rubble, almost assassinating Arafat 800 times and launching a new army program to assist soldiers from challenging backgrounds (later dubbed Raful's boys), because you are not a real man without a soft spot for the less well off.<br><br>Returning to civilian life in 1983, the living legend is ready to save Israel once again, this time as a politician. In a surprisingly strong showing, he captured 8 seats in the 1992 election, as leader of the \"Tzomet\" (Road Junction) party. Entirely dominated by his awesome personality, the group was given the nickname: \"Raful and the seven dwarves\".<br><br>Now he is ready to capture the golden crown with a simple, four-point program:<br><br>1. Agriculture is great<br><br>2. Not an inch of territory to the bad guys<br><br>3. Watching your tongue is for virgins<br><br>4. If you don't agree with either of these, go touch some grass, you lazy bum<br><br>Now stop being a fool and vote Raful.</div>",
             "color_hex": "#800080", "secondary_color_hex": null, "is_active": 1, "image_url": "https://i.imgur.com/IER2iyd.jpeg",
             "electoral_victory_message": "<h3>Rafael Eitan wins.</h3>", "electoral_loss_message": "<h3>Rafael Eitan is defeated.</h3>", "no_electoral_majority_message": "<h3>No majority achieved.</h3>", "candidate_score": 1, "scrollable": true
         }
@@ -97,6 +97,12 @@ e.answer_feedback_json = [];
 e.answer_score_global_json = [];
 e.answer_score_issue_json = [];
 e.answer_score_state_json = [];
+
+e.questions_json = [];
+e.answers_json = [];
+campaignTrail_temp.__activeCode2 = null;
+if (window.israel96NetLoop) { clearInterval(window.israel96NetLoop); window.israel96NetLoop = null; }
+if (window.israel96RabinLoop) { clearInterval(window.israel96RabinLoop); window.israel96RabinLoop = null; }
 
 // Load-order safeguard: define issue-score arrays in init so the loader can read them
 // before candidate code2 finishes executing.
@@ -275,7 +281,34 @@ campaignTrail_temp.election_json[0].fields.recommended_reading = "<p>Like many h
 
 // Rafael Eitan is visible/clickable in picker, but cannot be played.
 (function () {
+  function syncCandidatePicker() {
+    var sel = document.getElementById("candidate_id");
+    if (!sel || !Array.isArray(campaignTrail_temp.candidate_json)) return;
+
+    var active = campaignTrail_temp.candidate_json.filter(function (c) {
+      return c && c.fields && c.fields.election == 99 && Number(c.fields.is_active) === 1;
+    });
+    if (!active.length) return;
+
+    var current = String(sel.value || "");
+    var currentSignature = Array.from(sel.options).map(function (o) { return String(o.value); }).join(",");
+    var targetSignature = active.map(function (c) { return String(c.pk); }).join(",");
+    if (currentSignature === targetSignature) return;
+
+    sel.innerHTML = "";
+    for (var i = 0; i < active.length; i++) {
+      var opt = document.createElement("option");
+      opt.value = String(active[i].pk);
+      opt.textContent = active[i].fields.first_name + " " + active[i].fields.last_name;
+      sel.appendChild(opt);
+    }
+    if (current && active.some(function (c) { return String(c.pk) === current; })) {
+      sel.value = current;
+    }
+  }
+
   function updateState() {
+    syncCandidatePicker();
     var sel = document.getElementById("candidate_id");
     var btn = document.getElementById("candidate_id_button");
     if (!sel || !btn) return;
