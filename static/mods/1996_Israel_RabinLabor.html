@@ -1,4 +1,4 @@
-﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 
 /* ============================================================
    1. INTEGRATED ISRAEL 1996 MAP ENGINE
@@ -6,8 +6,16 @@
 
 
 // Define optional answer modifier arrays early so result calculation never sees them as undefined.
-campaignTrail_temp.answer_score_issue_json = [];
-campaignTrail_temp.answer_score_state_json = [
+function israel96RabinSetQuestionCount(n) {
+  if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) {
+    campaignTrail_temp.global_parameter_json[0].fields.question_count = n;
+  }
+  if (typeof e !== "undefined" && Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) {
+    e.global_parameter_json[0].fields.question_count = n;
+  }
+}
+
+israel96RabinSetQuestionCount(12);campaignTrail_temp.answer_score_state_json = [
   { "model": "campaign_trail.answer_score_state", "pk": 8601, "fields": { "answer": 301402, "state": 6661, "affected_candidate": 1002, "state_multiplier": -0.08 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8602, "fields": { "answer": 301403, "state": 6661, "affected_candidate": 1002, "state_multiplier": -0.11 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "affected_candidate": 1002, "state_multiplier": -0.05 } },
@@ -637,7 +645,7 @@ campaignTrail_temp.questions_json = [
     "pk": 3016,
     "fields": {
       "priority": 4,
-      "description": "Your coalition is in trouble. While you tried your best not to fire the interior minister and Shas leader, Aryeh Deri, after the police opened an investigation on his corruption, the supreme court eventually forced your hand, leading to Shas leaving the government.",
+      "description": "Your coalition is in trouble. While you tried your best not to fire the interior minister and \"Shas\" leader, Aryeh Deri, after the police opened an investigation on his corruption, the supreme court eventually forced your hand, leading to Shas leaving the government.",
       "likelihood": 1
     }
   },
@@ -700,7 +708,7 @@ campaignTrail_temp.questions_json = [
     "pk": 3024,
     "fields": {
       "priority": 12,
-      "description": "For years Hezbollah, aided by the Ayatollah regime in Iran, has been sending rockets over the Security Zone to the Israeli north. Do you want to authorize an operation to silence their batteries for a little while?",
+      "description": "For years Hezbollah, aided by the Ayatollah regime, has been sending rockets over the Security Zone to the Israeli north. Do you want to authorize an operation to silence their batteries for a little while?",
       "likelihood": 1
     }
   },
@@ -770,13 +778,13 @@ campaignTrail_temp.answer_feedback_json = [
   { "model": "campaign_trail.answer_feedback", "pk": 9901, "fields": { "answer": 301901, "candidate": 1002, "answer_feedback": "Using an exploded phone, Ayyash was blown up on January 5. While the initial reaction was undoubtedly positive, Hamas was still alive launching a series of retaliatory attacks which shifted public opinion against you." } },
   { "model": "campaign_trail.answer_feedback", "pk": 9902, "fields": { "answer": 301902, "candidate": 1002, "answer_feedback": "For some reason the attempt failed, with Netanyahu against hailing against your alleged weakness" } },
   { "model": "campaign_trail.answer_feedback", "pk": 9903, "fields": { "answer": 301903, "candidate": 1002, "answer_feedback": "God knows if there will be another chance prime minister." } },
-  { "model": "campaign_trail.answer_feedback", "pk": 9931, "fields": { "answer": 302101, "candidate": 1002, "answer_feedback": "This contrast sharpens the choice and helps your campaign." } },
+  { "model": "campaign_trail.answer_feedback", "pk": 9931, "fields": { "answer": 302101, "candidate": 1002, "answer_feedback": "This strikes a healty balance" } },
   { "model": "campaign_trail.answer_feedback", "pk": 9932, "fields": { "answer": 302102, "candidate": 1002, "answer_feedback": "A softer campaign leaves too much room for Netanyahu and hurts your standing." } },
   { "model": "campaign_trail.answer_feedback", "pk": 9933, "fields": { "answer": 302103, "candidate": 1002, "answer_feedback": "Escalating the tone backfires and hurts you more than it hurts Netanyahu." } },
   { "model": "campaign_trail.answer_feedback", "pk": 9941, "fields": { "answer": 302201, "candidate": 1002, "answer_feedback": "It is a minor issue now but it can only help." } },
   { "model": "campaign_trail.answer_feedback", "pk": 9942, "fields": { "answer": 302202, "candidate": 1002, "answer_feedback": "Likud ignored your attack and most people shrug it off as a partisan ploy. Negativity not always works, even in Israel." } },
   { "model": "campaign_trail.answer_feedback", "pk": 9943, "fields": { "answer": 302203, "candidate": 1002, "answer_feedback": "This is true to a large extent but why not bring up a net positive?" } },
-  { "model": "campaign_trail.answer_feedback", "pk": 9951, "fields": { "answer": 302301, "candidate": 1002, "answer_feedback": "Your position slightly improved" } },
+  { "model": "campaign_trail.answer_feedback", "pk": 9951, "fields": { "answer": 302301, "candidate": 1002, "answer_feedback": "Your position slightly improved. Years later CLinton would admit that he did it to help you and keep Oslo alive" } },
   { "model": "campaign_trail.answer_feedback", "pk": 9952, "fields": { "answer": 302302, "candidate": 1002, "answer_feedback": "After Clinton finished his speech against enlarging settlements the Likud rushed to accuse him of election meddling with some wondering if you had a hand in it. The rhetoric became uglier from both sides and in the end it didn't made a dent in the polls" } },
   { "model": "campaign_trail.answer_feedback", "pk": 9953, "fields": { "answer": 302303, "candidate": 1002, "answer_feedback": "You expect me to praise you for being a terrible politician?" } },
   { "model": "campaign_trail.answer_feedback", "pk": 9961, "fields": { "answer": 302401, "candidate": 1002, "answer_feedback": "Operation Grapes of Wrath appeared successful until the army hit a UN compound, killing and injuring hundreds of civilians. Under international pressure you were forced to call the thing off, angering the hawkish public. From the other side of the aisle, the Arab voters which supported you over Bibi in an overwhelming fashion are now accusing you of brutality and murmur about sitting out this election." } },
@@ -789,15 +797,22 @@ campaignTrail_temp.answer_feedback_json = [
 ];
 
 campaignTrail_temp.answer_score_global_json = [
-  { "model": "campaign_trail.answer_score_global", "pk": 8301, "fields": { "answer": 301301, "affected_candidate": 1002, "global_multiplier": -0.05 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8301, "fields": { "answer": 301301, "affected_candidate": 1002, "global_multiplier": -0.10 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8501, "fields": { "answer": 301501, "affected_candidate": 1002, "global_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8502, "fields": { "answer": 301502, "affected_candidate": 1002, "global_multiplier": 0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8401, "fields": { "answer": 301401, "affected_candidate": 1002, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8402, "fields": { "answer": 301402, "affected_candidate": 1002, "global_multiplier": -0.05 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8403, "fields": { "answer": 301403, "affected_candidate": 1002, "global_multiplier": -0.05 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8404, "fields": { "answer": 301404, "affected_candidate": 1002, "global_multiplier": -0.12 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8911, "fields": { "answer": 301901, "affected_candidate": 1002, "global_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8403, "fields": { "answer": 301403, "affected_candidate": 1002, "global_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8404, "fields": { "answer": 301404, "affected_candidate": 1002, "global_multiplier": -0.15 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8603, "fields": { "answer": 301601, "affected_candidate": 1002, "global_multiplier": -0.03 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8604, "fields": { "answer": 301602, "affected_candidate": 1002, "global_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8701, "fields": { "answer": 301701, "affected_candidate": 1002, "global_multiplier": 0.03 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8703, "fields": { "answer": 301703, "affected_candidate": 1002, "global_multiplier": 0.10 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8911, "fields": { "answer": 301901, "affected_candidate": 1002, "global_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8912, "fields": { "answer": 301902, "affected_candidate": 1002, "global_multiplier": -0.05 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8931, "fields": { "answer": 302101, "affected_candidate": 1002, "global_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8932, "fields": { "answer": 302102, "affected_candidate": 1002, "global_multiplier": -0.04 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8933, "fields": { "answer": 302103, "affected_candidate": 1002, "global_multiplier": -0.04 } },
 ];
 
 campaignTrail_temp.answer_score_state_json = [
@@ -919,9 +934,9 @@ function getPeresTemplate() {
     var s301901 = ensureGlobalScore(301901, 8911);
     var s301902 = ensureGlobalScore(301902, 8912);
     var s301903 = ensureGlobalScore(301903, 8913);
-    s301901.fields.global_multiplier = -0.06;
-    s301902.fields.global_multiplier = -0.03;
-    s301903.fields.global_multiplier = 0.00;
+    s301901.fields.global_multiplier = -0.05;
+    s301902.fields.global_multiplier = -0.06;
+    s301903.fields.global_multiplier = -0.04;
   }
   function applyPeresTakeover() {
     var root = campaignTrail_temp || {};
@@ -1054,30 +1069,16 @@ function getPeresTemplate() {
     var visit = document.getElementById('visit_window');
     if (!btn || !visit) return;
     if (btn.getAttribute('data-peres-hooked') === '1') return;
-    var clone = btn.cloneNode(true);
-    clone.setAttribute('data-peres-hooked','1');
-    btn.parentNode.replaceChild(clone, btn);
-    clone.onclick = function(evt) {
-      if (evt && typeof evt.preventDefault === 'function') evt.preventDefault();
-      if (evt && typeof evt.stopPropagation === 'function') evt.stopPropagation();
+    btn.setAttribute('data-peres-hooked','1');
+    btn.addEventListener('click', function() {
       campaignTrail_temp.peres_intro_seen = false;
       if (typeof setQuestion6Variant === 'function') setQuestion6Variant(true);
-      if (typeof applyPeresTakeover === 'function') applyPeresTakeover();
-      var q6Index = -1;
-      if (Array.isArray(campaignTrail_temp.questions_json)) {
-        for (var qi = 0; qi < campaignTrail_temp.questions_json.length; qi++) {
-          if (campaignTrail_temp.questions_json[qi] && campaignTrail_temp.questions_json[qi].pk === 3018) { q6Index = qi; break; }
-        }
-      }
-      if (typeof campaignTrail_temp !== 'undefined' && q6Index >= 0) campaignTrail_temp.question_number = q6Index - 1;
-      if (typeof campaignTrail_temp !== 'undefined' && q6Index >= 0) campaignTrail_temp.question_number = q6Index - 1;
-      if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
-      var ov = document.getElementById('visit_overlay'); if (ov) ov.remove();
-      var win = document.getElementById('visit_window'); if (win) win.remove();
-      if (typeof nextQuestion === 'function') nextQuestion();
-      setTimeout(function () { buildPeresOverlay(); }, 40);
-      return false;
-    };
+      setTimeout(function () {
+        if (typeof applyPeresTakeover === 'function') applyPeresTakeover();
+        if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
+        buildPeresOverlay();
+      }, 120);
+    }, { once: true });
   }
   if (window.israel96PeresIntroLoop) clearInterval(window.israel96PeresIntroLoop);
   window.israel96PeresIntroLoop = setInterval(function() {
@@ -1112,6 +1113,62 @@ function getPeresTemplate() {
 
 
 
+(function() {
+  var GOLAN_TRIGGER_ANSWER = 301404;
+  var GOLAN_STATE_ID = 6661;
+
+  function hasTrigger() {
+    var ans = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
+    for (var i = 0; i < ans.length; i++) {
+      if (Number(ans[i]) === GOLAN_TRIGGER_ANSWER) return true;
+    }
+    return false;
+  }
+
+  function stripState(root) {
+    if (!root) return;
+    if (Array.isArray(root.states_json)) {
+      root.states_json = root.states_json.filter(function(s){ return !(s && s.pk === GOLAN_STATE_ID); });
+    }
+    if (Array.isArray(root.final_state_results)) {
+      root.final_state_results = root.final_state_results.filter(function(r){ return !(r && r.state === GOLAN_STATE_ID); });
+    }
+    if (Array.isArray(root.final_overall_results) && Array.isArray(root.final_state_results)) {
+      var totals = {};
+      for (var i = 0; i < root.final_state_results.length; i++) {
+        var row = root.final_state_results[i];
+        if (!row || !Array.isArray(row.result)) continue;
+        for (var j = 0; j < row.result.length; j++) {
+          var rr = row.result[j];
+          if (!rr) continue;
+          if (!totals[rr.candidate]) totals[rr.candidate] = { candidate: rr.candidate, electoral_votes: 0, popular_votes: 0 };
+          totals[rr.candidate].electoral_votes += Number(rr.electoral_votes) || 0;
+          totals[rr.candidate].popular_votes += Number(rr.votes) || 0;
+        }
+      }
+      root.final_overall_results = Object.keys(totals).map(function(k){ return totals[k]; }).sort(function(a,b){ return b.popular_votes - a.popular_votes; });
+    }
+  }
+
+  function hideShape() {
+    try {
+      if (typeof jQuery === 'undefined') return;
+      var plugin = jQuery('#usmap').data('plugin-usmap') || jQuery('#map').data('plugin-usmap');
+      if (!plugin) return;
+      if (plugin.stateShapes && plugin.stateShapes.GH && typeof plugin.stateShapes.GH.hide === 'function') plugin.stateShapes.GH.hide();
+      if (plugin.stateHitAreas && plugin.stateHitAreas.GH && typeof plugin.stateHitAreas.GH.hide === 'function') plugin.stateHitAreas.GH.hide();
+    } catch (e) {}
+  }
+
+  if (window.israel96RabinGolanLoop) clearInterval(window.israel96RabinGolanLoop);
+  window.israel96RabinGolanLoop = setInterval(function() {
+    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== '1996_Israel_RabinLabor') return;
+    if (!hasTrigger()) return;
+    hideShape();
+    if (Array.isArray(campaignTrail_temp.final_state_results)) stripState(campaignTrail_temp);
+    if (typeof e !== 'undefined' && Array.isArray(e.final_state_results)) stripState(e);
+  }, 50);
+})();
 campaignTrail_temp.multiple_endings = true;
 
 function israel96RabinSetEndingImage(url) {
@@ -1125,7 +1182,7 @@ function israel96RabinSetEndingImage(url) {
   }, 50);
 }
 
-function israel96RabinUseNormalEndingWindow() {
+function israel96RabinUseNormalEndingWindow(theme) {
   var interval = setInterval(function () {
     var gameWindow = document.getElementById("game_window");
     var main = document.getElementById("main_content_area");
@@ -1135,21 +1192,22 @@ function israel96RabinUseNormalEndingWindow() {
     if (!gameWindow || !desc) return;
     clearInterval(interval);
     gameWindow.style.backgroundImage = "none";
-    gameWindow.style.backgroundColor = "#dff1d8";
+    var t = theme || {};
+    gameWindow.style.backgroundColor = t.gameBg || "#dff1d8";
     if (main) main.style.background = "transparent";
     if (results) {
-      results.style.background = "#dff1d8";
-      results.style.border = "1px solid #5e8a57";
+      results.style.background = t.resultsBg || "#dff1d8";
+      results.style.border = "1px solid " + (t.resultsBorder || "#5e8a57");
       results.style.boxShadow = "inset 0 0 0 1px rgba(255,255,255,0.35)";
       results.style.position = "relative";
       results.style.top = "-16px";
       results.style.marginBottom = "-16px";
     }
-    if (header) header.style.backgroundColor = "#4d8a4f";
-    desc.style.background = "#eef8ea";
-    desc.style.border = "1px solid #6b9664";
+    if (header) header.style.backgroundColor = t.headerBg || "#4d8a4f";
+    desc.style.background = t.descBg || "#eef8ea";
+    desc.style.border = "1px solid " + (t.descBorder || "#6b9664");
     desc.style.padding = "14px 16px";
-    desc.style.color = "#000000";
+    desc.style.color = t.textColor || "#000000";
     desc.style.opacity = "1";
     if (results) results.style.color = "#000000";
     if (main) main.style.color = "#000000";
@@ -1178,7 +1236,7 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (pickedHippiel) {
     israel96RabinUseNormalEndingWindow();
 
-    var boazColor = '#2fbf4a';
+    var boazColor = '#6ea86a';
     var sakhiColor = '#ffd400';
     var boazVotesTotal = 0;
     var sakhiVotesTotal = 0;
@@ -1254,12 +1312,25 @@ endingPicker = function(out, totv, aa, quickstats) {
   }
 
   var activeCandidate = findCandidate(campaignTrail_temp.candidate_json, campaignTrail_temp.candidate_id || 1002);
+  var pinkThemeBase = { descBg: "#ffd6e9", descBorder: "#d67aa6", textColor: "#4b1830" };
+  var pinkThemeBase = { descBg: "#ffd6e9", descBorder: "#d67aa6", textColor: "#4b1830" };
   if (aa[0].candidate === (campaignTrail_temp.candidate_id || 1002)) {
+    israel96RabinUseNormalEndingWindow({ gameBg: "#204f95", resultsBg: "#2b63b7", resultsBorder: "#183f79", headerBg: "#12386e", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor });
+    if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {
+      israel96RabinSetEndingImage('https://i.imgur.com/vMPG1Du.jpeg');
+    } else {
+      israel96RabinSetEndingImage('https://i.imgur.com/hwD0WSJ.jpeg');
+    }
     return (activeCandidate && activeCandidate.fields && activeCandidate.fields.electoral_victory_message) || '<h3>Victory</h3>';
   }
+  israel96RabinUseNormalEndingWindow({ gameBg: "#b61f2b", resultsBg: "#d94b57", resultsBorder: "#7d1620", headerBg: "#8d1721", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor });
+  if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {
+    israel96RabinSetEndingImage('https://i.imgur.com/y9Q8ClX.jpeg');
+    return ((activeCandidate.fields.electoral_loss_message) || '<h3>Defeat</h3>') + '<br><br><small>Photo credit: AP</small>';
+  }
+  israel96RabinSetEndingImage('https://i.imgur.com/Bn8RLeC.jpeg');
   return (activeCandidate && activeCandidate.fields && activeCandidate.fields.electoral_loss_message) || '<h3>Defeat</h3>';
 };
-
 (function() {
   var HIPPIEL_ANSWER_ID = 301803;
   var armed = false;
@@ -1285,7 +1356,7 @@ endingPicker = function(out, totv, aa, quickstats) {
             c.fields.first_name = 'Boaz';
             c.fields.last_name = 'Wachtel';
             c.fields.party = 'Ale Yarok (Green Leaf)';
-            c.fields.color_hex = '#2fbf4a';
+            c.fields.color_hex = '#6ea86a';
           }
           if (c.pk === 1001) {
             c.fields.first_name = 'Sakhi';
@@ -1366,6 +1437,280 @@ endingPicker = function(out, totv, aa, quickstats) {
     }
   }, 25);
 })();
+// Sync advisor image for Rabin/Peres, with a special image on question 5.
+(function () {
+  var RABIN_ADVISOR_URL = "https://i.imgur.com/KjsSYd5.jpeg";
+  var PERES_ADVISOR_URL = "https://i.imgur.com/i6A18yy.jpeg";
+  var SPECIAL_Q5_ADVISOR_URL = "https://i.imgur.com/frqkwCm.jpeg";
+
+  function getDisplayQuestion() {
+    if (typeof campaignTrail_temp !== "undefined" && typeof campaignTrail_temp.question_number === "number") {
+      return campaignTrail_temp.question_number + 1;
+    }
+    if (typeof e !== "undefined" && e && typeof e.question_number === "number") {
+      return e.question_number + 1;
+    }
+    return -1;
+  }
+
+  function isPeresBranch() {
+    if (typeof shouldUsePeres === "function") return shouldUsePeres();
+    var ans = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
+    return ans.map(function(a){ return Number(a); }).indexOf(301702) !== -1;
+  }
+
+  function syncAdvisorImage() {
+    var qn = getDisplayQuestion();
+    var targetUrl = qn === 5 ? SPECIAL_Q5_ADVISOR_URL : (isPeresBranch() ? PERES_ADVISOR_URL : RABIN_ADVISOR_URL);
+    if (typeof campaignTrail_temp !== "undefined") campaignTrail_temp.advisor_url = targetUrl;
+    if (typeof e !== "undefined" && e) e.advisor_url = targetUrl;
+    var selectors = [
+      "#visit_content img",
+      "#feedback_content img",
+      "#election_night_content img",
+      "#new_game_window #election_night_content img"
+    ];
+    for (var i = 0; i < selectors.length; i++) {
+      var img = document.querySelector(selectors[i]);
+      if (img) img.src = targetUrl;
+    }
+  }
+
+  syncAdvisorImage(); setInterval(syncAdvisorImage, 5);
+})();
+
+
+
+
+
+// Clickable glossary terms with a parchment-style info window (code 2 only).
+(function () {
+  var terms = [
+    {
+      id: "ehud_barak",
+      title: "Ehud Barak",
+      aliases: ["Ehud Barak"],
+      body: "Former really? This again? of the IDF. Appointed by Rabin to the government in order to enhance its defense credentials following Oslo, only for him to abstain on the vote about the second phase, claiming the agreement has more holes than a swiss cheese. Can you believe this guy?"
+    },
+    {
+      id: "security_zone",
+      title: "Security Zone",
+      aliases: ["Security Zone", "the Security Zone"],
+      body: "An Israeli controlled strip in southern Lebanon held through local proxies and IDF. As former (did you get my telepathy?) Moshe Levy commented: \"The security zone exists to protect the IDF, not for the IDF to protect the security zone\". Sadly, intentions are not self fulfiling"
+    },
+    {
+      id: "hamas",
+      title: "Hamas",
+      aliases: ["Hamas"],
+      body: "An offshoot of the Muslim Brotherhood, morphing from a charity organization to a terrorist group during the First Intifada. It is about time for Arafat to deal with these Islamic fundamentalists in a way we couldn't "
+    },
+    {
+      id: "sheikh_ahmed_yassin",
+      title: "Sheikh Ahmed Yassin",
+      aliases: ["Sheikh Ahmed Yassin", "Ahmed Yassin"],
+      body: "Founder and spiritual leader of Hamas. Nearly blind, wheelchair bound, and still the most dangerous Palestinian alive"
+    },
+    {
+      id: "palestinian_islamic_jihad",
+      title: "Palestinian Islamic Jihad",
+      aliases: ["Palestinian Islamic Jihad"],
+      body: "A smaller, even less refined group of Islamic nutjobs. On their way to prove that they are the best Sunni Muslims in the world by becoming groupies of the Shiite Iran"
+    },
+    {
+      id: "hezbollah",
+      title: "Hezbollah",
+      aliases: ["Hezbollah"],
+      body: "A Shiite terrorist organization aiming to push the IDF out of Lebanon and then... they will figure something out"
+    },
+    {
+      id: "ayatollah_regime",
+      title: "Ayatollah regime",
+      aliases: ["Ayatollah regime", "the Ayatollah regime"],
+      body: "The Islamist conpublic of Iran. Calls Israel \"The Zionist Entity\""
+    },
+    {
+      id: "nasrallah",
+      title: "Nasrallah",
+      aliases: ["Nasrallah"],
+      body: "The (deceased) leader of Hezbollah and an aspiring comedian. Who is laughing now pank?"
+    },
+    {
+      id: "bill_clinton",
+      title: "Bill Clinton",
+      aliases: ["Bill Clinton", "Clinton"],
+      body: "The friendly President of the United States. You still feel a bit sorry for Bush in 1992 though."
+    },
+    {
+      id: "arafat",
+      title: "Yasser Arafat",
+      aliases: ["Yasser Arafat", "Arafat"],
+      body: "He may be your current partner but he is still son of... a mammal"
+    },
+    {
+      id: "hussein",
+      title: "Hussein",
+      aliases: ["Hussein", "King Hussein", "Hussein of Jordan", "King Hussein of Jordan"],
+      body: "King of Jordan. Likes you almost as much as I like a Jack Daniels bottle."
+    },
+    {
+      id: "assad",
+      title: "Hafez al-Assad",
+      aliases: ["Assad", "President Assad", "Hafez al-Assad", "al-Assad"],
+      body: "The tough to crack President of Syria who rules his country like a family fiefdom"
+    },
+    {
+      id: "aryeh_deri",
+      title: "Aryeh Deri",
+      aliases: ["Aryeh Deri"],
+      body: "Your negatively not guilty coalition partner and interior minister. You need him for Oslo, can't those Hard-nosed prosecutors leave him alone?"
+    },
+    {
+      id: "netanyahu",
+      title: "Benjamin Netanyahu",
+      aliases: ["Benjamin Netanyahu", "Netanyahu"],
+      body: "The great poser who should have settled for a movie career"
+    }
+  ];
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function ensureStyles() {
+    if (document.getElementById("israel96_glossary_style")) return;
+    var style = document.createElement("style");
+    style.id = "israel96_glossary_style";
+    style.textContent =
+      ".israel96-term{" +
+      "cursor:pointer;" +
+      "font-weight:800 !important;" +
+      "color:#4a3518 !important;" +
+      "text-decoration:none !important;" +
+      "background:linear-gradient(180deg, #f0de9f 0%, rgb(224, 205, 117) 58%, #c89f45 58%, #b8842f 100%) !important;" +
+      "padding:0 3px;" +
+      "border-radius:2px;" +
+      "border-bottom:1px solid #8a6727 !important;" +
+      "}" +
+      ".israel96-term:hover{" +
+      "color:#2f2110 !important;" +
+      "background:linear-gradient(180deg, #e9d183 0%, rgb(224, 205, 117) 52%, #c49339 52%, #af7928 100%) !important;" +
+      "box-shadow:0 0 0 1px rgba(98,72,34,.35) inset;" +
+      "}" +
+      "#israel96_glossary_overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;z-index:9999;}" +
+      "#israel96_glossary_card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,92vw);" +
+      "background:linear-gradient(180deg,#f1de9d 0%,rgb(224, 205, 117) 100%);border:2px solid #7f6026;border-radius:6px;" +
+      "box-shadow:0 12px 30px rgba(0,0,0,.35);padding:16px 18px;font-family:'Times New Roman',serif;color:#2f2416;}" +
+      "#israel96_glossary_card h3{margin:0 0 8px 0;font-size:32px;border-bottom:1px solid #9a742a;padding-bottom:4px;}" +
+      "#israel96_glossary_body{font-size:22px;line-height:1.6;max-height:60vh;overflow-y:auto;padding-right:4px;}" +
+      "#israel96_glossary_close{float:right;border:1px solid #7f6026;background:#e5ca80;padding:2px 8px;cursor:pointer;color:#2c2113;}" +
+      "#israel96_glossary_tip{position:fixed;z-index:10000;display:none;max-width:420px;max-height:55vh;overflow-y:auto;background:linear-gradient(180deg,#f1de9d 0%,rgb(224, 205, 117) 100%);" +
+      "border:1px solid #7f6026;border-radius:4px;padding:8px 10px;color:#2f2416;font-family:'Times New Roman',serif;font-size:16px;line-height:1.35;" +
+      "box-shadow:0 8px 18px rgba(0,0,0,.25);pointer-events:auto;}";
+    document.head.appendChild(style);
+  }
+
+  function ensureOverlay() {
+    if (document.getElementById("israel96_glossary_overlay")) return;
+    var overlay = document.createElement("div");
+    overlay.id = "israel96_glossary_overlay";
+    overlay.innerHTML =
+      "<div id='israel96_glossary_card'>" +
+      "<button id='israel96_glossary_close'>Close</button>" +
+      "<h3 id='israel96_glossary_title'></h3>" +
+      "<p id='israel96_glossary_body' style='margin:8px 0 0 0;line-height:1.4;'></p>" +
+      "</div>";
+    document.body.appendChild(overlay);
+    overlay.addEventListener("click", function (evt) {
+      if (evt.target === overlay || evt.target.id === "israel96_glossary_close") {
+        overlay.style.display = "none";
+      }
+    });
+    document.addEventListener("keydown", function (evt) {
+      if (evt.key === "Escape") overlay.style.display = "none";
+    });
+  }
+
+  function ensureTip() {
+    if (document.getElementById("israel96_glossary_tip")) return;
+    var tip = document.createElement("div");
+    tip.id = "israel96_glossary_tip";
+    document.body.appendChild(tip);
+  }
+
+  function openTerm(id) {
+    var term = terms.find(function (t) { return t.id === id; });
+    if (!term) return;
+    ensureStyles();
+    ensureOverlay();
+    document.getElementById("israel96_glossary_title").textContent = term.title;
+    document.getElementById("israel96_glossary_body").textContent = term.body;
+    document.getElementById("israel96_glossary_overlay").style.display = "block";
+  }
+
+  function getTerm(id) {
+    return terms.find(function (t) { return t.id === id; }) || null;
+  }
+
+  function linkifyContainer(container) {
+    if (!container) return;
+    var html = container.innerHTML;
+    // Remove prior glossary wrappers before re-linking to avoid span nesting/dancing text.
+    html = html
+      .replace(/<span class=['"]israel96-term['"][^>]*>(.*?)<\/span>/g, "$1");
+    // Re-run linkification when content changes (same DOM node reused across questions).
+    if (container.dataset.israel96GlossarySource === html) return;
+
+    terms.forEach(function (term) {
+      term.aliases.forEach(function (alias) {
+        var rx = new RegExp("\\b" + escapeRegExp(alias) + "\\b", "g");
+        html = html.replace(rx, "<span class='israel96-term' data-term='" + term.id + "'>" + alias + "</span>");
+      });
+    });
+
+    container.innerHTML = html;
+    container.dataset.israel96GlossarySource = html.replace(/<span class=['"]israel96-term['"][^>]*>(.*?)<\/span>/g, "$1");
+  }
+
+  document.addEventListener("click", function (evt) {
+    var node = evt.target;
+    if (node && node.classList && node.classList.contains("israel96-term")) {
+      openTerm(node.getAttribute("data-term"));
+    }
+  }, true);
+
+  document.addEventListener("mouseover", function (evt) {
+    var termNode = evt.target && evt.target.closest ? evt.target.closest(".israel96-term") : null;
+    var tip = document.getElementById("israel96_glossary_tip");
+    if (!tip) return;
+    if (!termNode) return;
+    var term = getTerm(termNode.getAttribute("data-term"));
+    if (!term) return;
+
+    tip.textContent = term.body;
+    tip.style.display = "block";
+
+    var rect = termNode.getBoundingClientRect();
+    var left = rect.left;
+    var top = rect.bottom + 8;
+    if (left + 440 > window.innerWidth) left = Math.max(8, window.innerWidth - 440);
+    if (top + 240 > window.innerHeight) top = Math.max(8, rect.top - 220);
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }, true);
+
+  document.addEventListener("mouseout", function (evt) {
+    var node = evt.target && evt.target.closest ? evt.target.closest(".israel96-term") : null;
+    if (!node) return;
+    var tip = document.getElementById("israel96_glossary_tip");
+    if (tip) tip.style.display = "none";
+  }, true);
+
+  setInterval(function () { ensureStyles(); ensureTip(); var root = document.getElementById("game_window"); if (!root) return; var targets = root.querySelectorAll(".inner_inner_window h3, .inner_inner_window label, #candidate_summary, #running_mate_summary"); for (var i = 0; i < targets.length; i++) linkifyContainer(targets[i]); }, 500);
+})();
+
+
+
+
+
 
 
 
