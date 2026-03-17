@@ -1,4 +1,4 @@
-﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 
 
 /* ============================================================
@@ -2045,18 +2045,6 @@ endingPicker = function(out, totv, aa, quickstats) {
     container.dataset.israel96GlossarySource = html.replace(/<span class=['"]israel96-term['"][^>]*>(.*?)<\/span>/g, "$1");
   }
 
-  var israel96ReadingHtml = "<p>Like many here, I have had a passion for politics for quite a while and finally got the nerve to make a mod about this extremely close race, taking place at an extremely sensitive time. This is a story of the Israeli side, written by an Israeli, for anyone who may be curious.</p><p>I also wanted to use this section to clarify a few things.</p><p>The choice to use the entire West Bank and Gaza as a voting area was made purely out of convenience and was not meant to constitute any implicit political statement regarding the future of these territories.</p><p>The population statistics were made using the actual voter rolls, but due to double-envelope ballots, mostly cast by soldiers voting away from home, there are certainly some discrepancies in the distribution by the districts.</p><p>The assignment of issue scores was quite generalized and focused on making the race balanced and competitive, as the political divide in Israel has much more to do with culture and ethnicity, rather than geography. There are numerous right wing and left wing strongholds across the country that I can't give much consideration to in the map.</p><p>There is also the difficulty that I have no way to know how many Arab Israelis actually abstained due to Operation Grapes of Wrath, so in the game itself you simply lose votes to Netanyahu in the Rabin/Peres gameplay instead.</p><p>I wish I could end it with a positive note about peace but I lost my optimism in high school, and the only thing I am sure of is how tired I am of everyone's bullshit. On the flip side, I have also found out that nothing can break you if you are already broken.</p><p>Anyway, I hope you find the game interesting and always remember: This too shall pass.</p><p>P.S. ✡️ Am Yisrael Chai</p>";
-  function fillIsrael96Reading() {
-    var box = document.getElementById("recommended_reading_box");
-    if (!box) return;
-    box.style.textAlign = "left";
-    box.style.padding = "0 14px";
-    var html = String(box.innerHTML || "").trim();
-    if (html === "undefined" || html === "") {
-      box.innerHTML = israel96ReadingHtml;
-    }
-  }
-  setInterval(fillIsrael96Reading, 100);
   document.addEventListener("click", function (evt) {
     var node = evt.target;
     if (node && node.classList && node.classList.contains("israel96-term")) {
