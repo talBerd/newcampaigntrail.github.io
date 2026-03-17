@@ -883,7 +883,7 @@ campaignTrail_temp.answer_feedback_json = [
 
 { "model": "campaign_trail.answer_feedback", "pk": 9103, "fields": { "answer": 300103, "candidate": 1001, "answer_feedback": "What the hell are you doing? The autonomy plan was born dead, a forgotten artifact from the peace negotiations with Egypt. You just confused everyone with this baffling attempt to hedge on the issue." } },
 
-{ "model": "campaign_trail.answer_feedback", "pk": 9201, "fields": { "answer": 300991, "candidate": 1001, "answer_feedback": "Your raging base feels a little snubbed, but it is definitely better for your image among the general public." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 9201, "fields": { "answer": 300991, "candidate": 1001, "answer_feedback": "Your raging base feels a little snubbed, but it is definitely better for your image among the general public. You also got a rare commendment across the aisle, from party colleagues David Levi and Dan Meridor, to Rabin himself." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 9202, "fields": { "answer": 300992, "candidate": 1001, "answer_feedback": "It is of no use. They won't refine their words just because you command it, and the media pounds you vociferously for going along with it. Alongside the picture of you carrying a coffin, which was supposed to symbolize the death of Zionism under Rabin, your behaviour is increasingly described as reckless and inciteful." } },
 
@@ -1078,81 +1078,11 @@ endingPicker = function(out, totv, aa, quickstats) {
 
   // Surprise ending: trigger only on the specific Oslo hardline answer.
   var SURPRISE_ANSWER_ID = 300101;
-  var picked300101 = ((typeof e !== "undefined" && Array.isArray(e.player_answers) && Number(e.player_answers[1]) === SURPRISE_ANSWER_ID) || (typeof campaignTrail_temp !== "undefined" && Array.isArray(campaignTrail_temp.player_answers) && Number(campaignTrail_temp.player_answers[1]) === SURPRISE_ANSWER_ID));
+  var picked300101 = ((typeof e !== "undefined" && Array.isArray(e.player_answers) && e.player_answers.some(function (v) { return Number(v) === SURPRISE_ANSWER_ID; })) || (typeof campaignTrail_temp !== "undefined" && Array.isArray(campaignTrail_temp.player_answers) && campaignTrail_temp.player_answers.some(function (v) { return Number(v) === SURPRISE_ANSWER_ID; })));
   if (picked300101) {
     setImage("https://i.imgur.com/p26uNiB.jpeg");
     useNormalEndingWindow();
 
-    // Build a full fake two-candidate district map so overall % and map display match.
-    // Not Bibi (Labor / pk 1002) wins 5 districts; Also not Bibi (Likud / pk 1001) wins 3.
-    var customNotVotesByState = {
-      6661: 1336,    // GH  (48.0%)  Also not Bibi slight lead
-      6662: 223149,  // NR  (54.0%)  Not Bibi strong lead
-      6663: 241661,  // HA  (54.0%)  Not Bibi strong lead
-      6664: 362829,  // CE  (50.6%)  Not Bibi slight lead
-      6665: 378791,  // TA  (54.5%)  Not Bibi strong lead
-      6666: 86207,   // JM  (35.0%)  Also not Bibi big lead
-      6667: 199079,  // SO  (48.0%)  Also not Bibi slight lead
-      6668: 7105     // WB  (20.0%)  Also not Bibi very big lead
-    };
-
-    var overallNotVotes = 0;
-    var overallAlsoVotes = 0;
-    var overallNotEV = 0;
-    var overallAlsoEV = 0;
-
-    if (typeof e !== "undefined" && Array.isArray(e.final_state_results) && Array.isArray(e.states_json)) {
-      for (var fs = 0; fs < e.final_state_results.length; fs++) {
-        var stateId = e.final_state_results[fs].state;
-        var stateObj = null;
-        for (var sj = 0; sj < e.states_json.length; sj++) {
-          if (e.states_json[sj].pk === stateId) { stateObj = e.states_json[sj]; break; }
-        }
-        if (!stateObj || !stateObj.fields) continue;
-
-        var totalStateVotes = Number(stateObj.fields.popular_votes) || 0;
-        var stateEV = Number(stateObj.fields.electoral_votes) || 0;
-        var notVotes = customNotVotesByState[stateId];
-        if (typeof notVotes === "undefined") notVotes = Math.round(totalStateVotes * 0.505);
-        var alsoVotes = totalStateVotes - notVotes;
-
-        var notWinsState = notVotes >= alsoVotes;
-        if (notWinsState) overallNotEV += stateEV;
-        else overallAlsoEV += stateEV;
-
-        overallNotVotes += notVotes;
-        overallAlsoVotes += alsoVotes;
-
-        var firstResult = notWinsState ?
-          { candidate: 1002, votes: notVotes, percent: totalStateVotes ? (notVotes / totalStateVotes) : 0, electoral_votes: stateEV } :
-          { candidate: 1001, votes: alsoVotes, percent: totalStateVotes ? (alsoVotes / totalStateVotes) : 0, electoral_votes: stateEV };
-
-        var secondResult = notWinsState ?
-          { candidate: 1001, votes: alsoVotes, percent: totalStateVotes ? (alsoVotes / totalStateVotes) : 0, electoral_votes: 0 } :
-          { candidate: 1002, votes: notVotes, percent: totalStateVotes ? (notVotes / totalStateVotes) : 0, electoral_votes: 0 };
-
-        e.final_state_results[fs].result = [firstResult, secondResult];
-      }
-
-      if (typeof campaignTrail_temp !== "undefined") {
-        campaignTrail_temp.final_state_results = e.final_state_results;
-      }
-
-      // Replace overall results with exactly two candidates.
-      // Use the engine-provided total vote denominator (`totv`) so displayed percentages
-      // come out to 50.5 / 49.5 in the final table.
-      var displayTotalVotes = Number(totv) || (overallNotVotes + overallAlsoVotes);
-      var displayNotVotes = Math.round(displayTotalVotes * 0.505);
-      var displayAlsoVotes = displayTotalVotes - displayNotVotes;
-      aa.length = 0;
-      aa.push({ candidate: 1002, electoral_votes: overallNotEV, popular_votes: displayNotVotes });
-      aa.push({ candidate: 1001, electoral_votes: overallAlsoEV, popular_votes: displayAlsoVotes });
-      aa.sort(function(a, b) { return b.popular_votes - a.popular_votes; });
-    }
-
-    if (typeof campaignTrail_temp !== "undefined") {
-      campaignTrail_temp.final_overall_results = aa;
-    }
 
     // Rename displayed candidates in results table (engine reads names from candidate_json by pk).
     var candidateLists = [];
@@ -1203,138 +1133,35 @@ endingPicker = function(out, totv, aa, quickstats) {
   return "<h3>\"Come on, Sarah?le, let?s go\"</h3><br>Holding the hand of your even more disappointed wife, you left the stage, wondering what went wrong. It was always an uphill battle, but so was Begin's in 1981 against the same, constantly underwhelming Peres. Your numerous rivals in the party are standing nearby like hyenas ready to strike, but you won't let them humiliate you. You will preemptively leave your position and spend some time on the outside, analyzing and perfecting yourself for the next attempt, because no matter what those haughty journalists think: <b>You will be back, and you will make them say your name over and over until their tongues fall off.</b><br><br><small>Photo credit: Flash 90</small>";
 };
 
-// Instant surprise ending: if answer 300101 is chosen, end the run immediately.
+// Instant surprise ending: if answer 300101 is chosen, shorten the run and rename the candidates early.
 (function () {
   var SURPRISE_ANSWER_ID = 300101;
-  var armed = false;
-  var applied = false;
-
-  var watcher = window.israel96NetLoop && clearInterval(window.israel96NetLoop);
-  window.israel96NetLoop = setInterval(function () {
+  if (window.israel96BiberatedPrepLoop) clearInterval(window.israel96BiberatedPrepLoop);
+  window.israel96BiberatedPrepLoop = setInterval(function () {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return;
-    try {
-      if (
-        !campaignTrail_temp ||
-        !Array.isArray(campaignTrail_temp.player_answers)
-      ) {
-        return;
+    if (!Array.isArray(campaignTrail_temp.player_answers)) return;
+    var picked300101Now = campaignTrail_temp.player_answers.some(function (v) { return Number(v) === SURPRISE_ANSWER_ID; });
+    if (!picked300101Now) return;
+    var lists = [];
+    if (Array.isArray(campaignTrail_temp.candidate_json)) lists.push(campaignTrail_temp.candidate_json);
+    if (typeof e !== "undefined" && Array.isArray(e.candidate_json)) lists.push(e.candidate_json);
+    for (var li = 0; li < lists.length; li++) {
+      for (var i = 0; i < lists[li].length; i++) {
+        var c = lists[li][i];
+        if (!c || !c.fields) continue;
+        if (c.pk === 1002) { c.fields.first_name = ""; c.fields.last_name = "Not Bibi"; c.fields.party = "Labor Party"; }
+        if (c.pk === 1001) { c.fields.first_name = ""; c.fields.last_name = "Also not Bibi"; c.fields.party = "Likud Party"; }
       }
-
-      var picked300101Now = Number(campaignTrail_temp.player_answers[1]) === SURPRISE_ANSWER_ID;
-      if (picked300101Now) {
-        armed = true;
-        if (Array.isArray(campaignTrail_temp.candidate_json)) {
-          for (var i = 0; i < campaignTrail_temp.candidate_json.length; i++) {
-            var c = campaignTrail_temp.candidate_json[i];
-            if (!c || !c.fields) continue;
-            if (c.pk === 1002) {
-              c.fields.first_name = "";
-              c.fields.last_name = "Not Bibi";
-              c.fields.party = "Labor Party";
-            }
-            if (c.pk === 1001) {
-              c.fields.first_name = "";
-              c.fields.last_name = "Also not Bibi";
-              c.fields.party = "Likud Party";
-            }
-          }
-        }
-        if (
-          Array.isArray(campaignTrail_temp.global_parameter_json) &&
-          campaignTrail_temp.global_parameter_json[0] &&
-          campaignTrail_temp.global_parameter_json[0].fields
-        ) {
-          // Surprise answer is in Q2 now, so end the run right after question 2.
-          campaignTrail_temp.global_parameter_json[0].fields.question_count = 2;
-        }
-        if (
-          typeof e !== "undefined" &&
-          Array.isArray(e.global_parameter_json) &&
-          e.global_parameter_json[0] &&
-          e.global_parameter_json[0].fields
-        ) {
-          e.global_parameter_json[0].fields.question_count = 2;
-        }
-      }
-
-      // As soon as the engine produces final_state_results, rewrite the map/results data
-      // so election-night map and final screen match the same fake outcome.
-      if (
-        armed &&
-        !applied &&
-        Array.isArray(campaignTrail_temp.final_state_results) &&
-        campaignTrail_temp.final_state_results.length &&
-        Array.isArray(campaignTrail_temp.states_json)
-      ) {
-        var customNotVotesByState = {
-          6661: 1336,
-          6662: 223149,
-          6663: 241661,
-          6664: 362829,
-          6665: 378791,
-          6666: 86207,
-          6667: 199079,
-          6668: 7105
-        };
-
-        var overallNotVotes = 0;
-        var overallAlsoVotes = 0;
-        var overallNotEV = 0;
-        var overallAlsoEV = 0;
-
-        for (var fs = 0; fs < campaignTrail_temp.final_state_results.length; fs++) {
-          var row = campaignTrail_temp.final_state_results[fs];
-          if (!row || typeof row.state === "undefined") continue;
-
-          var stateObj = null;
-          for (var sj = 0; sj < campaignTrail_temp.states_json.length; sj++) {
-            if (campaignTrail_temp.states_json[sj].pk === row.state) { stateObj = campaignTrail_temp.states_json[sj]; break; }
-          }
-          if (!stateObj || !stateObj.fields) continue;
-
-          var totalStateVotes = Number(stateObj.fields.popular_votes) || 0;
-          var stateEV = Number(stateObj.fields.electoral_votes) || 0;
-          var notVotes = customNotVotesByState[row.state];
-          if (typeof notVotes === "undefined") notVotes = Math.round(totalStateVotes * 0.505);
-          var alsoVotes = totalStateVotes - notVotes;
-          var notWinsState = notVotes >= alsoVotes;
-
-          overallNotVotes += notVotes;
-          overallAlsoVotes += alsoVotes;
-          if (notWinsState) overallNotEV += stateEV;
-          else overallAlsoEV += stateEV;
-
-          row.result = notWinsState ? [
-            { candidate: 1002, votes: notVotes, percent: totalStateVotes ? notVotes / totalStateVotes : 0, electoral_votes: stateEV },
-            { candidate: 1001, votes: alsoVotes, percent: totalStateVotes ? alsoVotes / totalStateVotes : 0, electoral_votes: 0 }
-          ] : [
-            { candidate: 1001, votes: alsoVotes, percent: totalStateVotes ? alsoVotes / totalStateVotes : 0, electoral_votes: stateEV },
-            { candidate: 1002, votes: notVotes, percent: totalStateVotes ? notVotes / totalStateVotes : 0, electoral_votes: 0 }
-          ];
-        }
-
-        campaignTrail_temp.final_overall_results = [
-          { candidate: 1002, electoral_votes: overallNotEV, popular_votes: overallNotVotes },
-          { candidate: 1001, electoral_votes: overallAlsoEV, popular_votes: overallAlsoVotes }
-        ];
-        campaignTrail_temp.final_overall_results.sort(function (a, b) { return b.popular_votes - a.popular_votes; });
-
-        if (typeof e !== "undefined") {
-          e.final_state_results = campaignTrail_temp.final_state_results;
-          e.final_overall_results = campaignTrail_temp.final_overall_results;
-        }
-
-        applied = true;
-        clearInterval(watcher);
-      }
-    } catch (err) {
-      // Ignore and keep polling.
+    }
+    if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) {
+      campaignTrail_temp.global_parameter_json[0].fields.question_count = 2;
+    }
+    if (typeof e !== "undefined" && Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) {
+      e.global_parameter_json[0].fields.question_count = 2;
     }
   }, 25);
 })();
 
-// Swap the advisor image only for questions 5 and 6.
-(function () {
   var SPECIAL_ADVISOR_URL = "https://i.imgur.com/frqkwCm.jpeg";
   var DEFAULT_ADVISOR_URL = "https://i.imgur.com/rE6X6Ro.jpeg";
 
@@ -1366,7 +1193,6 @@ endingPicker = function(out, totv, aa, quickstats) {
   setInterval(function () {
     syncAdvisorImage();
   }, 50);
-})();
 
 // Force-inject custom YouTube album into the music dropdown at runtime (cache-safe).
 (function () {
@@ -1406,8 +1232,8 @@ endingPicker = function(out, totv, aa, quickstats) {
     }
   }
 
-  var watcher = window.israel96NetLoop && clearInterval(window.israel96NetLoop);
-  window.israel96NetLoop = setInterval(function () {
+  if (window.israel96AlbumLoop) clearInterval(window.israel96AlbumLoop);
+  window.israel96AlbumLoop = setInterval(function () {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return;
     try {
       ensureAlbumData();
@@ -1793,6 +1619,51 @@ endingPicker = function(out, totv, aa, quickstats) {
     }
   }
 
+  function applyBiberatedLead(active) {
+    var notBibiByState = {
+      6661: 1.22,
+      6662: 1.22,
+      6663: 1.22,
+      6664: 1.22,
+      6665: 1.22,
+      6666: 1.22,
+      6667: 1.22,
+      6668: 1.22
+    };
+    var alsoNotBibiByState = {
+      6661: 0.80,
+      6662: 0.80,
+      6663: 0.80,
+      6664: 0.80,
+      6665: 0.80,
+      6666: 0.80,
+      6667: 0.80,
+      6668: 0.80
+    };
+
+    var sets = dataSets();
+    for (var ds = 0; ds < sets.length; ds++) {
+      var root = sets[ds];
+      if (!Array.isArray(root.candidate_state_multiplier_json)) continue;
+      for (var i = 0; i < root.candidate_state_multiplier_json.length; i++) {
+        var row = root.candidate_state_multiplier_json[i];
+        if (!row || !row.fields) continue;
+        var cand = row.fields.candidate;
+        if (cand !== 1001 && cand !== RABIN_ID) continue;
+        if (typeof row.fields.__biberated_base_mult === "undefined") {
+          row.fields.__biberated_base_mult = Number(row.fields.state_multiplier) || 0;
+        }
+        var base = row.fields.__biberated_base_mult;
+        if (active) {
+          var sid = row.fields.state;
+          if (cand === RABIN_ID) row.fields.state_multiplier = Number((base * (notBibiByState[sid] || 1.22)).toFixed(4));
+          if (cand === 1001) row.fields.state_multiplier = Number((base * (alsoNotBibiByState[sid] || 0.80)).toFixed(4));
+        } else {
+          row.fields.state_multiplier = base;
+        }
+      }
+    }
+  }
   function hasAnswer(answers, id) {
     return answers.indexOf(id) !== -1 || answers.indexOf(String(id)) !== -1;
   }
@@ -1923,6 +1794,7 @@ endingPicker = function(out, totv, aa, quickstats) {
 
       var answeredNow = countAnswered(answers);
       var hasDropout = hasAnswer(answers, DROPOUT_ANSWER);
+      var biberated = hasAnswer(answers, 300101);
       var usePeres = answeredNow >= 5; // Question 6 onward
       var showNow = mode > 0 && answeredNow >= 2 && answeredNow <= 5 && !hasDropout; // Eitan window Q3..Q6 unless he drops out
 
@@ -1931,7 +1803,8 @@ endingPicker = function(out, totv, aa, quickstats) {
       setEitanActive(showNow);
       setOpponents(showNow, usePeres);
       applyPeresLead(usePeres);
-      if (showNow) setEitanStateMultipliers(getEffectiveMap(mode, answers));
+        applyBiberatedLead(biberated);
+        if (showNow) setEitanStateMultipliers(getEffectiveMap(mode, answers));
 
       currentShowNow = showNow;
       currentMode = mode;
@@ -1958,6 +1831,7 @@ endingPicker = function(out, totv, aa, quickstats) {
 
       var answeredNow = countAnswered(answers);
       var hasDropout = hasAnswer(answers, DROPOUT_ANSWER);
+      var biberated = hasAnswer(answers, 300101);
       var usePeres = answeredNow >= 5; // Question 6 onward
       var showNow = mode > 0 && answeredNow >= 2 && answeredNow <= 5 && !hasDropout; // Eitan window Q3..Q6 unless he drops out
 
@@ -1978,6 +1852,7 @@ endingPicker = function(out, totv, aa, quickstats) {
         setEitanActive(showNow);
         setOpponents(showNow, usePeres);
         applyPeresLead(usePeres);
+        applyBiberatedLead(biberated);
         if (showNow) setEitanStateMultipliers(getEffectiveMap(mode, answers));
         currentShowNow = showNow;
         currentMode = mode;
@@ -1985,9 +1860,11 @@ endingPicker = function(out, totv, aa, quickstats) {
       } else if (showNow) {
         // Keep decay/boost effects evolving even while the window stays active.
         applyPeresLead(usePeres);
+        applyBiberatedLead(biberated);
         setEitanStateMultipliers(getEffectiveMap(mode, answers));
       } else {
         applyPeresLead(usePeres);
+        applyBiberatedLead(biberated);
       }
     } catch (err) {
       // Keep game loop resilient.
@@ -1997,11 +1874,11 @@ endingPicker = function(out, totv, aa, quickstats) {
 
 // Re-assert custom historical results arrays in case another script overwrites them later.
 (function () {
-  var histWatcher = window.israel96NetLoop && clearInterval(window.israel96NetLoop);
-  window.israel96NetLoop = setInterval(function () {
+  if (window.israel96HistLoop) clearInterval(window.israel96HistLoop);
+  window.israel96HistLoop = setInterval(function () {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return;
     try {
-      if (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers) && Number(campaignTrail_temp.player_answers[1]) === 300101) window.HistName = ["Also not Bibi (Likud)", "Not Bibi (Labor)"]; else window.HistName = ["Benjamin Netanyahu (Likud)", "Shimon Peres (Labor)"];
+      if (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers) && campaignTrail_temp.player_answers.some(function (v) { return Number(v) === 300101; })) window.HistName = ["Also not Bibi (Likud)", "Not Bibi (Labor)"]; else window.HistName = ["Benjamin Netanyahu (Likud)", "Shimon Peres (Labor)"];
       window.HistEV = ["", ""];
       window.HistPV = ["1,501,023", "1,471,566"];
       window.HistPVP = ["50.50%", "49.50%"];
@@ -2297,7 +2174,7 @@ endingPicker = function(out, totv, aa, quickstats) {
   window.israel96BiberatedOkLoop = setInterval(function () {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return;
     if (!Array.isArray(campaignTrail_temp.player_answers)) return;
-    if (Number(campaignTrail_temp.player_answers[1]) !== SURPRISE_ANSWER_ID) return;
+    if (!Array.isArray(campaignTrail_temp.player_answers) || !campaignTrail_temp.player_answers.some(function (v) { return Number(v) === SURPRISE_ANSWER_ID; })) return;
     var btn = document.getElementById('ok_button');
     var visit = document.getElementById('visit_window');
     if (!btn || !visit || visit.style.display === 'none') return;
@@ -2355,14 +2232,20 @@ endingPicker = function(out, totv, aa, quickstats) {
     try {
       var tables = document.querySelectorAll('#results_container table, #overall_details_container table, #state_details_container table');
       for (var t = 0; t < tables.length; t++) {
-        var rows = tables[t].querySelectorAll('tr');
-        for (var r = 0; r < rows.length; r++) {
-          var cells = rows[r].children;
-          if (cells && cells.length >= 4) {
-            var hdr = cells[1] && cells[1].textContent ? cells[1].textContent.trim() : '';
-            if (hdr === 'Electoral Votes' || cells.length === 4) {
-              cells[1].style.display = 'none';
-            }
+        var table = tables[t];
+        var headerCells = table.querySelectorAll('tr:first-child th, tr:first-child td');
+        var hideIdx = -1;
+        for (var h = 0; h < headerCells.length; h++) {
+          var txt = headerCells[h] && headerCells[h].textContent ? headerCells[h].textContent.trim() : ''; 
+          if (/^Electoral Votes$/i.test(txt)) { hideIdx = h; break; }
+        }
+        if (hideIdx === -1 && table.closest('#state_details_container') && headerCells.length === 4) hideIdx = 1;
+        if (hideIdx === -1 && table.closest('#results_container') && headerCells.length === 4) hideIdx = 1;
+        if (hideIdx !== -1) {
+          var rows = table.querySelectorAll('tr');
+          for (var r = 0; r < rows.length; r++) {
+            var cells = rows[r].children;
+            if (cells && cells.length > hideIdx && cells[hideIdx]) cells[hideIdx].style.display = "none";
           }
         }
       }
@@ -2374,13 +2257,16 @@ endingPicker = function(out, totv, aa, quickstats) {
         var node;
         while ((node = walker.nextNode())) {
           if (!node.nodeValue) continue;
-          var next = node.nodeValue.replace(/ -\s*\d+(?:\.\d+)?\s*\/\s*/g, ' - ');
+          var next = node.nodeValue;
           next = next.replace(/\bElectoral Votes\b/g, '');
           if (next !== node.nodeValue) node.nodeValue = next;
         }
       }
     } catch (err) {}
   }
-  if (window.'@ + $marker + @') clearInterval(window.'@ + $marker + @');
-  window.'@ + $marker + @' = setInterval(hideElectoralVotesUi, 50);
+  if (window.israel96BibiHideEvLoop) clearInterval(window.israel96BibiHideEvLoop);
+  window.israel96BibiHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
+
+
+
