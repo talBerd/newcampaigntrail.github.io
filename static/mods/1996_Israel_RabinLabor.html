@@ -1,4 +1,4 @@
-campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 
 
 /* ============================================================
@@ -1414,20 +1414,14 @@ function getPeresTemplate() {
   function armPeresIntro() {
 
     if (!shouldShowPeresIntro()) return;
-    var btn = document.getElementById('ok_button');
-    var visit = document.getElementById('visit_window');
-    if (!btn || !visit) return;
-    if (btn.getAttribute('data-peres-hooked') === '1') return;
-    btn.setAttribute('data-peres-hooked','1');
-    btn.addEventListener('click', function() {
-      campaignTrail_temp.peres_intro_seen = false;
-      if (typeof setQuestion6Variant === 'function') setQuestion6Variant(true);
-      setTimeout(function () {
-        if (typeof applyPeresTakeover === 'function') applyPeresTakeover();
-        if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
-        buildPeresOverlay();
-      }, 120);
-    }, { once: true });
+    if (document.getElementById('visit_window')) return;
+    if (document.getElementById('feedback_window')) return;
+    if (document.getElementById('peres_intro_window')) return;
+    campaignTrail_temp.peres_intro_seen = false;
+    if (typeof setQuestion6Variant === 'function') setQuestion6Variant(true);
+    if (typeof applyPeresTakeover === 'function') applyPeresTakeover();
+    if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
+    buildPeresOverlay();
   }
   if (window.israel96PeresIntroLoop) clearInterval(window.israel96PeresIntroLoop);
   window.israel96PeresIntroLoop = setInterval(function() {
@@ -1435,6 +1429,8 @@ function getPeresTemplate() {
     armPeresIntro();
   }, 50);
 })();
+
+
 
 
 
@@ -1542,13 +1538,16 @@ function israel96InstallPagedEnding(title, pages, photoCredit, endingKey) {
 
 function israel96RabinSetEndingImage(url) {
   if (!url) return;
+  function apply() {
+    var img = document.querySelector('.person_image img, #candidate_image img, .person_image');
+    if (!img) return false;
+    img.src = url;
+    return true;
+  }
+  if (apply()) return;
   var interval = setInterval(function () {
-    var img = document.getElementsByClassName("person_image")[0];
-    if (img != null) {
-      img.src = url;
-      clearInterval(interval);
-    }
-  }, 50);
+    if (apply()) clearInterval(interval);
+  }, 5);
 }
 
 function israel96RabinUseNormalEndingWindow(theme) {
@@ -1718,7 +1717,7 @@ endingPicker = function(out, totv, aa, quickstats) {
     window.israel96PagedEndingState = null;
     israel96RabinSetEndingImage('https://i.imgur.com/9prwd8r.jpeg');
     israel96RabinUseNormalEndingWindow({ gameBg: "#ffffff", resultsBg: "#ffffff", resultsBorder: "#cfcfcf", headerBg: "#ffffff", descBg: "#ffffff", descBorder: "#cfcfcf", textColor: "#000000", separateDesc: true });
-    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon, turned into the war get Lebanon out of the Syrian sphere of influence, turned into the war to install a friendly regime in Lebanon, turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened, was brought to an end with an actual \"Peace with Honor\".<br><br>With the Lebanese normalization paper signed, the Jewish state wakes up to a refreshing reality of non hostile borders. While Israelis are not gonna wipe Hummus in Damascus anytime soon, they can at least dial back their long cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to...stop it! Why can\'t I relax for a goddamn second?';
+    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon, turned into the war to get Lebanon out of the Syrian sphere of influence, turned into the war to install a friendly regime in Lebanon, turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened, was brought to an end with an actual \"Peace with Honor\".<br><br>With the Lebanese normalization paper signed, the Jewish state wakes up to a refreshing reality of non hostile borders. While Israelis are not gonna wipe Hummus in Damascus anytime soon, they can at least dial back their long cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to...stop it! Why can\'t I relax for a goddamn second?';
   }
 
 
@@ -1739,9 +1738,9 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {
     window.israel96RabinEndingKey = "peres-loss";
     var peresLossPages = [
-      'Like multiple times in the past, Peres swallowed his pride and congratulated his opponent. Behind the scenes he genuinely tried to help the newly elected prime minister with his experience, even floating the possibility of a unity government, but the opposition was too high on both sides.<br><br>In 1997 he was replaced by Barak as the Labor leader. After Barak won the election, in a move that would become frustratingly common in Israeli politics, he created an entirely new Department of Regional Cooperation, whose only purpose seemed to be satisfying Peres with a job without giving him an actual key portfolio. Peres accepted nonetheless, always eager to be there.',
-      'It is for this reason that after he lost (no way!) another Labor leadership race to future Iron Dome bringer Amir Peretz, he left the Labor Party to join Sharon\'s centrist Kadima (Forward), allowing him to be nominated to other questionable ministries by Sharon\'s successor Olmert.<br><br>Then something wonderful happened to Shimon. The guy won! The race for the symbolic role of Israeli president! At his very fir... second attempt!!!',
-      'The ceaseless survivor, who once described politics as a virus that you either have or do not have in your body, finally found the place where he would feel like a fish in water although he had to move to the president\'s mansion alone, as his wife (shockingly!) decided that she had had enough. Peres talked with world leaders, met celebrities, made speeches, and tried to interest businessmen in his ideas about how they could bring Israel and the rest of the region to prosperity while making a ton of money in the process.<br><br>After the end of his term he managed The Center for Peace and Innovation named after him and, to his last breath, remained sharp and involved.<br><br>His political career will remain controversial, but no one can deny his pivotal role in the early years of the country, and he will forever be remembered for two initiatives that symbolize his complicated nature like no others: Oslo and the N-word thing.'
+      'Like multiple times in the past, Peres swallowed his pride and congratulated his opponent. Behind the scenes he genuinely tried to help the newly elected prime minister with his experience, even floating the possibility of a unity government, but the opposition was too high on both sides.<br><br>In 1997 he was replaced by Barak as the Labor leader. After Barak won the election, in a move that would become frustratingly common in Israeli politics, he created an entirely new Department of Regional Cooperation, whose only purpose seemed to be satisfying Peres with a job without giving him an actual key portfolio. Peres accepted nonetheless, always eager to \"be there\".',
+      'It is for this reason that after he lost (no way!) another Labor leadership race to future \"Iron Dome\" bringer Amir Peretz, he left the Labor Party to join Sharon\'s centrist Kadima (Forward), allowing him to be nominated to other questionable ministries by Sharon\'s successor Olmert.<br><br>Then something wonderful happened to Shimon. The guy won! The race for the symbolic role of Israeli president! At his very fir... second attempt!!!',
+      'The ceaseless survivor, who once described politics as a virus that you either have or do not have in your body, finally found the place where he would feel like a fish in water although he had to move to the president\'s mansion alone, as his wife (shockingly!) decided that she had had enough. Peres talked with world leaders, met celebrities, made speeches, and tried to interest businessmen in his ideas about how they could bring Israel and the rest of the region to prosperity while making a ton of money in the process.<br><br>After the end of his term he managed The Center for Peace and Innovation named after him and, to his last breath, remained sharp and involved.<br><br>His political career will remain controversial, but no one can deny his pivotal role in the early years of the country, and he will forever be remembered for two initiatives that symbolize his complicated nature like no others: Oslo and the n-word thing.'
     ];
     israel96RabinSetEndingImage('https://i.imgur.com/y9Q8ClX.jpeg');
     israel96InstallPagedEnding('The Elder Statesman', peresLossPages, 'Photo credit: AP', 'peres-loss');
@@ -1829,9 +1828,16 @@ endingPicker = function(out, totv, aa, quickstats) {
   }
 
   function isPeresBranch() {
-    if (typeof shouldUsePeres === "function") return shouldUsePeres();
-    var ans = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
-    return ans.map(function(a){ return Number(a); }).indexOf(301702) !== -1;
+    if (campaignTrail_temp && campaignTrail_temp.israel96ForcePeresGlossary) return true;
+    if (typeof e !== "undefined" && e && e.israel96ForcePeresGlossary) return true;
+    var ans1 = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
+    var ans2 = (typeof e !== "undefined" && e && Array.isArray(e.player_answers)) ? e.player_answers : [];
+    var hit = ans1.concat(ans2).map(function(a){ return Number(a); }).indexOf(301702) !== -1;
+    if (hit) {
+      if (campaignTrail_temp) campaignTrail_temp.israel96ForcePeresGlossary = true;
+      if (typeof e !== "undefined" && e) e.israel96ForcePeresGlossary = true;
+    }
+    return hit;
   }
 
   function syncAdvisorImage() {
@@ -1839,6 +1845,18 @@ endingPicker = function(out, totv, aa, quickstats) {
     var targetUrl = qn === 5 ? SPECIAL_Q5_ADVISOR_URL : (isPeresBranch() ? PERES_ADVISOR_URL : RABIN_ADVISOR_URL);
     if (typeof campaignTrail_temp !== "undefined") campaignTrail_temp.advisor_url = targetUrl;
     if (typeof e !== "undefined" && e) e.advisor_url = targetUrl;
+    if (typeof campaignTrail_temp !== "undefined" && Array.isArray(campaignTrail_temp.election_json)) {
+      for (var ci = 0; ci < campaignTrail_temp.election_json.length; ci++) {
+        var ce = campaignTrail_temp.election_json[ci];
+        if (ce && ce.fields) ce.fields.advisor_url = targetUrl;
+      }
+    }
+    if (typeof e !== "undefined" && e && Array.isArray(e.election_json)) {
+      for (var ei = 0; ei < e.election_json.length; ei++) {
+        var ee = e.election_json[ei];
+        if (ee && ee.fields) ee.fields.advisor_url = targetUrl;
+      }
+    }
     var selectors = [
       "#visit_content img",
       "#feedback_content img",
@@ -1851,7 +1869,9 @@ endingPicker = function(out, totv, aa, quickstats) {
     }
   }
 
-  syncAdvisorImage(); setInterval(syncAdvisorImage, 5);
+  syncAdvisorImage();
+  if (window.israel96RabinAdvisorLoop) clearInterval(window.israel96RabinAdvisorLoop);
+  window.israel96RabinAdvisorLoop = setInterval(syncAdvisorImage, 5);
 })();
 
 
@@ -1860,7 +1880,7 @@ endingPicker = function(out, totv, aa, quickstats) {
 
 // Clickable glossary terms with a parchment-style info window (code 2 only).
 (function () {
-  var terms = [
+  var rabinTerms = [
     {
       id: "ehud_barak",
       title: "Ehud Barak",
@@ -1937,7 +1957,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       id: "aryeh_deri",
       title: "Aryeh Deri",
       aliases: ["Aryeh Deri"],
-      body: "Your negatively not guilty coalition partner and interior minister. You need him for Oslo, can't those Hard-nosed prosecutors leave him alone?"
+      body: "Your negatively not guilty coalition partner and interior minister. You need him for Oslo, can't those hard nosed prosecutors leave him alone?"
     },
     {
       id: "netanyahu",
@@ -1946,6 +1966,51 @@ endingPicker = function(out, totv, aa, quickstats) {
       body: "The great poser who should have settled for a movie career"
     }
   ];
+  var peresTerms = JSON.parse(JSON.stringify(rabinTerms));
+  var peresAyatollah = peresTerms.find(function (t) { return t.id === 'ayatollah_regime'; });
+  if (peresAyatollah) peresAyatollah.body = 'The Shah was no angel but really? What a wasted potential';
+  var peresHamas = peresTerms.find(function (t) { return t.id === 'hamas'; });
+  if (peresHamas) peresHamas.body = 'Dogmatists panicking over "The new middle east" unfolding';
+  var peresHezbollah = peresTerms.find(function (t) { return t.id === 'hezbollah'; });
+  if (peresHezbollah) peresHezbollah.body = 'A thorn on the side of "the new middle east" who would rather saw their country burn than recognizing Israel';
+  var peresNasrallah = peresTerms.find(function (t) { return t.id === 'nasrallah'; });
+  if (peresNasrallah) peresNasrallah.body = 'The leader of Hezbollah and hopefully a relic of the past for the middle east. Good riddance!';
+  var peresClinton = peresTerms.find(function (t) { return t.id === 'bill_clinton'; });
+  if (peresClinton) peresClinton.body = 'The US president and personification of changing times. So sad the opposition here consists of dinosaurs refusing to adapt.';
+  var peresNetanyahu = peresTerms.find(function (t) { return t.id === 'netanyahu'; });
+  if (peresNetanyahu) peresNetanyahu.body = 'If Rabin called you "tireless schemer", what does it make this dude?';
+  var peresSecurityZone = peresTerms.find(function (t) { return t.id === 'security_zone'; });
+  if (peresSecurityZone) peresSecurityZone.body = 'A temporary buffer until diplomacy will reign supreme';
+
+  function syncPeresTermBodies() {
+    if (!(typeof isPeresBranch === "function" && isPeresBranch())) return;
+    var ids = ['ayatollah_regime', 'hamas', 'hezbollah', 'nasrallah', 'bill_clinton', 'netanyahu', 'security_zone'];
+    for (var i = 0; i < ids.length; i++) {
+      var id = ids[i];
+      var src = peresTerms.find(function (t) { return t.id === id; });
+      var dst = rabinTerms.find(function (t) { return t.id === id; });
+      if (src && dst) dst.body = src.body;
+    }
+  }
+
+  function getPeresOverrideBody(id) {
+    if (!(typeof isPeresBranch === "function" && isPeresBranch())) return null;
+    var map = {
+      ayatollah_regime: 'I get that the Shah was no angel but really? What a wasted potential',
+      hamas: 'Digmatists panicking over "The new middle east" unfolding',
+      hezbollah: 'A thorn on the side of "the new middle east" who would rather saw their country burn than recognizing Israel',
+      nasrallah: 'The leader of Hezbpllah and hopefully a relic of the past for the middle east. Good riddance!',
+      bill_clinton: 'The US president and personification of changing times. So sad the opposition here consists of dinosaurs refusing to adapt.',
+      netanyahu: 'If Rabin called you "tireless schemer" what does it make this dude?',
+      security_zone: 'A temporary buffer until diplomacy will reign supreme'
+    };
+    return Object.prototype.hasOwnProperty.call(map, id) ? map[id] : null;
+  }
+
+  function getActiveTerms() {
+    return rabinTerms;
+  }
+
   function escapeRegExp(s) {
     return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
@@ -2012,29 +2077,38 @@ endingPicker = function(out, totv, aa, quickstats) {
   }
 
   function openTerm(id) {
-    var term = terms.find(function (t) { return t.id === id; });
+    var term = getActiveTerms().find(function (t) { return t.id === id; });
     if (!term) return;
+    var overrideBody = getPeresOverrideBody(id);
     ensureStyles();
     ensureOverlay();
     document.getElementById("israel96_glossary_title").textContent = term.title;
-    document.getElementById("israel96_glossary_body").textContent = term.body;
+    document.getElementById("israel96_glossary_body").textContent = overrideBody || term.body;
     document.getElementById("israel96_glossary_overlay").style.display = "block";
   }
 
   function getTerm(id) {
-    return terms.find(function (t) { return t.id === id; }) || null;
+    var term = getActiveTerms().find(function (t) { return t.id === id; }) || null;
+    if (!term) return null;
+    var overrideBody = getPeresOverrideBody(id);
+    if (overrideBody) {
+      term = JSON.parse(JSON.stringify(term));
+      term.body = overrideBody;
+    }
+    return term;
   }
 
   function linkifyContainer(container) {
     if (!container) return;
     var html = container.innerHTML;
+    var branchKey = (typeof isPeresBranch === "function" && isPeresBranch()) ? "peres" : "rabin";
     // Remove prior glossary wrappers before re-linking to avoid span nesting/dancing text.
     html = html
       .replace(/<span class=['"]israel96-term['"][^>]*>(.*?)<\/span>/g, "$1");
-    // Re-run linkification when content changes (same DOM node reused across questions).
-    if (container.dataset.israel96GlossarySource === html) return;
+    // Re-run linkification when content or active glossary branch changes.
+    if (container.dataset.israel96GlossarySource === html && container.dataset.israel96GlossaryBranch === branchKey) return;
 
-    terms.forEach(function (term) {
+    getActiveTerms().forEach(function (term) {
       term.aliases.forEach(function (alias) {
         var rx = new RegExp("\\b" + escapeRegExp(alias) + "\\b", "g");
         html = html.replace(rx, "<span class='israel96-term' data-term='" + term.id + "'>" + alias + "</span>");
@@ -2043,6 +2117,7 @@ endingPicker = function(out, totv, aa, quickstats) {
 
     container.innerHTML = html;
     container.dataset.israel96GlossarySource = html.replace(/<span class=['"]israel96-term['"][^>]*>(.*?)<\/span>/g, "$1");
+    container.dataset.israel96GlossaryBranch = branchKey;
   }
 
   document.addEventListener("click", function (evt) {
@@ -2079,7 +2154,41 @@ endingPicker = function(out, totv, aa, quickstats) {
     if (tip) tip.style.display = "none";
   }, true);
 
-  setInterval(function () { ensureStyles(); ensureTip(); var root = document.getElementById("game_window"); if (!root) return; var targets = root.querySelectorAll(".inner_inner_window h3, .inner_inner_window label, #candidate_summary, #running_mate_summary"); for (var i = 0; i < targets.length; i++) linkifyContainer(targets[i]); }, 500);
+  function forcePeresGlossaryBodies() {
+    var ans1 = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
+    var ans2 = (typeof e !== "undefined" && e && Array.isArray(e.player_answers)) ? e.player_answers : [];
+    if (ans1.concat(ans2).map(function(a){ return Number(a); }).indexOf(301702) === -1) return;
+    var overrides = {
+      ayatollah_regime: "I get that the Shah was no angel but really? What a wasted potential",
+      hamas: "Digmatists panicking over \"The new middle east\" unfolding",
+      hezbollah: "A thorn on the side of \"the new middle east\" who would rather saw their country burn than recognizing Israel",
+      nasrallah: "The leader of Hezbpllah and hopefully a relic of the past for the middle east. Good riddance!",
+      bill_clinton: "The US president and personification of changing times. So sad the opposition here consists of dinosaurs refusing to adapt.",
+      netanyahu: "If Rabin called you \"tireless schemer\" what does it make this dude?",
+      security_zone: "A temporary buffer until diplomacy will reign supreme"
+    };
+    if (Array.isArray(rabinTerms)) {
+      for (var i = 0; i < rabinTerms.length; i++) {
+        var term = rabinTerms[i];
+        if (term && Object.prototype.hasOwnProperty.call(overrides, term.id)) term.body = overrides[term.id];
+      }
+    }
+    if (Array.isArray(peresTerms)) {
+      for (var k = 0; k < peresTerms.length; k++) {
+        var pterm = peresTerms[k];
+        if (pterm && Object.prototype.hasOwnProperty.call(overrides, pterm.id)) pterm.body = overrides[pterm.id];
+      }
+    }
+    var root = document.getElementById("game_window");
+    if (!root) return;
+    var targets = root.querySelectorAll(".inner_inner_window h3, .inner_inner_window label, #candidate_summary, #running_mate_summary");
+    for (var j = 0; j < targets.length; j++) {
+      delete targets[j].dataset.israel96GlossarySource;
+      delete targets[j].dataset.israel96GlossaryBranch;
+      linkifyContainer(targets[j]);
+    }
+  }
+  setInterval(function () { ensureStyles(); ensureTip(); forcePeresGlossaryBodies(); var root = document.getElementById("game_window"); if (!root) return; var targets = root.querySelectorAll(".inner_inner_window h3, .inner_inner_window label, #candidate_summary, #running_mate_summary"); for (var i = 0; i < targets.length; i++) { linkifyContainer(targets[i]); } }, 500);
 })();
 
 
@@ -2171,6 +2280,16 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (window.israel96RabinHideEvLoop) clearInterval(window.israel96RabinHideEvLoop);
   window.israel96RabinHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
+
+
+
+
+
+
+
+
+
+
 
 
 
