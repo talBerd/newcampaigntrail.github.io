@@ -1459,7 +1459,7 @@ function divideElectoralVotesProp(e, t) {
             shining_menu(t);
         })
 
-        $("#answer_select_button").off("click").on("click", function() {
+        $("#answer_select_button")[0].addEventListener("click", function() {
             var nullN = $("input:radio[name=game_answers]:checked").val();
             null == nullN ? C(e.election_id) : n(nullN)
         })
@@ -1875,7 +1875,7 @@ function divideElectoralVotesProp(e, t) {
                                 let e = A(return_type = 2);
                                 openMap(e);
                             })
-                            $("#answer_select_button").off("click").on("click", function() {
+                            $("#answer_select_button").click(function() {
                                 var t = $("input:radio[name=game_answers]:checked").val();
                                 null == t ? C(e.election_id) : n(t)
                             })
@@ -1899,7 +1899,7 @@ function divideElectoralVotesProp(e, t) {
                                 let e = A(return_type = 2);
                                 openMap(e);
                             })
-                            $("#answer_select_button").off("click").on("click", function() {
+                            $("#answer_select_button").click(function() {
                                 var t = $("input:radio[name=game_answers]:checked").val();
                                 null == t ? C(e.election_id) : n(t)
                             })
@@ -3702,20 +3702,9 @@ _ = '   <div class="game_header"> ' + corrr + ' </div> <div id="main_content_are
 
     function C(t) {
         var i = S(t),
-            a = '    <div class="overlay" id="feedback_overlay"></div>    <div class="overlay_window" id="feedback_window">        <div class="overlay_window_content" id="feedback_content">        <h3>Advisor Feedback</h3>        <img src="' + e.election_json[i].fields.advisor_url + '" width="208" height="128"/>        <p>' + e.SelAnsContText + '</p>        </div>        <div id="visit_buttons">        <button id="feedback_ok_button">OK</button><br>        </div>    </div>';
-        var continueBtn = $("#answer_select_button");
-        continueBtn.prop("disabled", true);
-        $("#feedback_overlay").remove(), $("#feedback_window").remove(), $("#game_window").append(a), $("#feedback_overlay, #feedback_window").off("mousedown click").on("mousedown click", function(evt) {
-            evt.stopPropagation()
-        }), $("#feedback_ok_button").off("mousedown click").on("mousedown click", function(evt) {
-            evt.preventDefault(), evt.stopPropagation(), evt.stopImmediatePropagation();
-            var active = document.activeElement;
-            if (active && typeof active.blur === "function") active.blur();
-            continueBtn.prop("disabled", false);
-            setTimeout(function() {
-                $("#feedback_overlay").remove(), $("#feedback_window").remove()
-            }, 0);
-            return false
+            a = '    <div class="overlay" id="feedback_overlay"></div>    <div class="overlay_window" id="feedback_window">        <div class="overlay_window_content" id="feedback_content">        <h3>Advisor Feedback</h3>        <img src="' + e.election_json[i].fields.advisor_url + '" width="208" height="128"/>        <p>' + e.SelAnsContText + '</p>        </div>        <div id="visit_buttons">        <button id="ok_button">OK</button><br>        </div>    </div>';
+        $("#game_window").append(a), $("#ok_button").click(function() {
+            $("#feedback_overlay").remove(), $("#feedback_window").remove()
         })
     }
 
