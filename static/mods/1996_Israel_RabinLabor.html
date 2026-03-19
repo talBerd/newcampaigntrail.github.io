@@ -1,4 +1,4 @@
-﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 
 
 /* ============================================================
@@ -16,13 +16,6 @@ function israel96RabinSetQuestionCount(n) {
   }
 }
 
-israel96RabinSetQuestionCount(12);campaignTrail_temp.answer_score_state_json = [
-  { "model": "campaign_trail.answer_score_state", "pk": 8601, "fields": { "answer": 301402, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.08 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8602, "fields": { "answer": 301403, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.11 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.05 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.04 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } }
-];
 
 // Legacy campaign sign/header fields used by the engine UI (prevents undefined labels/images).
 campaignTrail_temp.candidate_last_name = 'Rabin';
@@ -562,20 +555,20 @@ campaignTrail_temp.candidate_state_multiplier_json = [
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2001, "fields": { "candidate": 1001, "state": 6661, "state_multiplier": 0.9 } }, // Golan
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2002, "fields": { "candidate": 1001, "state": 6662, "state_multiplier": 0.7 } }, // Northern
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2003, "fields": { "candidate": 1001, "state": 6663, "state_multiplier": 0.8 } }, // Haifa
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2004, "fields": { "candidate": 1001, "state": 6664, "state_multiplier": 1.17 } }, // Central
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2004, "fields": { "candidate": 1001, "state": 6664, "state_multiplier": 1 } }, // Central
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2005, "fields": { "candidate": 1001, "state": 6665, "state_multiplier": 0.75 } }, // Tel Aviv
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.28 } }, // Jerusalem
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.25 } }, // Jerusalem
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2007, "fields": { "candidate": 1001, "state": 6667, "state_multiplier": 1 } }, // Southern
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 1.6 } },  // West Bank
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 2 } },  // West Bank
 
     { "model": "campaign_trail.candidate_statssue_multiplier", "pk": 2101, "fields": { "candidate": 1002, "state": 6661, "state_multiplier": 1.07 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2102, "fields": { "candidate": 1002, "state": 6662, "state_multiplier": 0.88 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2103, "fields": { "candidate": 1002, "state": 6663, "state_multiplier": 1.06 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2104, "fields": { "candidate": 1002, "state": 6664, "state_multiplier": 1 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2105, "fields": { "candidate": 1002, "state": 6665, "state_multiplier": 0.82 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2106, "fields": { "candidate": 1002, "state": 6666, "state_multiplier": 0.82 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2107, "fields": { "candidate": 1002, "state": 6667, "state_multiplier": 0.77  } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2108, "fields": { "candidate": 1002, "state": 6668, "state_multiplier": 0.58 } }
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2106, "fields": { "candidate": 1002, "state": 6666, "state_multiplier": 0.85 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2107, "fields": { "candidate": 1002, "state": 6667, "state_multiplier": 0.65  } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2108, "fields": { "candidate": 1002, "state": 6668, "state_multiplier": 0.55 } }
 ];
 
 campaignTrail_temp.candidate_issue_score_json = [
@@ -808,15 +801,13 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 8603, "fields": { "answer": 301601, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.02 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8604, "fields": { "answer": 301602, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.04 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8701, "fields": { "answer": 301701, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.03 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8703, "fields": { "answer": 301703, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.13 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8911, "fields": { "answer": 301901, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8912, "fields": { "answer": 301902, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8703, "fields": { "answer": 301703, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.2 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8931, "fields": { "answer": 302101, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.05 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8932, "fields": { "answer": 302102, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.04 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8933, "fields": { "answer": 302103, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.04 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8941, "fields": { "answer": 302401, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.07 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8942, "fields": { "answer": 302402, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.055 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8943, "fields": { "answer": 302403, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.015 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8932, "fields": { "answer": 302102, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8933, "fields": { "answer": 302103, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.03 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8941, "fields": { "answer": 302401, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.08 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8942, "fields": { "answer": 302402, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.07 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8943, "fields": { "answer": 302403, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.02 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8971, "fields": { "answer": 302501, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8972, "fields": { "answer": 302502, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8702, "fields": { "answer": 301702, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
@@ -825,7 +816,7 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 8803, "fields": { "answer": 301803, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8913, "fields": { "answer": 301903, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8944, "fields": { "answer": 302201, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.02 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8945, "fields": { "answer": 302202, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.005 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8945, "fields": { "answer": 302202, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.01 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8946, "fields": { "answer": 302203, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8951, "fields": { "answer": 302301, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.02 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8952, "fields": { "answer": 302302, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
@@ -835,11 +826,19 @@ campaignTrail_temp.answer_score_global_json = [
 ];
 
 campaignTrail_temp.answer_score_state_json = [
-  { "model": "campaign_trail.answer_score_state", "pk": 8601, "fields": { "answer": 301402, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.08 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8602, "fields": { "answer": 301403, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.11 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.05 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.04 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } }
+  { "model": "campaign_trail.answer_score_state", "pk": 8601, "fields": { "answer": 301402, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.04 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8602, "fields": { "answer": 301403, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.045 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87021, "fields": { "answer": 301702, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.06 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87020, "fields": { "answer": 301702, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.08 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87022, "fields": { "answer": 301702, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.06 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87023, "fields": { "answer": 301702, "state": 6664, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.2 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87024, "fields": { "answer": 301702, "state": 6665, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.09 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87025, "fields": { "answer": 301702, "state": 6666, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.10 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87026, "fields": { "answer": 301702, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.06 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87027, "fields": { "answer": 301702, "state": 6668, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.03 } }
 ];
 
 
@@ -855,7 +854,9 @@ function getPeresTemplate() {
 (function() {
   var PERES_TRIGGER_ANSWER = 301702;
   function shouldUsePeres() {
-    var ans = (campaignTrail_temp.player_answers || []).map(function(a){ return Number(a); });
+    var ans1 = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
+    var ans2 = (typeof e !== "undefined" && e && Array.isArray(e.player_answers)) ? e.player_answers : [];
+    var ans = ans1.concat(ans2).map(function(a){ return Number(a); });
     return ans.indexOf(PERES_TRIGGER_ANSWER) !== -1;
   }
   var QUESTION6_RABIN = {
@@ -923,7 +924,7 @@ function getPeresTemplate() {
         : "Likud ignored your attack and most people shrug it off as a partisan ploy";
     }
     var s302202 = ensureGlobalScore(302202, 8945);
-    s302202.fields.global_multiplier = pickedScrewHistory ? -0.05 : 0.005;
+    s302202.fields.global_multiplier = pickedScrewHistory ? -0.05 : 0.01;
     var f302301 = Array.isArray(root.answer_feedback_json) ? root.answer_feedback_json.find(function(x){ return x && x.fields && x.fields.answer === 302301; }) : null;
     if (f302301 && f302301.fields) {
       f302301.fields.answer_feedback = pickedScrewHistory
@@ -977,9 +978,9 @@ function getPeresTemplate() {
     var s302401 = ensureGlobalScore(302401, 8941);
     var s302402 = ensureGlobalScore(302402, 8942);
     var s302403 = ensureGlobalScore(302403, 8943);
-    s302401.fields.global_multiplier = pickedScrewHistory ? 0.27 : -0.07;
-    s302402.fields.global_multiplier = pickedScrewHistory ? 0.00 : 0.055;
-    s302403.fields.global_multiplier = pickedScrewHistory ? 0.00 : -0.015;
+    s302401.fields.global_multiplier = pickedScrewHistory ? 0.27 : -0.08;
+    s302402.fields.global_multiplier = pickedScrewHistory ? 0.00 : 0.07;
+    s302403.fields.global_multiplier = pickedScrewHistory ? 0.00 : -0.02;
   }
   function setQuestion6Variant(usePeres) {
     var root = campaignTrail_temp || {};
@@ -1023,15 +1024,15 @@ function getPeresTemplate() {
     var s301801 = ensureGlobalScore(301801, 8801);
     var s301802 = ensureGlobalScore(301802, 8802);
     var s301803 = ensureGlobalScore(301803, 8803);
-    s301801.fields.global_multiplier = usePeres ? 0.05 : 0.00;
-    s301802.fields.global_multiplier = usePeres ? -0.05 : 0.00;
+    s301801.fields.global_multiplier = usePeres ? 0.03 : 0.00;
+    s301802.fields.global_multiplier = usePeres ? -0.03 : 0.00;
     s301803.fields.global_multiplier = 0.00;
-
+4
     var s301901 = ensureGlobalScore(301901, 8911);
     var s301902 = ensureGlobalScore(301902, 8912);
     var s301903 = ensureGlobalScore(301903, 8913);
-    s301901.fields.global_multiplier = -0.06;
-    s301902.fields.global_multiplier = -0.06;
+    s301901.fields.global_multiplier = -0.08;
+    s301902.fields.global_multiplier = -0.08;
     s301903.fields.global_multiplier = -0.04;
   }
   function dataSets() {
@@ -1041,28 +1042,8 @@ function getPeresTemplate() {
     return sets;
   }
 
-  function applyPeresLead(usePeres) {
-    var peresBoostByState = {
-      6661: 1.13, // golan
-      6662: 1.15, //nothern
-      6663: 1.17, //Haifa
-      6664: 1.3, //center
-      6665: 1.20, //tel aviv
-      6666: 1.07,  //jerusalem
-      6667: 1.09, //south
-      6668: 1.05 //west bank
-    };
-    var netCutByState = {
-      6661: 0.92,
-      6662: 0.94,
-      6663: 0.94,
-      6664: 0.93,
-      6665: 0.95,
-      6666: 0.88,
-      6667: 0.90,
-      6668: 0.85
-    };
 
+  function applyPeresLead(usePeres) {
     var sets = dataSets();
     for (var ds = 0; ds < sets.length; ds++) {
       var root = sets[ds];
@@ -1075,14 +1056,7 @@ function getPeresTemplate() {
         if (typeof row.fields.__base_mult === 'undefined') {
           row.fields.__base_mult = Number(row.fields.state_multiplier) || 0;
         }
-        var base = row.fields.__base_mult;
-        if (usePeres) {
-          var sid = row.fields.state;
-          if (cand === 1002) row.fields.state_multiplier = Number((base * (peresBoostByState[sid] || 1.05)).toFixed(4));
-          if (cand === 1001) row.fields.state_multiplier = Number((base * (netCutByState[sid] || 0.95)).toFixed(4));
-        } else {
-          row.fields.state_multiplier = base;
-        }
+        row.fields.state_multiplier = row.fields.__base_mult;
       }
     }
   }
@@ -1253,7 +1227,7 @@ function getPeresTemplate() {
     }
   }
   function applyHippielLead(active) {
-    var boazByState = { 6661: 1.45, 6662: 1.45, 6663: 1.45, 6664: 1.45, 6665: 1.45, 6666: 1.45, 6667: 1.45, 6668: 1.95 };
+    var boazByState = { 6661: 1.45, 6662: 0.30, 6663: 0.30, 6664: 1.45, 6665: 1.45, 6666: 0.75, 6667: 1.45, 6668: 1.70 };
     var sakhiByState = { 6661: 0.35, 6662: 0.35, 6663: 0.35, 6664: 0.35, 6665: 0.35, 6666: 0.35, 6667: 0.35, 6668: 0.35 };
     var golanSpecial = active && rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER);
     var zoeyFields = {
@@ -1339,14 +1313,20 @@ function getPeresTemplate() {
   if (window.israel96PeresTakeoverLoop) clearInterval(window.israel96PeresTakeoverLoop);
   window.israel96PeresTakeoverLoop = setInterval(function() {
     if (campaignTrail_temp.__activeCode2 !== '1996_Israel_RabinLabor') return;
-    setQuestion6Variant(shouldUsePeres());
+    var usePeres = shouldUsePeres();
+    setQuestion6Variant(usePeres);
     pinCurrentQuestionAnswers();
-    applyPeresLead(shouldUsePeres());
+    applyPeresLead(usePeres);
     applyAssadeenLead(rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER));
     applyHippielLead(rabinHasAnswer(RABIN_HIPPIEL_ANSWER));
     applyScrewHistoryCoalitionOverride();
     applyScrewHistoryLebanonOverride();
-    if (shouldUsePeres() && campaignTrail_temp.peres_intro_seen) applyPeresTakeover();
+    if (usePeres && campaignTrail_temp.peres_intro_seen) applyPeresTakeover();
+    if (usePeres && !window.israel96PeresPollCacheRefreshed) {
+      window.israel96PeresPollCacheRefreshed = true;
+      setTimeout(function(){ try { if (typeof mapCache === 'function') mapCache(true); } catch (err) {} }, 0);
+    }
+    if (!usePeres) window.israel96PeresPollCacheRefreshed = false;
   }, 100);
 })();
 
@@ -1611,6 +1591,20 @@ endingPicker = function(out, totv, aa, quickstats) {
     return null;
   }
 
+  function getWinnerCandidateId(results) {
+    if (!Array.isArray(results) || !results.length) return null;
+    var ranked = results.slice().sort(function(a, b) {
+      var ap = Number(a && a.popular_votes) || 0;
+      var bp = Number(b && b.popular_votes) || 0;
+      if (bp !== ap) return bp - ap;
+      var ae = Number(a && a.electoral_votes) || 0;
+      var be = Number(b && b.electoral_votes) || 0;
+      if (be !== ae) return be - ae;
+      return (Number(a && a.candidate) || 0) - (Number(b && b.candidate) || 0);
+    });
+    return Number(ranked[0] && ranked[0].candidate);
+  }
+
   if (!aa || aa.length === 0) {
     return '<h3>Election Error</h3><br> The election concluded without valid results.';
   }
@@ -1723,7 +1717,8 @@ endingPicker = function(out, totv, aa, quickstats) {
 
   var activeCandidate = findCandidate(campaignTrail_temp.candidate_json, campaignTrail_temp.candidate_id || 1002);
   var pinkThemeBase = { descBg: "#ffd6e9", descBorder: "#d67aa6", textColor: "#4b1830" };
-  if (aa[0].candidate === (campaignTrail_temp.candidate_id || 1002)) {
+  var winnerCandidateId = getWinnerCandidateId(aa);
+  if (winnerCandidateId === 1002) {
   window.israel96RabinEndingKey = "win";
   window.israel96PagedEndingState = null;
   israel96RabinUseNormalEndingWindow({ gameBg: "#b61f2b", resultsBg: "#d94b57", resultsBorder: "#7d1620", headerBg: "#8d1721", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor, separateDesc: true });
@@ -1732,7 +1727,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       return '<h3><b>Loser No More</b></h3><br><br>It always looked likely but a lot of things could have gone wrong, and we are talking about Peres. The elected prime minister could never have felt more happy. For the first time in his life he received an outright mandate from the people. The future looked bright and full of opportunities.<br><br>Can Peres save the peace process? I will let you decide.<br>Good job nonetheless.';
     }
     israel96RabinSetEndingImage('https://i.imgur.com/hwD0WSJ.jpeg');
-    return '<h3><b>Anchors Aweigh sailors</b></h3><br><br>After defeating a mutiny led by the disgruntled cabin boy Netanyahu, Captain Rabin is preparing Israel for another voyage.<br><br>The weather is stormy, but he will not quit for a second. His life\'s mission to find a more tolerable island for his war hardened crew remains unfinished.<br><br>Other captains are breathing a sigh of relief following news of his victory and are sending their congratulations, including the former pirate Arafat, from the ship that Rabin helped him assemble after their truce.';
+    return '<h3><b>New horizons</b></h3><br><br>Just like in 1992 the crowd had gone wild. You again waited for them to tone down their voices for your speech, this time remembering to smile while delivering it. \"I will go on\", you declared, \"That\'s the  people\'s choice\".  After you left the stages the phones began to ring. Clinton, Mubarak, Arafat, all lined up to congratulate you, quite happy that the man they all know and learned to respect is staying in charge.<br><br>It is 23 of May 1997. Just 30 years ago you were a complete wreck. The doubts over whether or no the army is ready for the upcoming Six Day War, amplified after a tense meeting with the retired Ben Gurion, were eating you inside. You stayed home that day for a brief \"sick leave\". Then you returned and with the backing of the newly appointed defense minister Dayan, you commenced a preemptive strike called \"Operation FOcus\", achieving the crucial air supremacy that allowed Israel to win the war triumphantly. The then Syrian defense minister Assad inadvertently benefited from the loss, seizing the presidency just three years later. He remembered you well and curiously enough your role then made him confident in your ability to deliver in the negotiating table too. \"He is as serious as ever\" said the emissary that you sent to him. You know the window is short. You won\'t be here forever and neither will Hafez. It\'s in your hands to decide whether to have faith in the Syrians and take the leap or not.';
   }
   israel96RabinUseNormalEndingWindow({ gameBg: "#b61f2b", resultsBg: "#d94b57", resultsBorder: "#7d1620", headerBg: "#8d1721", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor, separateDesc: true });
   if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {

@@ -1,4 +1,4 @@
-campaignTrail_temp.__activeCode2 = "1996_Israel_NetanyahuLikud";
+﻿campaignTrail_temp.__activeCode2 = "1996_Israel_NetanyahuLikud";
 
 /* ============================================================
    1. INTEGRATED ISRAEL 1996 MAP ENGINE
@@ -856,8 +856,8 @@ campaignTrail_temp.answer_score_state_json = [
   { "model": "campaign_trail.answer_score_state", "pk": 8614, "fields": { "answer": 301102, "state": 6663, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.01 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8615, "fields": { "answer": 301102, "state": 6664, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.02 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8616, "fields": { "answer": 301102, "state": 6665, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.04 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8617, "fields": { "answer": 301102, "state": 6666, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.09 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8618, "fields": { "answer": 301102, "state": 6667, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8617, "fields": { "answer": 301102, "state": 6666, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8618, "fields": { "answer": 301102, "state": 6667, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.09 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8619, "fields": { "answer": 301102, "state": 6668, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.02 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8621, "fields": { "answer": 300903, "state": 6661, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": -0.02 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8622, "fields": { "answer": 300903, "state": 6662, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": -0.03 } },
@@ -876,7 +876,7 @@ campaignTrail_temp.running_mate_last_name = 'Likud';
 ========================= */
 campaignTrail_temp.answer_feedback_json = [
 { "model": "campaign_trail.answer_feedback", "pk": 9099, "fields": { "answer": 300001, "candidate": 1001, "answer_feedback": "Surprising everyone, you came to an evening program and admitted to having an extramarital affair. You also alleged that a high-ranking Likud member, surrounded by criminals, tried to blackmail you into withdrawing using this information. The news media quickly alleged that the man in question is David Levy and any hope of keeping the party together evaporated. The police investigation into the affair bore no fruit, with Levy denying the charges and accusing you of mudslinging. After winning 52 percent of the vote, double that of Levy, he carried out his threat and broke away from Likud with his supporters, forming their own party, ironocally named \"Gesher\" (Bridge)." } },
-{ "model": "campaign_trail.answer_feedback", "pk": 9101, "fields": { "answer": 300101, "candidate": 1001, "answer_feedback": "Ohhhh, you want to sabotage Bibi? Why didn't you say so earlier? Let me save you some precious minutes of your meaningless life." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 9101, "fields": { "answer": 300101, "candidate": 1001, "answer_feedback": "Ohhhh, you want to sabotage the Bibi 94? Why didn't you say so earlier? Let me save some precious minutes of your meaningless life, my dear Bibiphobe." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 9102, "fields": { "answer": 300102, "candidate": 1001, "answer_feedback": "That's exactly what your supporters want to hear. You were born for this." } },
 
@@ -1074,6 +1074,20 @@ endingPicker = function(out, totv, aa, quickstats) {
     campaignTrail_temp.final_overall_results.sort((a, b) => b.popular_votes - a.popular_votes);
   }
 
+  function getWinnerCandidateId(results) {
+    if (!Array.isArray(results) || !results.length) return null;
+    var ranked = results.slice().sort(function(a, b) {
+      var ap = Number(a && a.popular_votes) || 0;
+      var bp = Number(b && b.popular_votes) || 0;
+      if (bp !== ap) return bp - ap;
+      var ae = Number(a && a.electoral_votes) || 0;
+      var be = Number(b && b.electoral_votes) || 0;
+      if (be !== ae) return be - ae;
+      return (Number(a && a.candidate) || 0) - (Number(b && b.candidate) || 0);
+    });
+    return Number(ranked[0] && ranked[0].candidate);
+  }
+
   if (!aa || aa.length === 0) {
     return "<h3>Election Error</h3><br> The election concluded without valid results.";
   }
@@ -1112,7 +1126,8 @@ endingPicker = function(out, totv, aa, quickstats) {
 }
 
   // Netanyahu win
-  if (aa[0].candidate === 1001) {
+  var winnerCandidateId = getWinnerCandidateId(aa);
+  if (winnerCandidateId === 1001) {
     setImage("https://i.imgur.com/tIsNNIW.jpeg");
     useNormalEndingWindow({ gameBg: "#204f95", resultsBg: "#2b63b7", resultsBorder: "#183f79", headerBg: "#12386e", descBg: "#dce9ff", descBorder: "#7aa2dc", textColor: "#0c1e3b" });
     initPagedEnding();
