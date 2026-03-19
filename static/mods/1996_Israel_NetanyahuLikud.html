@@ -1,4 +1,5 @@
-﻿campaignTrail_temp.__activeCode2 = "1996_Israel_NetanyahuLikud";
+campaignTrail_temp.__activeCode2 = "1996_Israel_NetanyahuLikud";
+
 
 /* ============================================================
    1. INTEGRATED ISRAEL 1996 MAP ENGINE
@@ -6,15 +7,21 @@
 
 
 // Define optional answer modifier arrays early so result calculation never sees them as undefined.
-campaignTrail_temp.answer_score_issue_json = [];
-campaignTrail_temp.answer_score_state_json = [];
+function israel96NetanyahuSetQuestionCount(n) {
+  if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) {
+    campaignTrail_temp.global_parameter_json[0].fields.question_count = n;
+  }
+  if (typeof e !== "undefined" && Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) {
+    e.global_parameter_json[0].fields.question_count = n;
+  }
+}
+
 
 // Legacy campaign sign/header fields used by the engine UI (prevents undefined labels/images).
-campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/TarOS6X.jpeg';
-campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/uoXVxru.jpeg';
 campaignTrail_temp.candidate_last_name = 'Netanyahu';
 campaignTrail_temp.running_mate_last_name = 'Likud';
-
+campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/TarOS6X.jpeg';
+campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/uoXVxru.jpeg';
 (function(e, t, n, r, i) {
     if (!e || !e.fn) {
         console.error("MAP ERROR: jQuery missing.");
@@ -125,6 +132,7 @@ campaignTrail_temp.running_mate_last_name = 'Likud';
 2. STATES DATA
 
 ========================= */
+
 
 campaignTrail_temp.states_json = [
 
@@ -630,7 +638,7 @@ campaignTrail_temp.questions_json = [
     "pk": 3004,
     "fields": {
       "priority": 4,
-      "description": "The renowned general and current leader of the Tzomet party, Rafael (Raful) Eitan, launched a full-on campaign for the prime ministership, dividing the right wing vote. How do you plan to deal with him?",
+      "description": "The renowned general and current leader of the \"Tzomet\" party, Rafael (Raful) Eitan, launched a full-on campaign for the prime ministership, dividing the right wing vote. How do you plan to deal with him?",
       "likelihood": 1
     }
   },
@@ -724,11 +732,11 @@ campaignTrail_temp.answers_json= [
 { "model": "campaign_trail.answer", "pk": 300102, "fields": { "question": 3002, "description": "Trusting Arafat is insanity. We have to stop this before it is too late." } },
 { "model": "campaign_trail.answer", "pk": 300103, "fields": { "question": 3002, "description": "There is no need for such a rushed process with an unreliable partner. Menachem Begin, the legendary Likud leader, was actually the first prime minister to publicly accept the idea of Palestinian autonomy. We will do this far more responsibly when we get elected." } },
 
-{ "model": "campaign_trail.answer", "pk": 300991, "fields": { "question": 3003, "description": "Something is really off with the atmosphere around. I better distance myself from this craziness." } },
+{ "model": "campaign_trail.answer", "pk": 300991, "fields": { "question": 3003, "description": "Something is really off with the atmosphere. I'd better distance myself from this craziness." } },
 { "model": "campaign_trail.answer", "pk": 300992, "fields": { "question": 3003, "description": "I will give an impassioned speech against the government as planned while trying to calm them the heck down." } },
 
 { "model": "campaign_trail.answer", "pk": 300301, "fields": { "question": 3004, "description": "Ignore him. It is more trouble than it is worth. His flamboyant candidacy will end long before the election." } },
-{ "model": "campaign_trail.answer", "pk": 300302, "fields": { "question": 3004, "description": "We need to crush his credibility early before he takes root." } },
+{ "model": "campaign_trail.answer", "pk": 300302, "fields": { "question": 3004, "description": "We need to crush his credibility early, before he takes root." } },
 { "model": "campaign_trail.answer", "pk": 300303, "fields": { "question": 3004, "description": "Subtly harden your own rhetoric to blunt his appeal." } },
 { "model": "campaign_trail.answer", "pk": 300304, "fields": { "question": 3004, "description": "Woo the general away by offering him the defense portfolio if he exits the race." } },
 
@@ -743,8 +751,8 @@ campaignTrail_temp.answers_json= [
 { "model": "campaign_trail.answer", "pk": 300603, "fields": { "question": 3008, "description": "The message is going to be \"Netanyahu, Making Secure Peace\". It will allow us to appeal to voters concerned with security while moderating our image, presenting ourselves as pragmatists willing to go along with Oslo as long as Israeli interests are respected." } },
 
 { "model": "campaign_trail.answer", "pk": 300701, "fields": { "question": 3009, "description": "My mentor Moshe Arens, of course. Although he lacks an illustrious military career, having spent years at Israel Aerospace Industries instead, he did have a stint as defense minister. He is also a Likudnik at heart and wouldn't disappoint the party cadre." } },
-{ "model": "campaign_trail.answer", "pk": 300702, "fields": { "question": 3009, "description": "Yitzhak Mordechai seems like a perfect candidate to lure: an ambitious former general, passed over for promotion to chief of staff and his deputy alike. As a Mizrahi Jew, his candidacy would play well with a large chunk of the party base." } },
-{ "model": "campaign_trail.answer", "pk": 300703, "fields": { "question": 3009, "description": "Contact me with Dan Shomron, the hero of the Entebbe raid. Recent events seem to have changed his mind about political involvement, as he has taken part in \"The Third Way\". If we present ourselves as the only real alternative to Peres, we may break the soft spoken gentleman away." } },
+{ "model": "campaign_trail.answer", "pk": 300702, "fields": { "question": 3009, "description": "Yitzhak Mordechai seems like a perfect candidate to lure: an ambitious former general, passed over for promotion to chief of staff and deputy chief alike. As a Mizrahi Jew, his candidacy would play well with a large chunk of the party base." } },
+{ "model": "campaign_trail.answer", "pk": 300703, "fields": { "question": 3009, "description": " Put me in contact with Dan Shomron, the hero of the Entebbe raid. Recent events seem to have changed his mind about political involvement, as he has taken part in \"The Third Way\". If we present ourselves as the only real alternative to Peres, we may break the soft-spoken gentleman away." } },
 
 { "model": "campaign_trail.answer", "pk": 300801, "fields": { "question": 3010, "description": "Ignore him. Any kind of negativity after the assassination will backfire." } },
 { "model": "campaign_trail.answer", "pk": 300802, "fields": { "question": 3010, "description": "Accuse him of blindly trusting Arafat and leaving the door open to the partition of our sacred capital, Jerusalem." } },
@@ -752,7 +760,7 @@ campaignTrail_temp.answers_json= [
 
 { "model": "campaign_trail.answer", "pk": 300901, "fields": { "question": 3011, "description": "Of course. I am going to present my free-market vision for the future. We will frame it as a bright, new approach that will make the Israeli economy ready for the coming 21st century." } },
 { "model": "campaign_trail.answer", "pk": 300902, "fields": { "question": 3011, "description": "It is better to focus on other areas where we have a clear advantage over the coalition." } },
-{ "model": "campaign_trail.answer", "pk": 300903, "fields": { "question": 3011, "description": "I am going to criticize the government's reckless spending. How can they even talk about tested statesmanship with such a record? I will manage the treasury with safer hands." } },
+{ "model": "campaign_trail.answer", "pk": 300903, "fields": { "question": 3011, "description": "I am going to criticize the government's reckless spending. How can they even talk about tested statesmanship with such a record? I will manage the treasury with a steadier hand." } },
 
 { "model": "campaign_trail.answer", "pk": 301001, "fields": { "question": 3012, "description": "Yeah, this is a no-brainer. I'm going to beat Peres and close the gap in the polls. You'll see." } },
 { "model": "campaign_trail.answer", "pk": 301002, "fields": { "question": 3012, "description": "Yeah, this is a no-brainer. I'm going to beat Peres and close the gap in the polls. You'll see." } },
@@ -777,7 +785,7 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 7302, "fields": { "answer": 300102, "candidate": 1001, "affected_candidate": 1002, "global_multiplier": -0.08 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7303, "fields": { "answer": 300103, "candidate": 1001, "affected_candidate": 1002, "global_multiplier": -0.08 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7004, "fields": { "answer": 300991, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.05 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7005, "fields": { "answer": 300992, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.08 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7005, "fields": { "answer": 300992, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7006, "fields": { "answer": 300993, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.15 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7007, "fields": { "answer": 300301, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.10 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7008, "fields": { "answer": 300302, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.04 } },
@@ -848,10 +856,10 @@ campaignTrail_temp.answer_score_state_json = [
   { "model": "campaign_trail.answer_score_state", "pk": 8604, "fields": { "answer": 300603, "state": 6662, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.04 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8605, "fields": { "answer": 300603, "state": 6661, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.07 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8620, "fields": { "answer": 300603, "state": 6667, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.06 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8606, "fields": { "answer": 300401, "state": 6666, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.04 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8607, "fields": { "answer": 300401, "state": 6668, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.05 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8608, "fields": { "answer": 300501, "state": 6666, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.04 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8609, "fields": { "answer": 300501, "state": 6668, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8606, "fields": { "answer": 300401, "state": 6666, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.12 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8607, "fields": { "answer": 300401, "state": 6668, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.2 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8608, "fields": { "answer": 300501, "state": 6666, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.12 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8609, "fields": { "answer": 300501, "state": 6668, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.2 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8613, "fields": { "answer": 301102, "state": 6662, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.03 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8614, "fields": { "answer": 301102, "state": 6663, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.01 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8615, "fields": { "answer": 301102, "state": 6664, "candidate": 1001, "affected_candidate": 1001, "state_multiplier": 0.02 } },
@@ -875,16 +883,16 @@ campaignTrail_temp.running_mate_last_name = 'Likud';
 6. FEEDBACK & ENDINGS
 ========================= */
 campaignTrail_temp.answer_feedback_json = [
-{ "model": "campaign_trail.answer_feedback", "pk": 9099, "fields": { "answer": 300001, "candidate": 1001, "answer_feedback": "Surprising everyone, you came to an evening program and admitted to having an extramarital affair. You also alleged that a high-ranking Likud member, surrounded by criminals, tried to blackmail you into withdrawing using this information. The news media quickly alleged that the man in question is David Levy and any hope of keeping the party together evaporated. The police investigation into the affair bore no fruit, with Levy denying the charges and accusing you of mudslinging. After winning 52 percent of the vote, double that of Levy, he carried out his threat and broke away from Likud with his supporters, forming their own party, ironocally named \"Gesher\" (Bridge)." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 9099, "fields": { "answer": 300001, "candidate": 1001, "answer_feedback": "Surprising everyone, you went on an evening program and admitted to having an extramarital affair. You also alleged that a high-ranking Likud member, surrounded by criminals, tried to blackmail you into withdrawing by using this information. The news media quickly alleged that the man in question is David Levy and any hope of keeping the party together evaporated. The police investigation into the allegations bore no fruit, with Levy denying the charges and accusing you of mudslinging. After winning 52 percent of the vote, double that of Levy, he carried out his threat and broke away from Likud with his supporters, forming their own party, ironically named \"Gesher\" (Bridge)." } },
 { "model": "campaign_trail.answer_feedback", "pk": 9101, "fields": { "answer": 300101, "candidate": 1001, "answer_feedback": "Ohhhh, you want to sabotage the Bibi 94? Why didn't you say so earlier? Let me save some precious minutes of your meaningless life, my dear Bibiphobe." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 9102, "fields": { "answer": 300102, "candidate": 1001, "answer_feedback": "That's exactly what your supporters want to hear. You were born for this." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 9103, "fields": { "answer": 300103, "candidate": 1001, "answer_feedback": "What the hell are you doing? The autonomy plan was born dead, a forgotten artifact from the peace negotiations with Egypt. You just confused everyone with this baffling attempt to hedge on the issue." } },
 
-{ "model": "campaign_trail.answer_feedback", "pk": 9201, "fields": { "answer": 300991, "candidate": 1001, "answer_feedback": "Your raging base feels a little snubbed, but it is definitely better for your image among the general public. You also got a rare commendment across the aisle, from party colleagues David Levi and Dan Meridor, to Rabin himself." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 9201, "fields": { "answer": 300991, "candidate": 1001, "answer_feedback": "Your raging base feels a little snubbed, but it is definitely better for your image among the general public. You also got a rare commendation across the aisle, from party colleagues David Levi and Dan Meridor, to Rabin himself." } },
 
-{ "model": "campaign_trail.answer_feedback", "pk": 9202, "fields": { "answer": 300992, "candidate": 1001, "answer_feedback": "It is of no use. They won't refine their words just because you command it, and the media pounds you vociferously for going along with it. Alongside the picture of you carrying a coffin, which was supposed to symbolize the death of Zionism under Rabin, your behaviour is increasingly described as reckless and inciteful." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 9202, "fields": { "answer": 300992, "candidate": 1001, "answer_feedback": "It is of no use. They won't refine their words just because you command it, and the media pounds you vociferously for going along with it. Alongside the picture of you carrying a coffin, which was meant to symbolize the death of Zionism under Rabin, your behaviour is increasingly described as reckless and inciting." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 9301, "fields": { "answer": 300301, "candidate": 1001, "answer_feedback": "While he continues his hold on voters dissatisfied with the two-party establishment, his bluntness and lack of decorum will forever prevent the majority from seeing him as anything more serious than a protest candidate." } },
 
@@ -892,7 +900,7 @@ campaignTrail_temp.answer_feedback_json = [
 
 { "model": "campaign_trail.answer_feedback", "pk": 9303, "fields": { "answer": 300303, "candidate": 1001, "answer_feedback": "Sneakily undermining him without hitting him head-on? Bingo!" } },
 
-{ "model": "campaign_trail.answer_feedback", "pk": 9304, "fields": { "answer": 300304, "candidate": 1001, "answer_feedback": "Raful's sudden withdrawal quickly led the media to sense what happened and you both get the flak for it, he for \"selling out\" and you for playing politics with a ministry so important it used to be held by the prime ministers." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 9304, "fields": { "answer": 300304, "candidate": 1001, "answer_feedback": "Raful's sudden withdrawal quickly led the media to sense what happened and you both take the flak for it, he for \"selling out\" and you for playing politics with a ministry so important it used to be held by the prime ministers." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 9401, "fields": { "answer": 300401, "candidate": 1001, "answer_feedback": "With a defeated voice, Rabin's right-hand man Eitan Haber made the following statement to the cameras: \"The government of Israel announces in dismay, in great sadness, and in deep sorrow, the death of Prime Minister and Minister of Defence Yitzhak Rabin, who was murdered by an assassin tonight in Tel Aviv. May his memory be blessed.\"." } },
 
@@ -916,7 +924,7 @@ campaignTrail_temp.answer_feedback_json = [
 
 { "model": "campaign_trail.answer_feedback", "pk": 9802, "fields": { "answer": 300802, "candidate": 1001, "answer_feedback": "Your ads completely annihilated the attempt by Peres's campaign to keep the election low-profile, to your great delight." } },
 
-{ "model": "campaign_trail.answer_feedback", "pk": 9803, "fields": { "answer": 300803, "candidate": 1001, "answer_feedback": "His party was always ripe for the taking after their decades long rule, but in an environment of direct elections and a public mostly focused on the present, your attacks are much less effective." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 9803, "fields": { "answer": 300803, "candidate": 1001, "answer_feedback": "His party was always ripe for the taking after their decades-long rule, but in an environment of direct elections and a public mostly focused on the present, your attacks are much less effective." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 9901, "fields": { "answer": 300901, "candidate": 1001, "answer_feedback": "To the regular guy on the street, most of this sounds like uninspiring gibberish." } },
 
@@ -924,7 +932,7 @@ campaignTrail_temp.answer_feedback_json = [
 
 { "model": "campaign_trail.answer_feedback", "pk": 9903, "fields": { "answer": 300903, "candidate": 1001, "answer_feedback": "I guess that's a great speech for a Republican primary candidate in Wyoming, but in the land of milk and honey those big government policies are still popular, so your shtick fails to fly." } },
 
-{ "model": "campaign_trail.answer_feedback", "pk": 10001, "fields": { "answer": 301001, "candidate": 1001, "answer_feedback": "Peres showed up tired and unprepared, making the event a local edition of the famous Kennedy vs Nixon debate in 1960. Expect a good boost." } },
+{ "model": "campaign_trail.answer_feedback", "pk": 10001, "fields": { "answer": 301001, "candidate": 1001, "answer_feedback": "Peres showed up tired and unprepared, making the event a local version of the famous Kennedy vs Nixon debate in 1960. Expect a good boost." } },
 
 { "model": "campaign_trail.answer_feedback", "pk": 10002, "fields": { "answer": 301002, "candidate": 1001, "answer_feedback": "You were able to stand up for yourself and make it a draw, which was already quite a feat in itself." } },
 
@@ -1122,7 +1130,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       }
     }
 
-    return "<h3>Biberated</h3><br>Just before the election, to the shock of everyone, Benjamin Netanyahu decided to pull a Begin '83 move and leave politics forever for obscure personal reasons. In light of his previous experience, he quickly became the director of marketing for a mattress company, kicking off a successful career in the industry. He would forever leave a lasting legacy there with his signature commercials, promising \"The toughest mattress for a peaceful night.\"<br><br>Owing to his resignation, he was also able to spend more time with his kids, making sure his second son would finally transform from a wooden puppet into a real human.<br><br>Meanwhile, his replacement as Likud leader narrowly lost the election to Labor. Soon enough, the happy winner paid a visit to President Benjamout Notbibyahu, presenting his newly formed, Bibi-free government which would lead the country in a brave, exciting, and Bibiless direction.<br><br><small>Photo credit: SpongeBob SquarePants</small>";
+   return "<h3>Biberated</h3><br>Just before the election, to everyone's shock, Benjamin Netanyahu decided to pull a Begin '83 move and leave politics forever for obscure personal reasons. In light of his previous experience, he quickly became the director of marketing for a mattress company, kicking off a successful career in the industry. He would go on to leave a lasting legacy there with his signature commercials, promising \"The toughest mattress for a peaceful night.\"<br><br>Owing to his resignation, he was also able to spend more time with his kids, making sure his second son would finally transform from a wooden puppet into a real human.<br><br>Meanwhile, his replacement as Likud leader narrowly lost the election to Labor. Soon enough, the happy winner paid a visit to President Benjamout Notbibyahu, presenting his newly formed, Bibi-free government, which would lead the country in a brave, exciting, and Bibi-less direction.<br><br><small>Photo credit: SpongeBob SquarePants</small>";
 }
 
   // Netanyahu win
@@ -1134,12 +1142,10 @@ endingPicker = function(out, totv, aa, quickstats) {
     return buildPagedEnding(
       "The unfinished tale of King Bibi and Queen...no we aren't going there",
       [
-        'Against the expectations of much of the media, you have won Israel\'s first direct election for Prime Minister. They do have Netanyahu to kick around now! Whether they want it or not!!!<br><br>During your stint you expanded existing settlements, slowed down the progress of Oslo, sped up the neoliberal transition of the Israeli economy, and opening a futile backchannel with the Syrians regarding a partial withdrawal from the Golan. You also made Khaled Mashal a hero in the ranks of Hamas by poisoning him on his stay in Jordan and then being forced to save his life after your agents got caught and the king threatened to freeze the peace deal, compelling you to also release the spiritual leader of Hamas for good measure. Hard to tell if that\'s the worst moment for you though when it is competing with a corruption scandal involving you and the leader of "Shas" Deri, which stopped short of your indictment. But all of that was secondary to the real drama of your time: Your extraordinary ability to piss everyone off, from world leaders like Egyptian president Mubarak ("I wish to believe one word that came from Netanyahu\'s mouth"), to your own party members who left your government one after another, to diehard rightists who felt betrayed by your tepid continuation of Oslo, with your mentor Moshe Arens mounting a leadership challenge against you, getting around 20%.',
-        'Attacked from all directions, abandoned by unsatisfied coalition partners and challenged by a Labor party willing to finally close the door on unity government in favor of pushing for elections, Israelis went to the polls earlier, in 1999. You fought like a tiger but Labor\'s candidate Ehud Barak, your boss from the army years and former [you never guess what], was leading so comfortably in the polls that he evaded the debate, leaving you to duke it out with your ally turned rival, Yitzhak Mordechai, a decision vindicated by the 56-44 final result.<br><br>Announcing your departure from politics right after the election you spent time dealing with a leftover investigation and planning your return, this time leaving no loose ends. Getting back into government in 2002 as foreign minister and then finance minister, you pushed sweeping capitalist reforms to get Israel out of a recession. While the economy recovered, your austerity measures got a lot of heat from social organizations, accusing you of heartlessness. Waffling endlessly on the question of Prime Minister Sharon\'s plan to disengage from Gaza, you eventually voted for it, a move which logically left you as the leader of the anti-disengagement part of the Likud MPs that stayed in the party while Sharon left to form his own, taking a third of the representatives. Although he quickly became incapacitated, you still suffered another loss in 2006. Three years later though, with a powerful team behind you and an aura of "responsible statesmanship" you managed to create, similar to "the new Nixon", you got your coveted comeback.',
-        'Cold, calculated and disciplined as never before, you will surpass even Israel\'s badass founder Ben-Gurion, becoming the longest serving PM in Israeli history. "Protector of Israel","Mr. Security","Mr. Economy" and numerous other labels became synonyms for you, among your supporters. A lot of it was your pitch for sure, but it nonehteless reflected a growing sense that you had achieved the most sought after thing for a politician in a weary country: Becoming the candidate for medioc...I mean "normalcy". Other parties rose and fell but with large swaths of voters unable to imagine the country functioning under a different leader, you always came on top. Meanwhile, the mainstream media was always ready to latch onto any opportunity to show that the king is naked. In a seemingly separate part of the country, people still despised you with passion. For the failure of Oslo, for Rabin\'s death, for your divisiveness, for your economic beliefs and in general for being the obstacle to the "enlightened" direction they wanted Israel to move into. "Pickles" you called those sour arrogant pricks from the middle to upper class, using their privilege of having large amounts of spare time to complain about "the dire state of the nation". So what if there are scarcely any big policy moves in the economy? Can\'t they see that thanks to your term at the treasury and a growing tech sector, the living standarts are steadily rising? Can\'t they take a look at the debt to GDP ratio going down under your thrifty stewardship? If you overlook the Arab and Haredi populations, consisting of a mere third of the country, we are practically Europe!<br><br>On social policy you stuck to the secular-religious status quo, playing an endless ping-pong match with the judiciary over the hand grenade of conscripting the ultra-Orthodox to the IDF. You also passed a five year investment plan in the Arab sector for the first time in Israel, which will feature in one of your election campaigns, in between the polite warnings of Arabs flooding the polling stations to vote for your opponents. It\'s Bibi or Tibi, capiche?',
-        'Surprisingly, you also managed to extend this uneventfulness in foreign policy, presiding over what, by Israeli standards, is considered a pretty peaceful,low casualty decade. While in 2009 you still vowed to remove the utopia Hamas carved themselves in Gaza following the disengagement, several factors made you change your public position to containment: the disastrous political fallout your predecessor received for the second Lebanon war, weariness of regime changes since the first one, strategic reorientation to face the bigger threats of Iran and Hezbollah, and the benefit you saw for your "No further concessions" agenda in keeping the Palestinians divided. This approach resulted in limited warfare whenever you decided they crossed the line, which was quite dependent on what you can get away with or as your minister put it: "If the rocket doesn\'t fall on Tel Aviv, the public can weather it". You also hardened and softened the Gaza blockade depending on the current mood of your relation with Hamas and allowed Qatar to send money there from 2018 and onwards. In the West Bank the military rule and settlement expansion persisted, promptng routine condemnation for escalating the conflict from the international community and the dwindling Israeli left.<br><br>Contrary to your once-stated agenda, you also opted for an exchange bargain with Hamas in 2011, agreeing to release 1,027 prisoners, for the kidnapped soldier Gilad Shalit. Among those released was Yahya Al-Sinwar, who thanked the Israeli surgeons for a successful brain tumor removal, by becoming the new leader of Hamas in 2017. But hey, who would have known that a guy who presented leadership qualities in prison will climb so high? The important thing is that he wasn\'t indicted for killing Jews, just fellow Palestinians he suspected of cooperating with Israel, making him wholly Kosher for the Shalit deal.',
-        'With "Home Alone 2" guest star coming to the White House, you shrewdly made yourself a favorite of the administration. In 2017 the weird uncle from overseas recognized Jerusalem as the Israeli capital. Then he abandoned Obama\'s brilliant scheme of letting Iran have some money, in exchange for being good boys and not developing nukes, in favor of your ingenious plan of preventing Iran to go nuclear by targeted intelligence operations, pushing them a few months back each time. After recognizing the Golan Heights too and organizing Soleimani\'s solemn end, you obtained the biggest gift of all: "The Abraham Accords".<br><br> Years after writing about it in your book, you were finally able to get a normalization deal with an Arab country without any pinky promises of proceeding to negotiate with those pesky Palestinians. Just a few more years for Israel to grow stronger and for the crybabies to become irrelevant and isolated, and you will be able to force the issue and conclude this headache of a conflict with nothing more than a demilitarized autonomy or, as you once called it, \"a Palestinian state minus.\" <br><br>Amid the historic diplomatic breakthrough and widely praised vaccination campaign against Covid, your political position became increasingly shaky. With mounting corruption charges, reputation for unreliability, and fatigue from your ruthless theatrics, your impaired ability to form a coalition led to a series of inconclusive election results until the unthinkable happened: A Frankenstein coalition \"for change\" rose up against you, with a composition ranging from the Islamist Ra\'am party to the national conservative \"Yamina\" (Rightward), the leader of which became prime minister with a mere 6 seats in parliament.',
-        'Like the scorpion from "The Scorpion and the Frog" fable, you eventually touched the cold water, owing to your stinging, but it wasn\'t meant to last. You already managed to normalize your new frog with the name of Ben-Gvir. The chubby gentleman was previously associated with "Kach", a far right group designated as a terrorist organization in Israel, following Baruch Goldstein\'s mass shooting in 1994, but, after years of purges and resignations there was no one to oppose it in the Likud, as you gradually turned the party into your fan club. With this gem of a partner, Haredi parties used to your generosity and expert mastery of keeping them powerful without nagging secular Jews too much, and religious Zionists bracing to see you shift rightward in your future government, you won the 2022 election with a comfortable majority of 64 seats to 56.<br><br>Your sixth government started its term, promising to deal with the cost of living, restore law and order, increase Jewish presence in the West Bank and somehow convince the Saudis to join the Abraham Accords without addressing the Palestinian question. The new justice minister appears to be a real visionary as well, presenting a proposal to trim the powers of the Israeli Supreme Court, an institution long protected by that progressive weakling Netanyahu, and the holiest site for the Israeli (but maybe not for long), secular, left of center, Ashkenazi liberal Jew.<br> Wait, are you sure this is a good idea?'
+        'Against the expectations of much of the media, you have won Israel\'s first direct election for Prime Minister. They do have Netanyahu to kick around now—whether they want it or not!!!<br><br>During your stint, you expanded existing settlements, slowed down the progress of Oslo, sped up the neoliberal transition of the Israeli economy, and opened a futile backchannel with the Syrians regarding a partial withdrawal from the Golan. You also made Khaled Mashal a hero in the ranks of Hamas by poisoning him during his stay in Jordan and then being forced to save his life after your agents got caught and the king threatened to freeze the peace deal, compelling you to also release the spiritual leader of Hamas for good measure. Hard to tell if that\'s the worst moment for you, though, when it is competing with a corruption scandal involving you and the leader of "Shas", Deri, which stopped short of your indictment. But all of that was secondary to the real drama of your time: your extraordinary ability to piss everyone off—from world leaders like Egyptian President Mubarak ("I wish to believe one word that came from Netanyahu\'s mouth"), to your own party members who left your government one after another, to diehard rightists who felt betrayed by your tepid continuation of Oslo, with your mentor Moshe Arens mounting a leadership challenge against you, getting around 20%.',
+        'Attacked from all directions, abandoned by unsatisfied coalition partners, and challenged by a Labor Party willing to finally close the door on a unity government in favor of pushing for elections, Israelis went to the polls early, in 1999. You fought like a tiger, but Labor\'s candidate Ehud Barak—your boss from your army years and former [you\'ll never guess what]—was leading so comfortably in the polls that he evaded the debate, leaving you to duke it out with your ally-turned-rival, Yitzhak Mordechai, a decision vindicated by the 56–44 final result.<br><br>Announcing your departure from politics right after the election, you spent time dealing with a leftover investigation and planning your return, this time leaving no loose ends. Getting back into government in 2002 as foreign minister and then finance minister, you pushed sweeping capitalist reforms to get Israel out of a recession. While the economy recovered, your austerity measures got a lot of heat from social organizations, which accused you of heartlessness. Waffling endlessly on the question of Prime Minister Sharon\'s plan to disengage from Gaza, you eventually voted for it—a move which logically left you as the leader of the anti-disengagement part of the Likud MPs who stayed in the party while Sharon left to form his own, taking a third of the representatives. Although he quickly became incapacitated, you still suffered another loss in 2006. Three years later, though, with a powerful team behind you and an aura of "responsible statesmanship" you managed to create—similar to "the new Nixon"—you got your coveted comeback.',
+        'With the "Home Alone 2" guest star coming to the White House, you shrewdly made yourself a favorite of the administration. In 2017, the weird uncle from overseas recognized Jerusalem as Israel\'s capital. Then he abandoned Obama\'s brilliant scheme of letting Iran have some money, in exchange for being good boys and not developing nukes, in favor of your ingenious plan of preventing Iran from going nuclear through targeted intelligence operations, pushing them back a few months each time. After recognizing the Golan Heights too and organizing Soleimani\'s solemn end, you obtained the biggest gift of all: "The Abraham Accords".<br><br> Years after writing about it in your book, you were finally able to secure a normalization deal with an Arab country without any pinky promises of proceeding to negotiate with those pesky Palestinians. Just a few more years for Israel to grow stronger and for the crybabies to become irrelevant and isolated, and you will be able to force the issue and conclude this headache of a conflict with nothing more than a demilitarized autonomy or, as you once called it, \"a Palestinian state minus.\" <br><br>Amid the historic diplomatic breakthrough and a widely praised vaccination campaign against COVID, your political position became increasingly shaky. With mounting corruption charges, a reputation for unreliability, and fatigue from your ruthless theatrics, your impaired ability to form a coalition led to a series of inconclusive election results until the unthinkable happened: A Frankenstein coalition \"for change\" rose up against you, with a composition ranging from the Islamist Ra\'am party to the national-conservative \"Yamina\" (Rightward), the leader of which became prime minister with a mere 6 seats in parliament.',
+        'Like the scorpion from "The Scorpion and the Frog" fable, you eventually touched the cold water, owing to your stinging nature, but it wasn\'t meant to last. You already managed to normalize your new frog with the name of Ben-Gvir. The chubby gentleman was previously associated with "Kach", a far-right group designated as a terrorist organization in Israel, following Baruch Goldstein\'s mass shooting in 1994, but, after years of purges and resignations, there was no one to oppose it in the Likud, as you gradually turned the party into your fan club. With this gem of a partner, Haredi parties used to your generosity and your expert mastery of keeping them powerful without nagging secular Jews too much, and religious Zionists bracing to see you shift rightward in your future government, you won the 2022 election with a comfortable majority of 64 seats to 56.<br><br>Your sixth government started its term, promising to deal with the cost of living, restore law and order, increase Jewish presence in the West Bank, and somehow convince the Saudis to join the Abraham Accords without addressing the Palestinian question. The new justice minister appears to be a real visionary as well, presenting a proposal to trim the powers of the Israeli Supreme Court, an institution long protected by that progressive weakling Netanyahu, and the holiest site for the Israeli (but maybe not for long), secular, center-left, Ashkenazi liberal Jew.<br> Wait, are you sure this is a good idea?'
       ],
       "AP"
     );
@@ -1147,7 +1153,7 @@ endingPicker = function(out, totv, aa, quickstats) {
   // Rabin/Labor win
   setImage("https://i.imgur.com/cRUGjL9.jpeg");
   useNormalEndingWindow({ gameBg: "#b61f2b", resultsBg: "#d94b57", resultsBorder: "#7d1620", headerBg: "#8d1721", descBg: "#effbff", descBorder: "#8fd0e6", textColor: "#103845" });
-  return "<h3>\"Come on, Sarah?le, let?s go\"</h3><br>Holding the hand of your even more disappointed wife, you left the stage, wondering what went wrong. It was always an uphill battle, but so was Begin's in 1981 against the same, constantly underwhelming Peres. Your numerous rivals in the party are standing nearby like hyenas ready to strike, but you won't let them humiliate you. You will preemptively leave your position and spend some time on the outside, analyzing and perfecting yourself for the next attempt, because no matter what those haughty journalists think: <b>You will be back, and you will make them say your name over and over until their tongues fall off.</b><br><br><small>Photo credit: Flash 90</small>";
+  return "<h3>\"Come on, Sarah'le, let's go\"</h3><br>Holding the hand of your even more disappointed wife, you left the stage, wondering what went wrong. It was always an uphill battle, but so was Begin's in 1981 against the same constantly underwhelming Peres. Your numerous rivals in the party are standing nearby like hyenas ready to strike, but you won't let them humiliate you. You will preemptively leave your position and spend some time on the outside, analyzing and perfecting yourself for the next attempt, because no matter what those haughty journalists think: <b>You will be back, and you will make them say your name over and over until their tongues fall off.</b><br><br><small>Photo credit: Flash 90</small>";
 };
 
 // Instant surprise ending: if answer 300101 is chosen, shorten the run and rename the candidates early.
@@ -1958,92 +1964,92 @@ endingPicker = function(out, totv, aa, quickstats) {
 
 // Clickable glossary terms with a parchment-style info window (code 2 only).
 (function () {
-  var terms = [
-    {
-      id: "benny_begin",
-      title: "Benny Begin",
-      aliases: ["Benny Begin", "Begin Jr"],
-      body: "The frustratingly naive son of the great Menachem Begin and a former geologist. He has a better chance of finding a large oil reserve here than winning the nomination."
-    },
-    {
-      id: "david_levy",
-      title: "David Levy",
-      aliases: ["David Levy", "David Levi"],
-      body: "The most prominent Mizrahi Jew in the Likud and your closest rival. After his previous loss to Shamir in the 1983 leadership election he accused the party elites of seeing him as \"a monkey that came down from the trees.\" What an insufferable whiner!"
-    },
-    {
-      id: "moshe_katsav",
-      title: "Moshe Katsav",
-      aliases: ["Moshe Katsav"],
-      body: "The other Mizrahi candidate in the race, with even less chance of winning. Probably just wanted to remind everyone that he exists."
-    },
-    {
-      id: "arafat",
-      title: "Yasser Arafat",
-      aliases: ["Yasser Arafat", "Arafat"],
-      body: "A bloody terrorist and a lying piece of brown gold. Actually the second one is quite inspirational."
-    },
-    {
-      id: "rabin",
-      title: "Yitzhak Rabin",
-      aliases: ["Yitzhak Rabin", "Rabin"],
-      body: "After famously declaring \"I will steer\" in his 1992 victory speech, it is about time for the people to realize that the brave captain is heading our ship straight into the iceberg."
-    },
-    {
-      id: "peres",
-      title: "Shimon Peres",
-      aliases: ["Shimon Peres", "Peres"],
-      body: "Rabin's pale successor. Even in his mother's womb this wimp came second."
-    },
-    {
-      id: "dan_shomron",
-      title: "Dan Shomron",
-      aliases: ["Dan Shomron"],
-      body: "Serving as [you know the drill] between 1987 and 1991, the guy is so humble that his rivals once tried to investigate whether he was gay in the hope of thwarting his advancement."
-    },
-    {
-      id: "yitzhak_mordechai",
-      title: "Yitzhak Mordechai",
-      aliases: ["Yitzhak Mordechai"],
-      body: "When limited abilities meet unlimited ambition."
-    },
-    {
-      id: "moshe_arens",
-      title: "Moshe Arens",
-      aliases: ["Moshe Arens"],
-      body: "Your dear benefactor. Could have been in your place if he had been a bit more ambitious."
-    },
-    {
-      id: "chabad",
-      title: "Chabad Movement",
-      aliases: ["Chabad movement", "Chabad-Lubavitch"],
-      body: "A Hasidic Jewish movement known for its outreach activities among non-observant Jews. Now, got a minute to put on tefillin, bro?"
-    },
-    {
-      id: "third_way",
-      title: "The Third Way",
-      aliases: ["The Third Way"],
-      body: "A breakaway party formed by two of the most hardline members of the Labor movement, who refused to vote for the second phase of Oslo. Led by war hero Avigdor Kahalani, the only member of the Knesset who loves the Golan Heights like his own sister."
-    },
-    {
-      id: "rafael_eitan",
-      title: "Rafael (Raful) Eitan",
-      aliases: ["Rafael (Raful) Eitan", "Rafael Eitan", "Raful Eitan"],
-      body: "A no-nonsense, straight-talking former Chief of Staff of the IDF, selfishly obstructing your historic mission to replace a straight-talking, no-nonsense former Chief of Staff of the IDF."
-    },
-    {
-      id: "declaration_of_principles",
-      title: "Declaration of Principles",
-      aliases: ["Declaration of Principles", "DoP"],
-      body: "It will be known as Oslo I, because for now there is no one to stop this march of folly."
-    },   
-    {
-      id: "menachem_begin",
-      title: "Menachem Begin",
-      aliases: ["Menachem Begin","great Begin"],
-      body: "God's deputy for the typical Likudnik."
-    }
-  ];
+var terms = [
+  {
+    id: "benny_begin",
+    title: "Benny Begin",
+    aliases: ["Benny Begin", "Begin Jr"],
+    body: "The frustratingly naive son of the great Menachem Begin and a former geologist. He has a better chance of finding a large oil reserve here than of winning the nomination."
+  },
+  {
+    id: "david_levy",
+    title: "David Levy",
+    aliases: ["David Levy", "David Levi"],
+    body: "The most prominent Mizrahi Jew in the Likud and your closest rival. After his previous loss to Shamir in the 1983 leadership election, he accused the party elites of seeing him as \"a monkey that came down from the trees.\" What an insufferable whiner!"
+  },
+  {
+    id: "moshe_katsav",
+    title: "Moshe Katsav",
+    aliases: ["Moshe Katsav"],
+    body: "The other Mizrahi candidate in the race, with even less chance of winning. He probably just wanted to remind everyone that he exists."
+  },
+  {
+    id: "arafat",
+    title: "Yasser Arafat",
+    aliases: ["Yasser Arafat", "Arafat"],
+    body: "A bloody terrorist and a lying piece of brown gold. Actually, the second one is quite inspirational."
+  },
+  {
+    id: "rabin",
+    title: "Yitzhak Rabin",
+    aliases: ["Yitzhak Rabin", "Rabin"],
+    body: "After famously declaring \"I will steer\" in his 1992 victory speech, it is about time for the people to realize that the brave captain is heading our ship straight into the iceberg."
+  },
+  {
+    id: "peres",
+    title: "Shimon Peres",
+    aliases: ["Shimon Peres", "Peres"],
+    body: "Rabin's pale successor. Even in his mother's womb, this wimp came second."
+  },
+  {
+    id: "dan_shomron",
+    title: "Dan Shomron",
+    aliases: ["Dan Shomron"],
+    body: "Serving as [you know the drill] between 1987 and 1991, the guy is so humble that his rivals once tried to investigate whether he was gay in the hope of thwarting his advancement."
+  },
+  {
+    id: "yitzhak_mordechai",
+    title: "Yitzhak Mordechai",
+    aliases: ["Yitzhak Mordechai"],
+    body: "When limited abilities meet unlimited ambition."
+  },
+  {
+    id: "moshe_arens",
+    title: "Moshe Arens",
+    aliases: ["Moshe Arens"],
+    body: "Your dear benefactor. He could have been in your place if he had been a bit more ambitious."
+  },
+  {
+    id: "chabad",
+    title: "Chabad Movement",
+    aliases: ["Chabad movement", "Chabad-Lubavitch"],
+    body: "A Hasidic Jewish movement known for its outreach activities among non-observant Jews. Now, got a minute to put on tefillin, bro?"
+  },
+  {
+    id: "third_way",
+    title: "The Third Way",
+    aliases: ["The Third Way"],
+    body: "A breakaway party formed by two of the most hardline members of the Labor movement, who refused to vote for the second phase of Oslo. Led by war hero Avigdor Kahalani, the only member of the Knesset who loves the Golan Heights like his own sister."
+  },
+  {
+    id: "rafael_eitan",
+    title: "Rafael (Raful) Eitan",
+    aliases: ["Rafael (Raful) Eitan", "Rafael Eitan", "Raful Eitan"],
+    body: "A no-nonsense, straight-talking former Chief of Staff of the IDF, selfishly obstructing your historic mission to replace a straight-talking, no-nonsense former Chief of Staff of the IDF."
+  },
+  {
+    id: "declaration_of_principles",
+    title: "Declaration of Principles",
+    aliases: ["Declaration of Principles", "DoP"],
+    body: "It will be known as Oslo I, because for now there is no one to stop this march of folly."
+  },   
+  {
+    id: "menachem_begin",
+    title: "Menachem Begin",
+    aliases: ["Menachem Begin","great Begin"],
+    body: "God's deputy for the typical Likudnik."
+  }
+];
 
   function escapeRegExp(s) {
     return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
