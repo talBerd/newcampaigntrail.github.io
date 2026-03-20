@@ -1,4 +1,4 @@
-campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 
 
 /* ============================================================
@@ -15,6 +15,7 @@ function israel96RabinSetQuestionCount(n) {
     e.global_parameter_json[0].fields.question_count = n;
   }
 }
+israel96RabinSetQuestionCount(12);
 
 
 // Legacy campaign sign/header fields used by the engine UI (prevents undefined labels/images).
@@ -523,24 +524,26 @@ campaignTrail_temp.state_issue_score_json = [
 e.state_issue_score_json = campaignTrail_temp.state_issue_score_json;
 
 campaignTrail_temp.candidate_state_multiplier_json = [
-  { "model": "campaign_trail.candidate_state_multiplier", "pk": 2001, "fields": { "candidate": 1001, "state": 6661, "state_multiplier": 1 } }, // Golan
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2002, "fields": { "candidate": 1001, "state": 6662, "state_multiplier": 0.7 } }, // Northern
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2003, "fields": { "candidate": 1001, "state": 6663, "state_multiplier": 0.8 } }, // Haifa
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2004, "fields": { "candidate": 1001, "state": 6664, "state_multiplier": 1.00 } }, // Central
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2005, "fields": { "candidate": 1001, "state": 6665, "state_multiplier": 0.75 } }, // Tel Aviv
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.2 } }, // Jerusalem
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2001, "fields": { "candidate": 1001, "state": 6661, "state_multiplier": 1 } }, // Golan
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2002, "fields": { "candidate": 1001, "state": 6662, "state_multiplier": 0.8 } }, // Northern
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2003, "fields": { "candidate": 1001, "state": 6663, "state_multiplier": 0.75 } }, // Haifa
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2004, "fields": { "candidate": 1001, "state": 6664, "state_multiplier": 1} }, // Central
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2005, "fields": { "candidate": 1001, "state": 6665, "state_multiplier": 0.8 } }, // Tel Aviv
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.25 } }, // Jerusalem
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2007, "fields": { "candidate": 1001, "state": 6667, "state_multiplier": 1 } }, // Southern
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 2.6 } },  // West Bank
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 2.2 } },  // West Bank
 
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2101, "fields": { "candidate": 1002, "state": 6661, "state_multiplier": 1.2 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2102, "fields": { "candidate": 1002, "state": 6662, "state_multiplier": 1 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2103, "fields": { "candidate": 1002, "state": 6663, "state_multiplier": 1.05 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2104, "fields": { "candidate": 1002, "state": 6664, "state_multiplier": 1.2 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2105, "fields": { "candidate": 1002, "state": 6665, "state_multiplier": 1.5 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2103, "fields": { "candidate": 1002, "state": 6663, "state_multiplier": 1 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2104, "fields": { "candidate": 1002, "state": 6664, "state_multiplier": 1 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2105, "fields": { "candidate": 1002, "state": 6665, "state_multiplier": 1.3 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2106, "fields": { "candidate": 1002, "state": 6666, "state_multiplier": 0.9 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2107, "fields": { "candidate": 1002, "state": 6667, "state_multiplier": 0.9 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2108, "fields": { "candidate": 1002, "state": 6668, "state_multiplier": 0.5 } }
 ];
+e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+
 
 campaignTrail_temp.candidate_issue_score_json = [
   // Bibi Netanyahu
@@ -736,7 +739,7 @@ campaignTrail_temp.answer_feedback_json = [
 
   { "model": "campaign_trail.answer_feedback", "pk": 9404, "fields": { "answer": 301404, "candidate": 1002, "answer_feedback": "<b>\"And may God soften the hearts of the leaders, that they may clasp one another's hands and call upon the man destined to betray his wife to part their armies.\"</b><br><br>Below heaven, your position is precarious, though. While the Knesset approved the agreement 65 to 55, Kahalani and Zisman rebelled and deserted your party for the opposition, leaving you with a minority government dependent on Arab MPs. This further fueled right-wing opposition to your rule, which can now claim that you don't have a \"Zionist mandate\" for your actions." } },
 
-  { "model": "campaign_trail.answer_feedback", "pk": 9601, "fields": { "answer": 301601, "candidate": 1002, "answer_feedback": "After comically bizarre measures to bring Shas back, you had to settle for a minority government. With two MPs whom you were able to coax to your side from the right-wing Tzomet party, the Oslo B accord was approved by the Knesset with a 61–59 vote. The anti-Oslo side subsequently accused those MPs of betraying their ideology for a Mitsubishi, as they received government positions, accompanied by... Toyota, actually." } },
+  { "model": "campaign_trail.answer_feedback", "pk": 9601, "fields": { "answer": 301601, "candidate": 1002, "answer_feedback": "After comically bizarre measures to bring Shas back, you had to settle for a minority government. With two MPs whom you were able to coax to your side from the right-wing Tzomet party, the Oslo B accord was approved by the Knesset with a 61â€“59 vote. The anti-Oslo side subsequently accused those MPs of betraying their ideology for a Mitsubishi, as they received government positions, accompanied by... Toyota, actually." } },
 
   { "model": "campaign_trail.answer_feedback", "pk": 9602, "fields": { "answer": 301602, "candidate": 1002, "answer_feedback": "Bribe, shmibe. Are you new to this sausage factory? Your intransigence led to Oslo B failing to pass in the legislature. I hope you have a really good explanation for Arafat and Clinton of how you are going to get it off the ground now." } },
 
@@ -792,12 +795,12 @@ campaignTrail_temp.answer_feedback_json = [
 ];
 
 campaignTrail_temp.answer_score_global_json = [
-  { "model": "campaign_trail.answer_score_global", "pk": 8301, "fields": { "answer": 301301, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.17 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8301, "fields": { "answer": 301301, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.18 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8501, "fields": { "answer": 301501, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8502, "fields": { "answer": 301502, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8401, "fields": { "answer": 301401, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8402, "fields": { "answer": 301402, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.05 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8403, "fields": { "answer": 301403, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.05 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8402, "fields": { "answer": 301402, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8403, "fields": { "answer": 301403, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8404, "fields": { "answer": 301404, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.34 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8603, "fields": { "answer": 301601, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.02 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8604, "fields": { "answer": 301602, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.04 } },
@@ -809,8 +812,8 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 8941, "fields": { "answer": 302401, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.08 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8942, "fields": { "answer": 302402, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.07 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8943, "fields": { "answer": 302403, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.02 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8971, "fields": { "answer": 302501, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8972, "fields": { "answer": 302502, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.03 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8971, "fields": { "answer": 302501, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.08 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8972, "fields": { "answer": 302502, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.04 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8702, "fields": { "answer": 301702, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8801, "fields": { "answer": 301801, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8802, "fields": { "answer": 301802, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
@@ -822,7 +825,7 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 8951, "fields": { "answer": 302301, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.02 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8952, "fields": { "answer": 302302, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8953, "fields": { "answer": 302303, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.02 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8973, "fields": { "answer": 302503, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.04 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8973, "fields": { "answer": 302503, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8974, "fields": { "answer": 302504, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.05 } },
 ];
 
@@ -832,13 +835,13 @@ campaignTrail_temp.answer_score_state_json = [
   { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.06 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.045 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87021, "fields": { "answer": 301702, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.30 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87020, "fields": { "answer": 301702, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.11 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87022, "fields": { "answer": 301702, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.11 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87023, "fields": { "answer": 301702, "state": 6664, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.20 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87024, "fields": { "answer": 301702, "state": 6665, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.13 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87025, "fields": { "answer": 301702, "state": 6666, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.05 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87026, "fields": { "answer": 301702, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.18 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87021, "fields": { "answer": 301702, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.25 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87020, "fields": { "answer": 301702, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.13 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87022, "fields": { "answer": 301702, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.15 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87023, "fields": { "answer": 301702, "state": 6664, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.30 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87024, "fields": { "answer": 301702, "state": 6665, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.25 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87025, "fields": { "answer": 301702, "state": 6666, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.10 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87026, "fields": { "answer": 301702, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.20 } },
   { "model": "campaign_trail.answer_score_state", "pk": 87027, "fields": { "answer": 301702, "state": 6668, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } }
 ];
 
@@ -966,7 +969,7 @@ var QUESTION7_AYYASH = {
     if (!f || !f.fields) return;
     if (f.fields.answer === 302401) {
       f.fields.answer_feedback = pickedScrewHistory
-        ? "The citizens of Israel are ecstatic, and the soldiers in the barracks even more so. After years of stagnation, Israel's Vietnam appears to be entering its final chapter."
+        ? "The citizens of Israel are ecstatic, and the soldiers in the barracks even more so. After years of stagnation, Israel's Afghanistan appears to be entering its final chapter."
         : 'Operation Grapes of Wrath appeared successful until the army hit a UN compound, killing and injuring hundreds of civilians. Under international pressure, you were forced to call the operation off, angering the hawkish public. From the other side of the aisle, Arab voters who supported you over Bibi in overwhelming numbers are now accusing you of brutality and murmuring about sitting out this election.';
     }
     if (!pickedScrewHistory && f.fields.answer === 302402) {
@@ -1025,16 +1028,15 @@ var QUESTION7_AYYASH = {
     var s301801 = ensureGlobalScore(301801, 8801);
     var s301802 = ensureGlobalScore(301802, 8802);
     var s301803 = ensureGlobalScore(301803, 8803);
-    s301801.fields.global_multiplier = usePeres ? 0.04 : 0.00;
-    s301802.fields.global_multiplier = usePeres ? -0.04 : 0.00;
+    s301801.fields.global_multiplier = usePeres ? 0.03 : 0.00;
+    s301802.fields.global_multiplier = usePeres ? -0.03 : 0.00;
     s301803.fields.global_multiplier = 0.00;
-4
     var s301901 = ensureGlobalScore(301901, 8911);
     var s301902 = ensureGlobalScore(301902, 8912);
     var s301903 = ensureGlobalScore(301903, 8913);
-    s301901.fields.global_multiplier = -0.12;
-    s301902.fields.global_multiplier = -0.12;
-    s301903.fields.global_multiplier = -0.06;
+    s301901.fields.global_multiplier = -0.13;
+    s301902.fields.global_multiplier = -0.13;
+    s301903.fields.global_multiplier = -0.07;
   }
   function dataSets() {
     var sets = [];
@@ -1580,7 +1582,7 @@ function israel96RabinUseNormalEndingWindow(theme) {
 endingPicker = function(out, totv, aa, quickstats) {
   var HIPPIEL_ANSWER_ID = 301803;
   israel96RabinSetEndingImage('https://i.imgur.com/w6D5Wdn.png');
-  var customEnding = '<h3>Welcome to Hippiel</h3><br>I have to be honest with you guys—I don\'t recall forming our party, let alone registering Boaz for the prime ministerial race. My colleagues don\'t remember it either. But since so many citizens voted for us, it must be true, and we are here to announce that <b>the police state is over!!!</b> We promise that under our positively tested leadership, we will rule the country with a firm but also chill hand and realize the magnificent platform we just came up with for our party, including drug liberalization, strengthening local communities, codifying animal rights, and... did I mention the drug thing? Yeah, I think I did.<br><br>We extend our shaky hand for peace, ready to talk with our neighbors at any time—but preferably not at midnight or early in the morning. Concerning terrorism, we are about to launch the greatest anti-terror measure their minds could possibly comprehend: making drugs widely available. So if you have any nasty plans, you better find another career path before we undercut your source of revenue. And don\'t even get me started on Israeli prisons—I have been there long enough to tell you they aren\'t pretty.<br><br>Let\'s wrap this up quickly with the money stuff. After a good, soul-changing talk with an expert, we are going to opt for a social safety net economy with a strong, free internet. For any further information, please stay tuned—especially since it costs you nothing from today.<br><br>Now, if you will excuse me, I have to go and perform the wedding of my gay, Uzi-wielding friends on their marijuana farm.';
+  var customEnding = '<h3>Welcome to Hippiel</h3><br>I have to be honest with you guys,  I don\'t recall forming our party, let alone registering Boaz for the prime ministerial race. My colleagues don\'t remember it either. But since so many citizens voted for us, it must be true, and we are here to announce that <b>the police state is over!!!</b> We promise that under our positively tested leadership, we will rule the country with a firm but also chill hand and realize the magnificent platform we just came up with for our party, including drug liberalization, strengthening local communities, codifying animal rights, and... did I mention the drug thing? Yeah, I think I did.<br><br>We extend our shaky hand for peace, ready to talk with our neighbors at any time,  but preferably not at midnight or early in the morning. Concerning terrorism, we are about to launch the greatest anti-terror measure their minds could possibly comprehend: making drugs widely available. So if you have any nasty plans, you better find another career path before we undercut your source of revenue. And don\'t even get me started on Israeli prisons,  I have been there long enough to tell you they aren\'t pretty.<br><br>Let\'s wrap this up quickly with the money stuff. After a good, soul-changing talk with an expert, we are going to opt for a social safety net economy with a strong, free internet. For any further information, please stay tuned,  especially since it costs you nothing from today.<br><br>Now, if you will excuse me, I have to go and perform the wedding of my gay, Uzi-wielding friends on their marijuana farm.';
   window.israel96PagedEndingState = null;
   window.israel96RabinEndingKey = "";
   function findCandidate(list, pk) {
@@ -1711,7 +1713,7 @@ endingPicker = function(out, totv, aa, quickstats) {
     window.israel96PagedEndingState = null;
     israel96RabinSetEndingImage('https://i.imgur.com/9prwd8r.jpeg');
     israel96RabinUseNormalEndingWindow({ gameBg: "#ffffff", resultsBg: "#ffffff", resultsBorder: "#cfcfcf", headerBg: "#ffffff", descBg: "#ffffff", descBorder: "#cfcfcf", textColor: "#000000", separateDesc: true });
-    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon turned into the war to get Lebanon out of the Syrian sphere of influence, which turned into the war to install a friendly regime in Lebanon, which turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened. It was finally brought to an end with an actual \"Peace with Honor\".<br><br>With the Lebanese normalization agreement signed, the Jewish state wakes up to a refreshing reality of non-hostile borders. While Israelis tourists are not gonna be scooping hummus with pita in Damascus anytime soon, they can at least dial back their long-cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to... stop it! Why can\'t I relax for a goddamn second?';
+    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon turned into the war to get Lebanon out of the Syrian sphere of influence, which turned into the war to install a friendly regime in Lebanon, which turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened. It was finally brought to an end with an actual \"Peace with Honor\". Dasvidaniya Livan!<br><br>With the Lebanese normalization agreement signed, the Jewish state wakes up to a refreshing reality of non-hostile borders. While Israelis tourists are not gonna be scooping hummus with pita in Damascus anytime soon, they can at least dial back their long-cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to... stop it! Why can\'t I relax for a goddamn second?';
   }
 
 
@@ -1724,10 +1726,10 @@ endingPicker = function(out, totv, aa, quickstats) {
   israel96RabinUseNormalEndingWindow({ gameBg: "#b61f2b", resultsBg: "#d94b57", resultsBorder: "#7d1620", headerBg: "#8d1721", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor, separateDesc: true });
     if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {
       israel96RabinSetEndingImage('https://i.imgur.com/vMPG1Du.jpeg');
-     return '<h3><b>Loser No More</b></h3><br><br>It always looked likely, but a lot of things could have gone wrong—and we are talking about Peres. The elected prime minister could not have felt happier. For the first time in his life, he received an outright mandate from the people. The future looked bright and full of opportunities.<br><br>Can Peres save the peace process? I will let you decide.<br>Good job nonetheless.';
+     return '<h3><b>Loser No More</b></h3><br><br>It always looked likely, but a lot of things could have gone wrong,  and we are talking about Peres. The elected prime minister could not have felt happier. For the first time in his life, he received an outright mandate from the people. The future feels bright and full of opportunities.<br><br>Can Peres save the peace process? I will let you decide.<br>Good job nonetheless.';
     }
     israel96RabinSetEndingImage('https://i.imgur.com/hwD0WSJ.jpeg');
-    return '<h3><b>New Horizons</b></h3><br><br>Just like in 1992, the crowd had gone wild. You again waited for them to tone down their voices for your speech, this time remembering to smile while delivering it. \"I will go on,\" you declared. \"That\'s the people\'s choice.\" After you left the stage, the phones began to ring. Clinton, Mubarak, Arafat—all lined up to congratulate you, quite happy that the man they all know and have learned to respect is staying in charge.<br><br>It is May 23, 1997. Just 30 years ago, you were a complete wreck. The doubts over whether or not the army was ready for the upcoming Six-Day War, amplified after a tense meeting with the retired Ben-Gurion, were eating you alive. You stayed home that day on brief \"sick leave.\" Then you returned and, with the backing of the newly appointed defense minister Dayan, you commenced a preemptive strike called \"Operation Focus,\" achieving the crucial air supremacy that allowed Israel to win the war decisively. The then Syrian defense minister, Assad, inadvertently benefited from the loss, seizing the presidency just three years later. He remembered you well, and curiously enough, your role then made him confident in your ability to deliver at the negotiating table too. \"He is as serious as ever,\" said the emissary you sent to him. You know the window is short. You won\'t be here forever, and neither will Hafez. It\'s in your hands to decide whether to have faith in the Syrians and take the leap or not.';
+    return '<h3><b>New Horizons</b></h3><br><br>Just like in 1992, the crowd had gone wild. You again waited for them to tone down their voices for your speech, this time remembering to smile while delivering it. \"I will go on,\" you declared. \"That\'s the people\'s choice.\" After you left the stage, the phones began to ring. Clinton, Mubarak, Arafat,  all lined up to congratulate you, quite happy that the man they all know and have learned to respect is staying in charge.<br><br>It is May 23, 1997. Just 30 years ago, you were a complete wreck. The doubts over whether or not the army was ready for the upcoming Six-Day War, amplified after a tense meeting with the retired Ben-Gurion, were eating you alive. You stayed home that day on brief \"sick leave.\" Then you returned and, with the backing of the newly appointed defense minister Dayan, you commenced a preemptive strike called \"Operation Focus,\" achieving the crucial air supremacy that allowed Israel to win the war decisively. The then Syrian defense minister, Assad, inadvertently benefited from the loss, seizing the presidency just three years later. He remembered you well, and curiously enough, your role then made him confident in your ability to deliver at the negotiating table too. \"He is as serious as ever,\" said the emissary you sent to him. You know the window is short. You won\'t be here forever, and neither will Hafez. It\'s in your hands to decide whether to have faith in the Syrians and take the leap or not.';
   }
   israel96RabinUseNormalEndingWindow({ gameBg: "#b61f2b", resultsBg: "#d94b57", resultsBorder: "#7d1620", headerBg: "#8d1721", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor, separateDesc: true });
   if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {
@@ -1746,7 +1748,7 @@ endingPicker = function(out, totv, aa, quickstats) {
   window.israel96RabinEndingKey = "loss";
   window.israel96PagedEndingState = null;
   israel96RabinSetEndingImage('https://i.imgur.com/Bn8RLeC.jpeg');
-  return '<h3><b>A Lost Battle</b></h3><br><br>In private, Rabin can\'t help himself but curse. People really fell for this crafty salesman, and now he is going to deal with YOUR agreement in HIS way. Give the general a bottle—he needs it urgently!<br><br>Given that he is only 73, it is unlikely that Rabin will resign. Not to mention, he still has supporters, and he probably won\'t forgive himself if he leaves the party to his very probable successor and rival, Peres. Ohhhh no. He is going to stay and fight tooth and nail for his legacy. Be prepared, Bibi—he is going to make you sweat.';
+  return '<h3><b>A Lost Battle</b></h3><br><br>In private, Rabin can\'t help himself but curse. People really fell for this crafty salesman, and now he is going to deal with YOUR agreement in HIS way. Give the general a bottle,  he needs it urgently!<br><br>Given that he is only 73, it is unlikely that Rabin will resign. Not to mention, he still has supporters, and he probably won\'t forgive himself if he leaves the party to his very probable successor and rival, Peres. Ohhhh no. He is going to stay and fight tooth and nail for his legacy. Be prepared, Bibi,  he is going to make you sweat.';
 };
 (function() {
   var HIPPIEL_ANSWER_ID = 301803;
@@ -1912,7 +1914,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       id: "hezbollah",
       title: "Hezbollah",
       aliases: ["Hezbollah"],
-      body: "A Shiite terrorist organization aiming to push the IDF out of Lebanon and then... they will figure something out"
+      body: "A Shiite terrorist organization aiming to push the IDF out of Lebanon and then... continue fighting against Israel. Where do I sign on the offer?"
     },
     {
       id: "nasrallah",
@@ -1936,7 +1938,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       id: "hussein",
       title: "Hussein",
       aliases: ["Hussein", "King Hussein", "Hussein of Jordan", "King Hussein of Jordan"],
-      body: "King of Jordan. Likes you almost as much as I like a Jack Daniels bottle."
+      body: "King of Jordan. Likes you almost as much as you like a Jack Daniels bottle."
     },
     {
       id: "assad",
@@ -1959,9 +1961,9 @@ endingPicker = function(out, totv, aa, quickstats) {
   ];
   var peresTerms = JSON.parse(JSON.stringify(rabinTerms));
   var peresHamas = peresTerms.find(function (t) { return t.id === 'hamas'; });
-  if (peresHamas) peresHamas.body = 'Dogmatists panicking over "The new middle east" unfolding';
+  if (peresHamas) peresHamas.body = 'Dogmatists panicking over "The New Middle East" unfolding';
   var peresHezbollah = peresTerms.find(function (t) { return t.id === 'hezbollah'; });
-  if (peresHezbollah) peresHezbollah.body = 'A thorn on the side of "the new middle east" who would rather saw their country burn than recognizing Israel';
+  if (peresHezbollah) peresHezbollah.body = 'A thorn on the side of "The New Middle East" who would rather saw their country burn than recognizing Israel';
   var peresNasrallah = peresTerms.find(function (t) { return t.id === 'nasrallah'; });
   if (peresNasrallah) peresNasrallah.body = 'The leader of Hezbollah and hopefully a relic of the past for the middle east. Good riddance!';
   var peresClinton = peresTerms.find(function (t) { return t.id === 'bill_clinton'; });
@@ -1985,9 +1987,9 @@ endingPicker = function(out, totv, aa, quickstats) {
   function getPeresOverrideBody(id) {
     if (!(typeof isPeresBranch === "function" && isPeresBranch())) return null;
     var map = {
-      hamas: 'Digmatists panicking over "The new middle east" unfolding',
-      hezbollah: 'A thorn on the side of "the new middle east" who would rather saw their country burn than recognizing Israel',
-      nasrallah: 'The leader of Hezbpllah and hopefully a relic of the past for the middle east. Good riddance!',
+      hamas: 'Digmatists panicking over "The New Middle East" unfolding',
+      hezbollah: 'A thorn on the side of "The New Middle East" who would rather saw their country burn than recognizing Israel',
+      nasrallah: 'The leader of Hezbollah and hopefully a relic of the past for the middle east. Good riddance!',
       bill_clinton: 'The US president and personification of changing times. So sad the opposition here consists of dinosaurs refusing to adapt.',
       netanyahu: 'If Rabin called you "tireless schemer" what does it make this dude?',
       security_zone: 'A temporary buffer until diplomacy will reign supreme'
@@ -2147,9 +2149,9 @@ endingPicker = function(out, totv, aa, quickstats) {
     var ans2 = (typeof e !== "undefined" && e && Array.isArray(e.player_answers)) ? e.player_answers : [];
     if (ans1.concat(ans2).map(function(a){ return Number(a); }).indexOf(301702) === -1) return;
     var overrides = {
-      hamas: "Digmatists panicking over \"The new middle east\" unfolding",
-      hezbollah: "A thorn on the side of \"the new middle east\" who would rather saw their country burn than recognizing Israel",
-      nasrallah: "The leader of Hezbpllah and hopefully a relic of the past for the middle east. Good riddance!",
+      hamas: "Digmatists panicking over \"The New Middle East\" unfolding",
+      hezbollah: "A thorn on the side of \"The New Middle East\" who would rather saw their country burn than recognizing Israel",
+      nasrallah: "The leader of Hezbollah and hopefully a relic of the past for the middle east. Good riddance!",
       bill_clinton: "The US president and personification of changing times. So sad the opposition here consists of dinosaurs refusing to adapt.",
       netanyahu: "If Rabin called you \"tireless schemer\" what does it make this dude?",
       security_zone: "A temporary buffer until diplomacy will reign supreme"
@@ -2267,6 +2269,7 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (window.israel96RabinHideEvLoop) clearInterval(window.israel96RabinHideEvLoop);
   window.israel96RabinHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
+
 
 
 
