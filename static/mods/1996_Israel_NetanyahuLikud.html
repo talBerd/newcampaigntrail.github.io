@@ -22,6 +22,8 @@ campaignTrail_temp.candidate_last_name = 'Netanyahu';
 campaignTrail_temp.running_mate_last_name = 'Likud';
 campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/TarOS6X.jpeg';
 campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/uoXVxru.jpeg';
+campaignTrail_temp.opponents_list = [1002];
+if (typeof e !== "undefined") e.opponents_list = [1002];
 (function(e, t, n, r, i) {
     if (!e || !e.fn) {
         console.error("MAP ERROR: jQuery missing.");
@@ -375,29 +377,6 @@ campaignTrail_temp.states_json = [
 
 
 campaignTrail_temp.issues_json = [
-    {
-        "model": "campaign_trail.issue",
-        "pk": 600,
-        "fields": {
-            "name": "Terrorism",
-            "description": "The biggest factor",
-            "stance_1": "Sunshine and rainbows",
-            "stance_desc_1": 0,
-            "stance_2": "Very Relaxed",
-            "stance_desc_2": 0,
-            "stance_3": "Relaxed",
-            "stance_desc_3": 0,
-            "stance_4": "Indifferent",
-            "stance_desc_4": 0,
-            "stance_5": "Worried",
-            "stance_desc_5": 0,
-            "stance_6": "Very Worried",
-            "stance_desc_6": 0,
-            "stance_7": "Furious",
-            "stance_desc_7": 0,
-            "election": 99
-        }
-    },
         {
             "model": "campaign_trail.issue",
             "pk": 601,
@@ -489,118 +468,111 @@ campaignTrail_temp.issues_json = [
             "stance_7": "Halachic state",
             "stance_desc_7": "Get out feygele",
             "election": 99
-        } 
-    } 
-]
+        }
+    }
+];
 
 campaignTrail_temp.state_issue_score_json = [
+
     // 1. GOLAN HEIGHTS (GH)
-    { "model": "campaign_trail.state_issue_score", "pk": 1001, "fields": { "state": 6661, "issue": 600, "state_issue_score": 0.6, "weight": 1.3 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1002, "fields": { "state": 6661, "issue": 601, "state_issue_score": 0.05, "weight": 1.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1003, "fields": { "state": 6661, "issue": 602, "state_issue_score": -0.2, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1004, "fields": { "state": 6661, "issue": 603, "state_issue_score": -1.0, "weight": 0.0 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1005, "fields": { "state": 6661, "issue": 604, "state_issue_score": -0.42, "weight": 1.2 } }, 
 
     // 2. NORTHERN DISTRICT (NR)
-    { "model": "campaign_trail.state_issue_score", "pk": 1006, "fields": { "state": 6662, "issue": 600, "state_issue_score": 0.2, "weight": 1.1 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1007, "fields": { "state": 6662, "issue": 601, "state_issue_score": -0.45, "weight": 1.3 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1008, "fields": { "state": 6662, "issue": 602, "state_issue_score": -0.15, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1009, "fields": { "state": 6662, "issue": 603, "state_issue_score": 0.25, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1010, "fields": { "state": 6662, "issue": 604, "state_issue_score": -0.2, "weight": 0.3 } }, 
 
     // 3. HAIFA DISTRICT (HA)
-    { "model": "campaign_trail.state_issue_score", "pk": 1011, "fields": { "state": 6663, "issue": 600, "state_issue_score": 0.25, "weight": 1.1 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1012, "fields": { "state": 6663, "issue": 601, "state_issue_score": -0.45, "weight": 1.5 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1013, "fields": { "state": 6663, "issue": 602, "state_issue_score": -0.2, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1014, "fields": { "state": 6663, "issue": 603, "state_issue_score": 0.10, "weight": 0.9 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1015, "fields": { "state": 6663, "issue": 604, "state_issue_score": -0.45, "weight": 0.3 } }, 
 
     // 4. CENTRAL DISTRICT (CE)
-    { "model": "campaign_trail.state_issue_score", "pk": 1016, "fields": { "state": 6664, "issue": 600, "state_issue_score": 0.7, "weight": 1.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1017, "fields": { "state": 6664, "issue": 601, "state_issue_score": 0.1, "weight": 1.4 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1018, "fields": { "state": 6664, "issue": 602, "state_issue_score": 0.1, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1019, "fields": { "state": 6664, "issue": 603, "state_issue_score": -0.6, "weight": 0.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1020, "fields": { "state": 6664, "issue": 604, "state_issue_score": -0.22, "weight": 0.9 } }, 
 
     // 5. TEL AVIV (TA)
-    { "model": "campaign_trail.state_issue_score", "pk": 1021, "fields": { "state": 6665, "issue": 600, "state_issue_score": 0.30, "weight": 1.3 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1022, "fields": { "state": 6665, "issue": 601, "state_issue_score": -0.75, "weight": 1.7 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1023, "fields": { "state": 6665, "issue": 602, "state_issue_score": 0.25, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1024, "fields": { "state": 6665, "issue": 603, "state_issue_score": -0.7, "weight": 0.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1025, "fields": { "state": 6665, "issue": 604, "state_issue_score": -0.17, "weight": 1.5 } }, 
 
     // 6. JERUSALEM (JM)
-    { "model": "campaign_trail.state_issue_score", "pk": 1026, "fields": { "state": 6666, "issue": 600, "state_issue_score": 0.9, "weight": 1.7 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1027, "fields": { "state": 6666, "issue": 601, "state_issue_score": 0.45, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1028, "fields": { "state": 6666, "issue": 602, "state_issue_score": -0.05, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1029, "fields": { "state": 6666, "issue": 603, "state_issue_score": 0, "weight": 0.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1030, "fields": { "state": 6666, "issue": 604, "state_issue_score": 0.5, "weight": 1.8 } }, 
 
     // 7. SOUTHERN DISTRICT (SO)
-    { "model": "campaign_trail.state_issue_score", "pk": 1031, "fields": { "state": 6667, "issue": 600, "state_issue_score": 0.65, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1032, "fields": { "state": 6667, "issue": 601, "state_issue_score": 0.2, "weight": 1.4 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1033, "fields": { "state": 6667, "issue": 602, "state_issue_score": 0, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1034, "fields": { "state": 6667, "issue": 603, "state_issue_score": -0.28, "weight": 0.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1035, "fields": { "state": 6667, "issue": 604, "state_issue_score": -0.15, "weight": 0.6 } }, 
 
     // 8. WEST BANK & GAZA (WB)
-    { "model": "campaign_trail.state_issue_score", "pk": 1036, "fields": { "state": 6668, "issue": 600, "state_issue_score": 0.9, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1037, "fields": { "state": 6668, "issue": 601, "state_issue_score": 1, "weight": 2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1038, "fields": { "state": 6668, "issue": 602, "state_issue_score": -0.1, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1039, "fields": { "state": 6668, "issue": 603, "state_issue_score": -1.0, "weight": 0.0 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1040, "fields": { "state": 6668, "issue": 604, "state_issue_score": 0.70, "weight": 1.8 } }
 ];
+e.state_issue_score_json = campaignTrail_temp.state_issue_score_json;
 
 campaignTrail_temp.candidate_state_multiplier_json = [
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2001, "fields": { "candidate": 1001, "state": 6661, "state_multiplier": 1 } }, // Golan
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2002, "fields": { "candidate": 1001, "state": 6662, "state_multiplier": 0.7 } }, // Northern
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2003, "fields": { "candidate": 1001, "state": 6663, "state_multiplier": 0.8 } }, // Haifa
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2004, "fields": { "candidate": 1001, "state": 6664, "state_multiplier": 1.00 } }, // Central
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2005, "fields": { "candidate": 1001, "state": 6665, "state_multiplier": 0.67 } }, // Tel Aviv
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.15 } }, // Jerusalem
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2007, "fields": { "candidate": 1001, "state": 6667, "state_multiplier": 1.05 } }, // Southern
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 1.6 } },  // West Bank
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2005, "fields": { "candidate": 1001, "state": 6665, "state_multiplier": 0.65 } }, // Tel Aviv
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.4 } }, // Jerusalem
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2007, "fields": { "candidate": 1001, "state": 6667, "state_multiplier": 1.1 } }, // Southern
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 2 } },  // West Bank
 
-    { "model": "campaign_trail.candidate_statssue_multiplier", "pk": 2101, "fields": { "candidate": 1002, "state": 6661, "state_multiplier": 1.06 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2102, "fields": { "candidate": 1002, "state": 6662, "state_multiplier": 0.88 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2103, "fields": { "candidate": 1002, "state": 6663, "state_multiplier": 1.06 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2104, "fields": { "candidate": 1002, "state": 6664, "state_multiplier": 1.05 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2105, "fields": { "candidate": 1002, "state": 6665, "state_multiplier": 0.82 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2101, "fields": { "candidate": 1002, "state": 6661, "state_multiplier": 1.3 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2102, "fields": { "candidate": 1002, "state": 6662, "state_multiplier": 1 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2103, "fields": { "candidate": 1002, "state": 6663, "state_multiplier": 1.05 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2104, "fields": { "candidate": 1002, "state": 6664, "state_multiplier": 1.3 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2105, "fields": { "candidate": 1002, "state": 6665, "state_multiplier": 1.5 } },
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2106, "fields": { "candidate": 1002, "state": 6666, "state_multiplier": 0.95 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2107, "fields": { "candidate": 1002, "state": 6667, "state_multiplier": 0.96 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2108, "fields": { "candidate": 1002, "state": 6668, "state_multiplier": 0.58 } }
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2107, "fields": { "candidate": 1002, "state": 6667, "state_multiplier": 1.2 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2108, "fields": { "candidate": 1002, "state": 6668, "state_multiplier": 0.5 } }
 ];
+e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+
+
 
 campaignTrail_temp.candidate_issue_score_json = [
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1200, "fields": { "candidate": 1001, "issue": 600, "issue_score": 0.9 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1201, "fields": { "candidate": 1001, "issue": 601, "issue_score": 0.4 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1202, "fields": { "candidate": 1001, "issue": 602, "issue_score": 0.65 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1203, "fields": { "candidate": 1001, "issue": 603, "issue_score": -0.9 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1204, "fields": { "candidate": 1001, "issue": 604, "issue_score": 0.80 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1301, "fields": { "candidate": 1002, "issue": 600, "issue_score": 0.55 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1302, "fields": { "candidate": 1002, "issue": 601, "issue_score": -0.10 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1303, "fields": { "candidate": 1002, "issue": 602, "issue_score": 0.25 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1304, "fields": { "candidate": 1002, "issue": 603, "issue_score": 0.38 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1305, "fields": { "candidate": 1002, "issue": 604, "issue_score": -0.28 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1391, "fields": { "candidate": 1003, "issue": 600, "issue_score": 0.30 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1392, "fields": { "candidate": 1003, "issue": 601, "issue_score": -0.35 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1393, "fields": { "candidate": 1003, "issue": 602, "issue_score": 0.85 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1394, "fields": { "candidate": 1003, "issue": 603, "issue_score": 0.55 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1395, "fields": { "candidate": 1003, "issue": 604, "issue_score": -0.10 } }
-];
+  // Bibi Netanyahu
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1202, "fields": { "candidate": 1001, "issue": 601, "issue_score": 0.35 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1203, "fields": { "candidate": 1001, "issue": 602, "issue_score": 0.6 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1204, "fields": { "candidate": 1001, "issue": 603, "issue_score": -0.9 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1205, "fields": { "candidate": 1001, "issue": 604, "issue_score": 0.1 } },
 
-campaignTrail_temp.running_mate_issue_score_json = [
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1501, "fields": { "candidate": 9901, "issue": 600, "issue_score": 0.95 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1502, "fields": { "candidate": 9901, "issue": 601, "issue_score": 0.5 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1503, "fields": { "candidate": 9901, "issue": 602, "issue_score": 0.05 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1504, "fields": { "candidate": 9901, "issue": 603, "issue_score": -0.75 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1505, "fields": { "candidate": 9901, "issue": 604, "issue_score": 0.90 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1506, "fields": { "candidate": 9902, "issue": 600, "issue_score": 0.90 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1507, "fields": { "candidate": 9902, "issue": 601, "issue_score": 0.35 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1508, "fields": { "candidate": 9902, "issue": 602, "issue_score": 0.15 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1509, "fields": { "candidate": 9902, "issue": 603, "issue_score": -0.10 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1510, "fields": { "candidate": 9902, "issue": 604, "issue_score": 0.65 } }
+  // Rabin
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1302, "fields": { "candidate": 1002, "issue": 601, "issue_score": -0.25 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1303, "fields": { "candidate": 1002, "issue": 602, "issue_score": 0.35 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1304, "fields": { "candidate": 1002, "issue": 603, "issue_score": 0.4 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1305, "fields": { "candidate": 1002, "issue": 604, "issue_score": -0.4 } },
+
+  // Raful
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1392, "fields": { "candidate": 1003, "issue": 601, "issue_score": 0.7 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1393, "fields": { "candidate": 1003, "issue": 602, "issue_score": 0 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1394, "fields": { "candidate": 1003, "issue": 603, "issue_score": -1 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1395, "fields": { "candidate": 1003, "issue": 604, "issue_score": -0.2 } },
+
+  // Peres
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1402, "fields": { "candidate": 1004, "issue": 601, "issue_score": -0.65 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1403, "fields": { "candidate": 1004, "issue": 602, "issue_score": 0.45 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1404, "fields": { "candidate": 1004, "issue": 603, "issue_score": 0.8 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1405, "fields": { "candidate": 1004, "issue": 604, "issue_score": -0.9 } },
 ];
+e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
 
 /* =========================
 4. QUESTIONS & ANSWERS
@@ -770,6 +742,7 @@ campaignTrail_temp.answers_json= [
 { "model": "campaign_trail.answer", "pk": 301101, "fields": { "question": 3013, "description": "No, I am not going to panic. We should keep away from such divisive rhetoric." } },
 { "model": "campaign_trail.answer", "pk": 301102, "fields": { "question": 3013, "description": "Sure, identity politics worked for the great Begin. Why wouldn't it work for me?" } }
 ];
+e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
 
 /* =========================
    ANSWER SCORE GLOBAL
@@ -805,16 +778,16 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 7015, "fields": { "answer": 300602, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7016, "fields": { "answer": 300603, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7017, "fields": { "answer": 300701, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.02 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7018, "fields": { "answer": 300702, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7018, "fields": { "answer": 300702, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.04 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7019, "fields": { "answer": 300703, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7020, "fields": { "answer": 300801, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.04 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7021, "fields": { "answer": 300802, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.10 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7022, "fields": { "answer": 300803, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.06 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7023, "fields": { "answer": 300901, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.00 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7024, "fields": { "answer": 300902, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.03 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7023, "fields": { "answer": 300901, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.01 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7024, "fields": { "answer": 300902, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.02 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7025, "fields": { "answer": 300903, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.02 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7026, "fields": { "answer": 301001, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.07 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7027, "fields": { "answer": 301002, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.03 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7026, "fields": { "answer": 301001, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7027, "fields": { "answer": 301002, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.02 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7028, "fields": { "answer": 301003, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7029, "fields": { "answer": 301004, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7030, "fields": { "answer": 301101, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.00 } },
@@ -1145,7 +1118,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       "The unfinished tale of King Bibi and Queen...no we aren't going there",
       [
         'Against the expectations of much of the media, you have won Israel\'s first direct election for Prime Minister. They do have Netanyahu to kick around now, whether they want it or not!!!<br><br>During your stint, you expanded existing settlements, slowed down the progress of Oslo, sped up the neoliberal transition of the Israeli economy, and opened a futile backchannel with the Syrians regarding a partial withdrawal from the Golan. You also made Khaled Mashal a hero in the ranks of Hamas by poisoning him during his stay in Jordan and then being forced to save his life after your agents got caught and the king threatened to freeze the peace deal, compelling you to also release the spiritual leader of Hamas for good measure. Hard to tell if that\'s the worst moment for you, though, when it is competing with a corruption scandal involving you and the leader of "Shas", Deri, which stopped short of your indictment. But all of that was secondary to the real drama of your time: your extraordinary ability to piss everyone off,  from world leaders like Egyptian President Mubarak ("I wish to believe one word that came from Netanyahu\'s mouth"), to your own party members who left your government one after another, to diehard rightists who felt betrayed by your tepid continuation of Oslo, with your mentor Moshe Arens mounting a leadership challenge against you, getting around 20%.',
-        'Attacked from all directions, abandoned by unsatisfied coalition partners, and challenged by a Labor Party willing to finally close the door on a unity government in favor of pushing for elections, Israelis went to the polls early, in 1999. You fought like a tiger, but Labor\'s candidate Ehud Barak,  your boss from your army years and former [you\'ll never guess what],  was leading so comfortably in the polls that he evaded the debate, leaving you to duke it out with your ally-turned-rival, Yitzhak Mordechai, a decision vindicated by the 56–44 final result.<br><br>Announcing your departure from politics right after the election, you spent time dealing with a leftover investigation and planning your return, this time leaving no loose ends. Getting back into government in 2002 as foreign minister and then finance minister, you pushed sweeping capitalist reforms to get Israel out of a recession. While the economy recovered, your austerity measures got a lot of heat from social organizations, which accused you of heartlessness. Waffling endlessly on the question of Prime Minister Sharon\'s plan to disengage from Gaza, you eventually voted for it,  a move which logically left you as the leader of the anti-disengagement part of the Likud MPs who stayed in the party while Sharon left to form his own, taking a third of the representatives. Although he quickly became incapacitated, you still suffered another loss in 2006. Three years later, though, with a powerful team behind you and an aura of "responsible statesmanship" you managed to create, similar to "the new Nixon", you got your coveted comeback.',
+        'Attacked from all directions, abandoned by unsatisfied coalition partners, and challenged by a Labor Party willing to finally close the door on a unity government in favor of pushing for elections, Israelis went to the polls early, in 1999. You fought like a tiger, but Labor\'s candidate Ehud Barak,  your boss from your army years and former  you\'ll never guess what of the IDF,  was leading so comfortably in the polls that he evaded the debate, leaving you to duke it out with your ally-turned-rival, Yitzhak Mordechai, a decision vindicated by the 56–44 final result.<br><br>Announcing your departure from politics right after the election, you spent time dealing with a leftover investigation and planning your return, this time leaving no loose ends. Getting back into government in 2002 as foreign minister and then finance minister, you pushed sweeping capitalist reforms to get Israel out of a recession. While the economy recovered, your austerity measures got a lot of heat from social organizations, which accused you of heartlessness. Waffling endlessly on the question of Prime Minister Sharon\'s plan to disengage from Gaza, you eventually voted for it,  a move which logically left you as the leader of the anti-disengagement part of the Likud MPs who stayed in the party while Sharon left to form his own, taking a third of the representatives. Although he quickly became incapacitated, you still suffered another loss in 2006. Three years later, though, with a powerful team behind you and an aura of "responsible statesmanship" you managed to create, similar to "the new Nixon", you got your coveted comeback.',
         'Cold, calculated, and disciplined as never before, you will surpass even Israel\'s badass founder Ben-Gurion, becoming the longest-serving PM in Israeli history. "Protector of Israel", "Mr. Security", "Mr. Economy", and numerous other labels became synonymous with you among your supporters. A lot of it was your pitch, for sure, but it nonetheless reflected a growing sense that you had achieved the most sought-after thing for a politician in a weary country: becoming the candidate for mediocr… I mean "normalcy". Other parties rose and fell, but with large swaths of voters unable to imagine the country functioning under a different leader, you always came out on top. Meanwhile, the mainstream media was always ready to latch onto any opportunity to show that the king is naked. In a seemingly separate part of the country, people still despised you with passion, for the failure of Oslo, for Rabin\'s death, for your divisiveness, for your economic beliefs, and in general for being the obstacle to the "enlightened" direction they wanted Israel to move into. "Pickles", you called those sour, arrogant pricks from the middle to upper class, using their privilege of having large amounts of spare time to complain about "the dire state of the nation". So what if there are scarcely any big policy moves in the economy? Can\'t they see that, thanks to your term at the treasury and a growing tech sector, living standards are steadily rising? Can\'t they take a look at the debt-to-GDP ratio going down under your thrifty stewardship? If you overlook the Arab and Haredi populations, consisting of a mere third of the country, we are practically Europe!<br><br>On social policy, you stuck to the secular-religious status quo, playing an endless ping-pong match with the judiciary over the hand grenade of conscripting the ultra-Orthodox to the IDF. You also passed a five-year investment plan in the Arab sector for the first time in Israel, which will feature in one of your election campaigns, in between the polite warnings of Arabs flooding the polling stations to vote for your opponents. It\'s Bibi or Tibi, capiche?',
         'Surprisingly, you also managed to extend this uneventfulness into foreign policy, presiding over what, by Israeli standards, is considered a relatively peaceful, low-casualty decade. While in 2009 you still vowed to remove the utopia Hamas carved for itself in Gaza following the disengagement, several factors led you to shift your public position toward containment: the disastrous political fallout your predecessor faced after the Second Lebanon War, weariness with regime-change adventures, strategic reorientation toward the larger threats of Iran and Hezbollah, and the advantage you saw for your "no further concessions" agenda in keeping the Palestinians divided. This approach resulted in periodic limited warfare whenever you decided they had crossed the line, a threshold often dependent on what you could get away with, or, as your minister put it: "If the rocket doesn\'t fall on Tel Aviv, the public can weather it." You also tightened and loosened the Gaza blockade depending on the state of your relationship with Hamas, and allowed Qatar to send money there from 2018 onward. In the West Bank, military rule and settlement expansion persisted, prompting routine international condemnation and concern from the dwindling Israeli left.<br><br>Contrary to your once-stated agenda, you also opted for a prisoner exchange with Hamas in 2011, agreeing to release 1,027 prisoners in exchange for the kidnapped soldier Gilad Shalit. Among those released was Yahya al-Sinwar, who thanked Israeli surgeons for successfully removing his brain tumor by becoming the new leader of Hamas in 2017. But hey, who could have known that a guy who showed leadership qualities in prison would climb so high? The important thing is that he wasn\'t imprisoned for killing Jews, but for killing fellow Palestinians he suspected of cooperating with Israel, making him, apparently, wholly kosher for the Shalit deal.',
         'With the "Home Alone 2" guest star coming to the White House, you shrewdly made yourself a favorite of the administration. In 2017, the weird uncle from overseas recognized Jerusalem as Israel\'s capital. Then he abandoned Obama\'s brilliant scheme of letting Iran have some money, in exchange for being good boys and not developing nukes, in favor of your ingenious plan of preventing Iran from going nuclear through targeted intelligence operations, pushing them back a few months each time. After recognizing the Golan Heights too and organizing Soleimani\'s solemn end, you obtained the biggest gift of all: "The Abraham Accords".<br><br> Years after writing about it in your book, you were finally able to secure a normalization deal with an Arab country without any pinky promises of proceeding to negotiate with those pesky Palestinians. Just a few more years for Israel to grow stronger and for the crybabies to become irrelevant and isolated, and you will be able to force the issue and conclude this headache of a conflict with nothing more than a demilitarized autonomy or, as you once called it, \"a Palestinian state minus.\" <br><br>Amid the historic diplomatic breakthrough and a widely praised vaccination campaign against COVID, your political position became increasingly shaky. With mounting corruption charges, a reputation for unreliability, and fatigue from your ruthless theatrics, your impaired ability to form a coalition led to a series of inconclusive election results until the unthinkable happened: A Frankenstein coalition \"for change\" rose up against you, with a composition ranging from the Islamist Ra\'am party to the national-conservative \"Yamina\" (Rightward), the leader of which became prime minister with a mere 6 seats in parliament.',
@@ -1298,24 +1271,24 @@ endingPicker = function(out, totv, aa, quickstats) {
   var PERES_DESCRIPTION = "<div style='overflow-y:scroll;height:200px;'><b>\"Polls are like perfume - nice to smell, dangerous to swallow.\"</b><br><i>Shimon Peres, after his unexpected narrow loss to Begin in 1981</i><br><br>Born in what is now Belarus, the Henry Clay of Israeli politics emigrated to Israel at a young age and became an active member of HaNoar HaOved (\"Working Youth\"), a Labor Zionist youth movement. From there he started working in the Haganah, the main predecessor of the IDF, and quickly caught the eye of Ben-Gurion. \"The Elder,\" as he was also called, put him in charge of personnel and military procurement in the newly created defense establishment. While he clearly showed talent, the appointment meant that he never properly served in the IDF - a mark of Cain in Israeli society and politics that would follow him throughout his life.<br><br>In 1953 he was appointed Director General of the Ministry of Defense on Ben Gurion's last day in office, as a tiny little surprise to his successor and later predecessor Moshe Sharet. The relationship between Israel and France blossomed during those days, and Peres was at the forefront of it, purchasing equipment and schmoozing with the elites along the way. The peak of this partnership, and Shimon's personal pride, was undoubtedly the nuc...sorry, totally legitimate textile factory in an unspecified location.<br><br>Another, less flashy part of his legacy there was the Suez War. Together with IDF Chief of Staff Moshe Dayan, Peres was crucial in convincing the frighteningly practical Ben Gurion to go along with the plot he developed with the French and British. Militarily the operation was a phenomenal success, with the IDF swiftly conquering the Sinai Peninsula, prompting Ben Gurion to proclaim from the Knesset podium the birth of \"the Third Israeli Kingdom.\" Diplomatically, however, the offensive completely backfired and the prime minister was forced to retreat and spoil the party after an angry phone call from President Eisenhower. How does it feel to later see Nasser turn to the Soviets anyway, John Foster Dull-ass?<br><br>Unsurprisingly, Peres entered politics three years later, following Ben Gurion when he lost favor with Mapai and founded the Rafi party. Despite the hopes, the party could not stand against the powerful apparatus of Mapai and received a mere 10 seats to Mapai's 45 in the 1965 election. It appears he would have remained in the wilderness for long if not for the escalating tension between Israel and its neighbors. During the waiting period before the Six-Day War, Dayan was offered the role of defense minister and Peres backed him in joining the government, against Ben-Gurion who wanted his newly created nemesis Levi Eshkol to resign the prime ministership first. Their view prevailed and Dayan was nominated, getting all the glory of victory. In the same year Rafi merged with Mapai into the Labor Party. Despite hostility from the generation of the Third Aliyah, like prime ministers Eshkol and Golda \"Only Man in the cabinet\" Meir, he was still too hard to ignore and eventually entered government.<br><br>In 1974 he narrowly lost his first Labor leadership challenge to Rabin, ushering in a heated rivalry between the two which nonetheless did not stop the new prime minister from appointing him defense minister. At that time Peres was an adherent of \"functional compromise\" regarding the 1967 territories (devolving certain civilian responsibilities to the Jordanians or local authorities) as opposed to the \"territorial compromise\" approach of figures like Rabin and Foreign Minister Alon, which advocated territorial concessions. This came to a head when a group of Jews established the Elon Moreh settlement on their own initiative. Peres opposed Rabin's intention to expel them and eventually a compromise was reached.<br><br>In 1977 he lost another leadership challenge against Rabin, but after the prime minister resigned as party leader over a personal scandal, Peres replaced him - just in time to lose decisively to Likud and witness the first right-wing government in the country's history.<br><br>In opposition he left his functionalist past behind and embraced the Jordanian solution for the West Bank. After a narrow loss in 1981 he managed to make Labor the largest party in 1984, only to find out he still had no governing majority. This resulted in a unity government between Labor and Likud, with Peres and his rival Shamir each serving as prime minister for half the term. The early years went well, with the 1985 Israeli economic stabilization plan bringing the curse of hyperinflation under control, but on the international front Peres was bitter at Shamir for torpedoing his agreement with King Hussein to hand the West Bank to Jordan. Following the First Intifada, Hussein renounced any territorial claims to the troubled territory and Peres shifted to supporting the Palestinian option, along with his party.<br><br>However, after 1988 he was still in a unity government with Likud and its obstinate leader Shamir. Not the kind of person to miss the window for creating \"the New Middle East,\" as he called it, the foreign minister secretly opened negotiations with the ultra-Orthodox parties to topple Shamir and form a left-Haredi government without elections. Characteristically for Peres, the move failed, earning the nickname \"the dirty trick.\" Defeated and humiliated, he was sent into opposition, and Labor Party members - yearning to win the 1992 election - cast him aside in favor of the more electable Rabin.<br><br>Now, with his rival's death, Peres is the one left to raise the infant peace process which clumsily brought them together and prove once and for all that HE IS NOT A LOSER!!!</div>";
 
   var eitanMultipliers13 = {
-    6661: 0.40, // Golan (stronger)
-    6662: 0.26, // Northern (stronger)
-    6663: 0.23, // Haifa (weaker)
-    6664: 0.31, // Central (stronger)
-    6665: 0.15, // Tel Aviv (weaker)
-    6666: 0.08, // Jerusalem
-    6667: 0.29, // South (stronger)
-    6668: 0.06  // West Bank
+    6661: 0.66, // Golan
+    6662: 0.44, // Northern
+    6663: 0.40, // Haifa
+    6664: 0.52, // Central
+    6665: 0.25, // Tel Aviv
+    6666: 0.16, // Jerusalem
+    6667: 0.48, // South
+    6668: 0.12  // West Bank
   };
   var eitanMultipliers16 = {
-    6661: 0.45,
-    6662: 0.31,
-    6663: 0.29,
-    6664: 0.38,
-    6665: 0.19,
-    6666: 0.10,
-    6667: 0.36,
-    6668: 0.07
+    6661: 0.74,
+    6662: 0.50,
+    6663: 0.46,
+    6664: 0.60,
+    6665: 0.30,
+    6666: 0.20,
+    6667: 0.56,
+    6668: 0.15
   };
   var laborSnapshot = null;
 
@@ -1622,7 +1595,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       6664: 1.10,
       6665: 1.12,
       6666: 1.88,
-      6667: 0.68,
+      6667: 1.3,
       6668: 1.00
     };
     var netCutByState = {

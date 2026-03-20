@@ -60,7 +60,7 @@ e.candidate_json = [
     {
         "model": "campaign_trail.candidate", "pk": 1003, "fields": {
             "first_name": "Rafael (Raful)", "last_name": "Eitan", "election": 99, "party": "Tzomet", "state": "Jewarta", "priority": 1,
-            "description": "<div style='overflow-y:scroll;height:200px;'><b>\"Each of them needs to look at themselves in the mirror. I don't need to be ashamed on their behalf.\"</b><br><i>Raful on his own party members</i><br><br>In an era of cautious and carefully rehearsed statements, behold the only leader who speaks your language.<br><br>Taking a break from his great calling of milking cows, he joined the elite \"Palmach\" unit at 17 and advanced through the ranks all the way to the top spot as the IDF's Chief of Staff in 1978. Widely associated with the (still ongoing as of 1992) in-and-out, 20-minute adventure of Israel in Lebanon, his term also included turning Iraq's nuclear reactor to rubble, almost assassinating Arafat 2,000 times, and establishing a new army program to assist soldiers from challenging backgrounds (later dubbed Raful's Boys), because you are not a real man without a soft spot for the less well-off.<br><br>Returning to civilian life in 1983, the living legend was ready to save Israel once again, this time as a politician. In a surprisingly strong showing, he captured 8 seats in the 1992 election as leader of the \"Tzomet\" (Junction) party. Not the feminized fancy version, okay? We are talking about the real deal, no traffic lights and no signs, just you and your intimidation skills to scare off drivers from the other seven directions, as nature intended! Where was I? Oh right, the party. Entirely dominated by his awesome personality, the group was given the nickname \"Raful and the Seven Dwarves.\"<br><br>Now he is ready to capture the golden crown with a simple four-point program:<br><br>1. Agriculture is great<br><br>2. Not an inch of territory to the bad guys<br><br>3. Watching your tongue is for virgins<br><br>4. If you don't agree with any of these, go touch some grass, you lazy bum<br><br>Now stop being a fool and vote Raful.<br><br><b>Note: </b>Not playable because you don't deserve him!</div>",
+            "description": "<div style='overflow-y:scroll;height:200px;'><b>\"Each of them needs to look at themselves in the mirror. I don't need to be ashamed on their behalf.\"</b><br><i>Raful on his own party members</i><br><br>In an era of cautious and carefully rehearsed statements, behold the only leader who speaks your language.<br><br>Taking a break from his great calling of milking cows, he joined the elite \"Palmach\" unit at 17 and advanced through the ranks all the way to the top spot as the IDF's Chief of Staff in 1978. Widely associated with the (still ongoing as of 1992) in-and-out, 20-minute adventure of Israel in Lebanon, his term also included turning Iraq's nuclear reactor to rubble, almost assassinating Arafat 2,000 times, and establishing a new army program to assist soldiers from challenging backgrounds (later dubbed Raful's Boys), because you are not a real man without a soft spot for the less well-off.<br><br>Returning to civilian life in 1983, the living legend was ready to save Israel once again, this time as a politician. In a surprisingly strong showing, he captured 8 seats in the 1992 election as leader of the \"Tzomet\" (Junction) party. Not the feminized fancy version, okay? We are talking about the real deal, no traffic lights and no signs, just you and your intimidation skills to scare off drivers from the other seven directions, as nature intended! Where was I? Oh right, the party. Entirely dominated by his awesome personality, the group was given the nickname \"Raful and the Seven Dwarves\". Sadly enough, while the party is proudly right wing, its clearly anti-clerical sentiment and open admiration for the labor settlement movement (cooperative agricultural communities), make it something of an odd bird in that camp. They just want these bookish lazy bums to put the Torah away and grub a sickle/gun, what is so strange here?<br><br>Now he is ready to capture the golden crown with a simple three-point program:<br><br>1. Agriculture is great<br><br>2. Not an inch of territory to the bad guys<br><br>3. Watching your tongue is for virgins<br><br>Now stop being a fool and vote Raful.<br><br><b>Note: </b>Not playable because you don't deserve him!</div>",
             "color_hex": "#800080", "secondary_color_hex": null, "is_active": 1, "image_url": "https://i.imgur.com/IER2iyd.jpeg",
             "electoral_victory_message": "<h3>Rafael Eitan wins.</h3>", "electoral_loss_message": "<h3>Rafael Eitan is defeated.</h3>", "no_electoral_majority_message": "<h3>No majority achieved.</h3>", "candidate_score": 1, "scrollable": true
         }
@@ -93,6 +93,29 @@ e.opponents_weighted_json = [{ "election": 99, "candidates": [1001, 1002] }];
 e.player_answers = [];
 e.player_visits = [];
 e.candidate_state_multiplier_json = [];
+e.running_mate_state_multiplier_json = [
+  // Likud running mate
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29001, "fields": { "running_mate": 99001, "state": 6661, "state_multiplier": 0.3 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29002, "fields": { "running_mate": 99001, "state": 6662, "state_multiplier": 0.25 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29003, "fields": { "running_mate": 99001, "state": 6663, "state_multiplier": 0.2 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29004, "fields": { "running_mate": 99001, "state": 6664, "state_multiplier": 1.1 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29005, "fields": { "running_mate": 99001, "state": 6665, "state_multiplier": 0.15 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29006, "fields": { "running_mate": 99001, "state": 6666, "state_multiplier": 1.6 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29007, "fields": { "running_mate": 99001, "state": 6667, "state_multiplier": 1.2 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29008, "fields": { "running_mate": 99001, "state": 6668, "state_multiplier": 2 } },
+
+  // Labor running mate
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29009, "fields": { "running_mate": 99002, "state": 6661, "state_multiplier": 1.0 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29010, "fields": { "running_mate": 99002, "state": 6662, "state_multiplier": 1.0 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29011, "fields": { "running_mate": 99002, "state": 6663, "state_multiplier": 1.0 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29012, "fields": { "running_mate": 99002, "state": 6664, "state_multiplier": 1.0 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29013, "fields": { "running_mate": 99002, "state": 6665, "state_multiplier": 1.0 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29014, "fields": { "running_mate": 99002, "state": 6666, "state_multiplier": 1.0 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29015, "fields": { "running_mate": 99002, "state": 6667, "state_multiplier": 1.0 } },
+  { "model": "campaign_trail.running_mate_state_multiplier", "pk": 29016, "fields": { "running_mate": 99002, "state": 6668, "state_multiplier": 1.0 } }
+];
+campaignTrail_temp.running_mate_state_multiplier_json = campaignTrail_temp.running_mate_state_multiplier_json || e.running_mate_state_multiplier_json;
+e.running_mate_state_multiplier_json = campaignTrail_temp.running_mate_state_multiplier_json;
 e.answer_feedback_flg = 1;
 e.answer_feedback_json = [];
 e.answer_score_global_json = [];
@@ -103,35 +126,48 @@ e.questions_json = [];
 e.answers_json = [];
 campaignTrail_temp.__activeCode2 = null;
 if (window.israel96NetLoop) { clearInterval(window.israel96NetLoop); window.israel96NetLoop = null; }
-if (window.israel96RabinLoop) { clearInterval(window.israel96RabinLoop); window.israel96RabinLoop = null; }
-
-// Load-order safeguard: define issue-score arrays in init so the loader can read them
-// before candidate code2 finishes executing.
+//Not strictly needed but for reference
 e.candidate_issue_score_json = [
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1200, "fields": { "candidate": 1001, "issue": 600, "issue_score": 0.88 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1201, "fields": { "candidate": 1001, "issue": 601, "issue_score": 0.42 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1202, "fields": { "candidate": 1001, "issue": 602, "issue_score": 0.65 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1203, "fields": { "candidate": 1001, "issue": 603, "issue_score": -0.94 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1204, "fields": { "candidate": 1001, "issue": 604, "issue_score": 0.85 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1301, "fields": { "candidate": 1002, "issue": 600, "issue_score": -0.15 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1302, "fields": { "candidate": 1002, "issue": 601, "issue_score": -0.45 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1303, "fields": { "candidate": 1002, "issue": 602, "issue_score": 0.32 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1304, "fields": { "candidate": 1002, "issue": 603, "issue_score": 0.22 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1305, "fields": { "candidate": 1002, "issue": 604, "issue_score": -0.28 } }
+  // Bibi Netanyahu
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1202, "fields": { "candidate": 1001, "issue": 601, "issue_score": 0.35 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1203, "fields": { "candidate": 1001, "issue": 602, "issue_score": 0.6 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1204, "fields": { "candidate": 1001, "issue": 603, "issue_score": -0.9 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1205, "fields": { "candidate": 1001, "issue": 604, "issue_score": 0.1 } },
+
+  // Rabin
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1302, "fields": { "candidate": 1002, "issue": 601, "issue_score": -0.25 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1303, "fields": { "candidate": 1002, "issue": 602, "issue_score": 0.35 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1304, "fields": { "candidate": 1002, "issue": 603, "issue_score": 0.4 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1305, "fields": { "candidate": 1002, "issue": 604, "issue_score": -0.4 } },
+
+  // Raful
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1392, "fields": { "candidate": 1003, "issue": 601, "issue_score": 0.7 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1393, "fields": { "candidate": 1003, "issue": 602, "issue_score": 0 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1394, "fields": { "candidate": 1003, "issue": 603, "issue_score": -1 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1395, "fields": { "candidate": 1003, "issue": 604, "issue_score": -0.2 } },
+
+  // Peres
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1402, "fields": { "candidate": 1004, "issue": 601, "issue_score": -0.65 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1403, "fields": { "candidate": 1004, "issue": 602, "issue_score": 0.45 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1404, "fields": { "candidate": 1004, "issue": 603, "issue_score": 0.8 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1405, "fields": { "candidate": 1004, "issue": 604, "issue_score": -0.9 } },
 ];
 
-e.running_mate_issue_score_json = [
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1501, "fields": { "candidate": 9901, "issue": 600, "issue_score": 0.95 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1502, "fields": { "candidate": 9901, "issue": 601, "issue_score": 0.45 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1503, "fields": { "candidate": 9901, "issue": 602, "issue_score": 0.85 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1504, "fields": { "candidate": 9901, "issue": 603, "issue_score": -0.88 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1505, "fields": { "candidate": 9901, "issue": 604, "issue_score": 0.90 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1506, "fields": { "candidate": 9902, "issue": 600, "issue_score": 0.90 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1507, "fields": { "candidate": 9902, "issue": 601, "issue_score": 0.35 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1508, "fields": { "candidate": 9902, "issue": 602, "issue_score": 0.39 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1509, "fields": { "candidate": 9902, "issue": 603, "issue_score": -0.10 } },
-  { "model": "campaign_trail.candidate_issue_score", "pk": 1510, "fields": { "candidate": 9902, "issue": 604, "issue_score": 0.65 } }
+campaignTrail_temp.running_mate_issue_score_json = [
+  // Likud
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2502, "fields": { "running_mate": 99001, "issue": 601, "issue_score": 0.4 } },
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2503, "fields": { "running_mate": 99001, "issue": 602, "issue_score": 0.1 } },
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2504, "fields": { "running_mate": 99001, "issue": 603, "issue_score": -0.9 } },
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2505, "fields": { "running_mate": 99001, "issue": 604, "issue_score": 0.2 } },
+
+  // Labor
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2507, "fields": { "running_mate": 99002, "issue": 601, "issue_score": -0.45 } },
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2508, "fields": { "running_mate": 99002, "issue": 602, "issue_score": 0.2 } },
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2509, "fields": { "running_mate": 99002, "issue": 603, "issue_score": 0.7 } },
+  { "model": "campaign_trail.running_mate_issue_score", "pk": 2510, "fields": { "running_mate": 99002, "issue": 604, "issue_score": -0.9 } }
 ];
+
+e.running_mate_issue_score_json = campaignTrail_temp.running_mate_issue_score_json;
 
 // Theme/CSS
 var israel1996_theme = setInterval(function() {

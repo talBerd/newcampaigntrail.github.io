@@ -375,29 +375,6 @@ campaignTrail_temp.states_json = [
 
 
 campaignTrail_temp.issues_json = [
-    {
-        "model": "campaign_trail.issue",
-        "pk": 600,
-        "fields": {
-            "name": "Terrorism",
-            "description": "The biggest factor",
-            "stance_1": "Sunshine and rainbows",
-            "stance_desc_1": 0,
-            "stance_2": "Very Relaxed",
-            "stance_desc_2": 0,
-            "stance_3": "Relaxed",
-            "stance_desc_3": 0,
-            "stance_4": "Indifferent",
-            "stance_desc_4": 0,
-            "stance_5": "Worried",
-            "stance_desc_5": 0,
-            "stance_6": "Very Worried",
-            "stance_desc_6": 0,
-            "stance_7": "Furious",
-            "stance_desc_7": 0,
-            "election": 99
-        }
-    },
         {
             "model": "campaign_trail.issue",
             "pk": 601,
@@ -489,118 +466,108 @@ campaignTrail_temp.issues_json = [
             "stance_7": "Halachic state",
             "stance_desc_7": "Get out feygele",
             "election": 99
-        } 
-    } 
-]
+        }
+    }
+];
 
 campaignTrail_temp.state_issue_score_json = [
+
     // 1. GOLAN HEIGHTS (GH)
-    { "model": "campaign_trail.state_issue_score", "pk": 1001, "fields": { "state": 6661, "issue": 600, "state_issue_score": 0.6, "weight": 1.3 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1002, "fields": { "state": 6661, "issue": 601, "state_issue_score": 0.05, "weight": 1.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1003, "fields": { "state": 6661, "issue": 602, "state_issue_score": -0.2, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1004, "fields": { "state": 6661, "issue": 603, "state_issue_score": -1.0, "weight": 0.0 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1005, "fields": { "state": 6661, "issue": 604, "state_issue_score": -0.42, "weight": 1.2 } }, 
 
     // 2. NORTHERN DISTRICT (NR)
-    { "model": "campaign_trail.state_issue_score", "pk": 1006, "fields": { "state": 6662, "issue": 600, "state_issue_score": 0.2, "weight": 1.1 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1007, "fields": { "state": 6662, "issue": 601, "state_issue_score": -0.45, "weight": 1.3 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1008, "fields": { "state": 6662, "issue": 602, "state_issue_score": -0.15, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1009, "fields": { "state": 6662, "issue": 603, "state_issue_score": 0.25, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1010, "fields": { "state": 6662, "issue": 604, "state_issue_score": -0.2, "weight": 0.3 } }, 
 
     // 3. HAIFA DISTRICT (HA)
-    { "model": "campaign_trail.state_issue_score", "pk": 1011, "fields": { "state": 6663, "issue": 600, "state_issue_score": 0.25, "weight": 1.1 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1012, "fields": { "state": 6663, "issue": 601, "state_issue_score": -0.45, "weight": 1.5 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1013, "fields": { "state": 6663, "issue": 602, "state_issue_score": -0.2, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1014, "fields": { "state": 6663, "issue": 603, "state_issue_score": 0.10, "weight": 0.9 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1015, "fields": { "state": 6663, "issue": 604, "state_issue_score": -0.45, "weight": 0.3 } }, 
 
     // 4. CENTRAL DISTRICT (CE)
-    { "model": "campaign_trail.state_issue_score", "pk": 1016, "fields": { "state": 6664, "issue": 600, "state_issue_score": 0.7, "weight": 1.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1017, "fields": { "state": 6664, "issue": 601, "state_issue_score": 0.1, "weight": 1.4 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1018, "fields": { "state": 6664, "issue": 602, "state_issue_score": 0.1, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1019, "fields": { "state": 6664, "issue": 603, "state_issue_score": -0.6, "weight": 0.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1020, "fields": { "state": 6664, "issue": 604, "state_issue_score": -0.22, "weight": 0.9 } }, 
 
     // 5. TEL AVIV (TA)
-    { "model": "campaign_trail.state_issue_score", "pk": 1021, "fields": { "state": 6665, "issue": 600, "state_issue_score": 0.30, "weight": 1.3 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1022, "fields": { "state": 6665, "issue": 601, "state_issue_score": -0.75, "weight": 1.7 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1023, "fields": { "state": 6665, "issue": 602, "state_issue_score": 0.25, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1024, "fields": { "state": 6665, "issue": 603, "state_issue_score": -0.7, "weight": 0.8 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1025, "fields": { "state": 6665, "issue": 604, "state_issue_score": -0.17, "weight": 1.5 } }, 
 
     // 6. JERUSALEM (JM)
-    { "model": "campaign_trail.state_issue_score", "pk": 1026, "fields": { "state": 6666, "issue": 600, "state_issue_score": 0.9, "weight": 1.7 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1027, "fields": { "state": 6666, "issue": 601, "state_issue_score": 0.45, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1028, "fields": { "state": 6666, "issue": 602, "state_issue_score": -0.05, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1029, "fields": { "state": 6666, "issue": 603, "state_issue_score": 0, "weight": 0.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1030, "fields": { "state": 6666, "issue": 604, "state_issue_score": 0.5, "weight": 1.8 } }, 
 
     // 7. SOUTHERN DISTRICT (SO)
-    { "model": "campaign_trail.state_issue_score", "pk": 1031, "fields": { "state": 6667, "issue": 600, "state_issue_score": 0.65, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1032, "fields": { "state": 6667, "issue": 601, "state_issue_score": 0.2, "weight": 1.4 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1033, "fields": { "state": 6667, "issue": 602, "state_issue_score": 0, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1034, "fields": { "state": 6667, "issue": 603, "state_issue_score": -0.28, "weight": 0.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1035, "fields": { "state": 6667, "issue": 604, "state_issue_score": -0.15, "weight": 0.6 } }, 
 
     // 8. WEST BANK & GAZA (WB)
-    { "model": "campaign_trail.state_issue_score", "pk": 1036, "fields": { "state": 6668, "issue": 600, "state_issue_score": 0.9, "weight": 1.6 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1037, "fields": { "state": 6668, "issue": 601, "state_issue_score": 1, "weight": 2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1038, "fields": { "state": 6668, "issue": 602, "state_issue_score": -0.1, "weight": 0.2 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1039, "fields": { "state": 6668, "issue": 603, "state_issue_score": -1.0, "weight": 0.0 } }, 
     { "model": "campaign_trail.state_issue_score", "pk": 1040, "fields": { "state": 6668, "issue": 604, "state_issue_score": 0.70, "weight": 1.8 } }
 ];
+e.state_issue_score_json = campaignTrail_temp.state_issue_score_json;
 
 campaignTrail_temp.candidate_state_multiplier_json = [
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2001, "fields": { "candidate": 1001, "state": 6661, "state_multiplier": 0.9 } }, // Golan
+  { "model": "campaign_trail.candidate_state_multiplier", "pk": 2001, "fields": { "candidate": 1001, "state": 6661, "state_multiplier": 1 } }, // Golan
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2002, "fields": { "candidate": 1001, "state": 6662, "state_multiplier": 0.7 } }, // Northern
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2003, "fields": { "candidate": 1001, "state": 6663, "state_multiplier": 0.8 } }, // Haifa
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2004, "fields": { "candidate": 1001, "state": 6664, "state_multiplier": 1 } }, // Central
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2004, "fields": { "candidate": 1001, "state": 6664, "state_multiplier": 1.00 } }, // Central
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2005, "fields": { "candidate": 1001, "state": 6665, "state_multiplier": 0.75 } }, // Tel Aviv
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.25 } }, // Jerusalem
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2006, "fields": { "candidate": 1001, "state": 6666, "state_multiplier": 1.2 } }, // Jerusalem
     { "model": "campaign_trail.candidate_state_multiplier", "pk": 2007, "fields": { "candidate": 1001, "state": 6667, "state_multiplier": 1 } }, // Southern
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 2 } },  // West Bank
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2008, "fields": { "candidate": 1001, "state": 6668, "state_multiplier": 2.6 } },  // West Bank
 
-    { "model": "campaign_trail.candidate_statssue_multiplier", "pk": 2101, "fields": { "candidate": 1002, "state": 6661, "state_multiplier": 1.07 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2102, "fields": { "candidate": 1002, "state": 6662, "state_multiplier": 0.88 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2103, "fields": { "candidate": 1002, "state": 6663, "state_multiplier": 1.06 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2104, "fields": { "candidate": 1002, "state": 6664, "state_multiplier": 1 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2105, "fields": { "candidate": 1002, "state": 6665, "state_multiplier": 0.82 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2106, "fields": { "candidate": 1002, "state": 6666, "state_multiplier": 0.85 } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2107, "fields": { "candidate": 1002, "state": 6667, "state_multiplier": 0.65  } },
-    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2108, "fields": { "candidate": 1002, "state": 6668, "state_multiplier": 0.55 } }
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2101, "fields": { "candidate": 1002, "state": 6661, "state_multiplier": 1.2 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2102, "fields": { "candidate": 1002, "state": 6662, "state_multiplier": 1 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2103, "fields": { "candidate": 1002, "state": 6663, "state_multiplier": 1.05 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2104, "fields": { "candidate": 1002, "state": 6664, "state_multiplier": 1.2 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2105, "fields": { "candidate": 1002, "state": 6665, "state_multiplier": 1.5 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2106, "fields": { "candidate": 1002, "state": 6666, "state_multiplier": 0.9 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2107, "fields": { "candidate": 1002, "state": 6667, "state_multiplier": 0.9 } },
+    { "model": "campaign_trail.candidate_state_multiplier", "pk": 2108, "fields": { "candidate": 1002, "state": 6668, "state_multiplier": 0.5 } }
 ];
 
 campaignTrail_temp.candidate_issue_score_json = [
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1200, "fields": { "candidate": 1001, "issue": 600, "issue_score": 0.9 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1201, "fields": { "candidate": 1001, "issue": 601, "issue_score": 0.4 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1202, "fields": { "candidate": 1001, "issue": 602, "issue_score": 0.65 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1203, "fields": { "candidate": 1001, "issue": 603, "issue_score": -0.9 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1204, "fields": { "candidate": 1001, "issue": 604, "issue_score": 0.80 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1301, "fields": { "candidate": 1002, "issue": 600, "issue_score": 0.55 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1302, "fields": { "candidate": 1002, "issue": 601, "issue_score": -0.10 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1303, "fields": { "candidate": 1002, "issue": 602, "issue_score": 0.25 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1304, "fields": { "candidate": 1002, "issue": 603, "issue_score": 0.38 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1305, "fields": { "candidate": 1002, "issue": 604, "issue_score": -0.28 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1391, "fields": { "candidate": 1003, "issue": 600, "issue_score": 0.30 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1392, "fields": { "candidate": 1003, "issue": 601, "issue_score": -0.35 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1393, "fields": { "candidate": 1003, "issue": 602, "issue_score": 0.85 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1394, "fields": { "candidate": 1003, "issue": 603, "issue_score": 0.55 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1395, "fields": { "candidate": 1003, "issue": 604, "issue_score": -0.10 } }
-];
+  // Bibi Netanyahu
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1202, "fields": { "candidate": 1001, "issue": 601, "issue_score": 0.35 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1203, "fields": { "candidate": 1001, "issue": 602, "issue_score": 0.6 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1204, "fields": { "candidate": 1001, "issue": 603, "issue_score": -0.9 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1205, "fields": { "candidate": 1001, "issue": 604, "issue_score": 0.1 } },
 
-campaignTrail_temp.running_mate_issue_score_json = [
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1501, "fields": { "candidate": 9901, "issue": 600, "issue_score": 0.95 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1502, "fields": { "candidate": 9901, "issue": 601, "issue_score": 0.5 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1503, "fields": { "candidate": 9901, "issue": 602, "issue_score": 0.05 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1504, "fields": { "candidate": 9901, "issue": 603, "issue_score": -0.75 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1505, "fields": { "candidate": 9901, "issue": 604, "issue_score": 0.90 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1506, "fields": { "candidate": 9902, "issue": 600, "issue_score": 0.90 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1507, "fields": { "candidate": 9902, "issue": 601, "issue_score": 0.35 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1508, "fields": { "candidate": 9902, "issue": 602, "issue_score": 0.15 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1509, "fields": { "candidate": 9902, "issue": 603, "issue_score": -0.10 } },
-    { "model": "campaign_trail.candidate_issue_score", "pk": 1510, "fields": { "candidate": 9902, "issue": 604, "issue_score": 0.65 } }
+  // Rabin
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1302, "fields": { "candidate": 1002, "issue": 601, "issue_score": -0.25 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1303, "fields": { "candidate": 1002, "issue": 602, "issue_score": 0.35 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1304, "fields": { "candidate": 1002, "issue": 603, "issue_score": 0.4 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1305, "fields": { "candidate": 1002, "issue": 604, "issue_score": -0.4 } },
+
+  // Raful
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1392, "fields": { "candidate": 1003, "issue": 601, "issue_score": 0.7 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1393, "fields": { "candidate": 1003, "issue": 602, "issue_score": 0 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1394, "fields": { "candidate": 1003, "issue": 603, "issue_score": -1 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1395, "fields": { "candidate": 1003, "issue": 604, "issue_score": -0.2 } },
+
+  // Peres
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1402, "fields": { "candidate": 1004, "issue": 601, "issue_score": -0.65 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1403, "fields": { "candidate": 1004, "issue": 602, "issue_score": 0.45 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1404, "fields": { "candidate": 1004, "issue": 603, "issue_score": 0.8 } },
+  { "model": "campaign_trail.candidate_issue_score", "pk": 1405, "fields": { "candidate": 1004, "issue": 604, "issue_score": -0.9 } },
 ];
+e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
 
 /* =========================
 4. QUESTIONS & ANSWERS
@@ -702,7 +669,7 @@ campaignTrail_temp.questions_json = [
     "pk": 3024,
     "fields": {
       "priority": 12,
-      "description": "For years, Hezbollah, aided by the Ayatollah regime, has been sending rockets into northern Israel from the Security Zone. Do you want to authorize an operation to silence their batteries for a while?",
+      "description": "For years, Hezbollah has been sending rockets into northern Israel from the Security Zone. Do you want to authorize an operation to silence their batteries for a while?",
       "likelihood": 1
     }
   },
@@ -837,7 +804,7 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 8701, "fields": { "answer": 301701, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8703, "fields": { "answer": 301703, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.2 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8931, "fields": { "answer": 302101, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.05 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 8932, "fields": { "answer": 302102, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.06 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8932, "fields": { "answer": 302102, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.08 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8933, "fields": { "answer": 302103, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8941, "fields": { "answer": 302401, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.08 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8942, "fields": { "answer": 302402, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.07 } },
@@ -865,14 +832,14 @@ campaignTrail_temp.answer_score_state_json = [
   { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.06 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.045 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87021, "fields": { "answer": 301702, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.06 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87020, "fields": { "answer": 301702, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.08 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87022, "fields": { "answer": 301702, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.06 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87023, "fields": { "answer": 301702, "state": 6664, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.2 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87024, "fields": { "answer": 301702, "state": 6665, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.09 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87025, "fields": { "answer": 301702, "state": 6666, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.10 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87026, "fields": { "answer": 301702, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.06 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 87027, "fields": { "answer": 301702, "state": 6668, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.03 } }
+  { "model": "campaign_trail.answer_score_state", "pk": 87021, "fields": { "answer": 301702, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.30 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87020, "fields": { "answer": 301702, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.11 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87022, "fields": { "answer": 301702, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.11 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87023, "fields": { "answer": 301702, "state": 6664, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.20 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87024, "fields": { "answer": 301702, "state": 6665, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.13 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87025, "fields": { "answer": 301702, "state": 6666, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.05 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87026, "fields": { "answer": 301702, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.18 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 87027, "fields": { "answer": 301702, "state": 6668, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } }
 ];
 
 
@@ -976,7 +943,7 @@ var QUESTION7_AYYASH = {
   if (q3024 && q3024.fields) {
     q3024.fields.description = pickedScrewHistory
       ? 'Great news, everyone! With the help of the Syrians, Israel was able not only to disrupt the supply chain of "Hezbollah", thus weakening it significantly, but also to eliminate its elite members, including Nasrallah.'
-      : 'For years, Hezbollah, aided by the Ayatollah regime, has been sending rockets into northern Israel from the Security Zone. Do you want to authorize an operation to silence their batteries for a little while?';
+      : 'For years, Hezbollah has been sending rockets into northern Israel, over the Security Zone. Do you want to authorize an operation to silence their batteries for a little while?';
   }
   root.answers_json.forEach(function(a){
     if (!a || !a.fields) return;
@@ -1012,8 +979,8 @@ var QUESTION7_AYYASH = {
   var s302401 = ensureGlobalScore(302401, 8941);
   var s302402 = ensureGlobalScore(302402, 8942);
   var s302403 = ensureGlobalScore(302403, 8943);
-  s302401.fields.global_multiplier = pickedScrewHistory ? 0.27 : -0.08;
-  s302402.fields.global_multiplier = pickedScrewHistory ? 0.00 : 0.07;
+  s302401.fields.global_multiplier = pickedScrewHistory ? 0.27 : -0.10;
+  s302402.fields.global_multiplier = pickedScrewHistory ? 0.00 : 0.08;
   s302403.fields.global_multiplier = pickedScrewHistory ? 0.00 : -0.02;
   }
   function setQuestion6Variant(usePeres) {
@@ -1058,16 +1025,16 @@ var QUESTION7_AYYASH = {
     var s301801 = ensureGlobalScore(301801, 8801);
     var s301802 = ensureGlobalScore(301802, 8802);
     var s301803 = ensureGlobalScore(301803, 8803);
-    s301801.fields.global_multiplier = usePeres ? 0.03 : 0.00;
-    s301802.fields.global_multiplier = usePeres ? -0.03 : 0.00;
+    s301801.fields.global_multiplier = usePeres ? 0.04 : 0.00;
+    s301802.fields.global_multiplier = usePeres ? -0.04 : 0.00;
     s301803.fields.global_multiplier = 0.00;
 4
     var s301901 = ensureGlobalScore(301901, 8911);
     var s301902 = ensureGlobalScore(301902, 8912);
     var s301903 = ensureGlobalScore(301903, 8913);
-    s301901.fields.global_multiplier = -0.08;
-    s301902.fields.global_multiplier = -0.08;
-    s301903.fields.global_multiplier = -0.04;
+    s301901.fields.global_multiplier = -0.12;
+    s301902.fields.global_multiplier = -0.12;
+    s301903.fields.global_multiplier = -0.06;
   }
   function dataSets() {
     var sets = [];
@@ -1744,7 +1711,7 @@ endingPicker = function(out, totv, aa, quickstats) {
     window.israel96PagedEndingState = null;
     israel96RabinSetEndingImage('https://i.imgur.com/9prwd8r.jpeg');
     israel96RabinUseNormalEndingWindow({ gameBg: "#ffffff", resultsBg: "#ffffff", resultsBorder: "#cfcfcf", headerBg: "#ffffff", descBg: "#ffffff", descBorder: "#cfcfcf", textColor: "#000000", separateDesc: true });
-    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon turned into the war to get Lebanon out of the Syrian sphere of influence, which turned into the war to install a friendly regime in Lebanon, which turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened. It was finally brought to an end with an actual \"Peace with Honor\".<br><br>With the Lebanese normalization agreement signed, the Jewish state wakes up to a refreshing reality of non-hostile borders. While Israelis are not gonna be wiping hummus in Damascus anytime soon, they can at least dial back their long-cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still-unemancipated Palestinians to... stop it! Why can\'t I relax for a goddamn second?';
+    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon turned into the war to get Lebanon out of the Syrian sphere of influence, which turned into the war to install a friendly regime in Lebanon, which turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened. It was finally brought to an end with an actual \"Peace with Honor\".<br><br>With the Lebanese normalization agreement signed, the Jewish state wakes up to a refreshing reality of non-hostile borders. While Israelis tourists are not gonna be scooping hummus with pita in Damascus anytime soon, they can at least dial back their long-cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to... stop it! Why can\'t I relax for a goddamn second?';
   }
 
 
@@ -1921,7 +1888,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       id: "security_zone",
       title: "Security Zone",
       aliases: ["Security Zone", "the Security Zone"],
-      body: "An Israeli controlled strip in southern Lebanon held through local proxies and IDF. As former (did you get my telepathy?) Moshe Levy commented: \"The security zone exists to protect the IDF, not for the IDF to protect the security zone\". Sadly, intentions are not self fulfiling"
+      body: "An Israeli controlled strip in southern Lebanon held through local proxies and IDF. As former (did you get my telepathy?) of the IDF Moshe Levy commented: \"The security zone exists to protect the IDF, not for the IDF to protect the security zone\". Sadly, intentions are not self fulfiling"
     },
     {
       id: "hamas",
@@ -1946,12 +1913,6 @@ endingPicker = function(out, totv, aa, quickstats) {
       title: "Hezbollah",
       aliases: ["Hezbollah"],
       body: "A Shiite terrorist organization aiming to push the IDF out of Lebanon and then... they will figure something out"
-    },
-    {
-      id: "ayatollah_regime",
-      title: "Ayatollah regime",
-      aliases: ["Ayatollah regime", "the Ayatollah regime"],
-      body: "The Islamist conpublic of Iran. Calls Israel \"The Zionist Entity\""
     },
     {
       id: "nasrallah",
@@ -1997,8 +1958,6 @@ endingPicker = function(out, totv, aa, quickstats) {
     }
   ];
   var peresTerms = JSON.parse(JSON.stringify(rabinTerms));
-  var peresAyatollah = peresTerms.find(function (t) { return t.id === 'ayatollah_regime'; });
-  if (peresAyatollah) peresAyatollah.body = 'The Shah was no angel but really? What a wasted potential';
   var peresHamas = peresTerms.find(function (t) { return t.id === 'hamas'; });
   if (peresHamas) peresHamas.body = 'Dogmatists panicking over "The new middle east" unfolding';
   var peresHezbollah = peresTerms.find(function (t) { return t.id === 'hezbollah'; });
@@ -2014,7 +1973,7 @@ endingPicker = function(out, totv, aa, quickstats) {
 
   function syncPeresTermBodies() {
     if (!(typeof isPeresBranch === "function" && isPeresBranch())) return;
-    var ids = ['ayatollah_regime', 'hamas', 'hezbollah', 'nasrallah', 'bill_clinton', 'netanyahu', 'security_zone'];
+    var ids = ['hamas', 'hezbollah', 'nasrallah', 'bill_clinton', 'netanyahu', 'security_zone'];
     for (var i = 0; i < ids.length; i++) {
       var id = ids[i];
       var src = peresTerms.find(function (t) { return t.id === id; });
@@ -2026,7 +1985,6 @@ endingPicker = function(out, totv, aa, quickstats) {
   function getPeresOverrideBody(id) {
     if (!(typeof isPeresBranch === "function" && isPeresBranch())) return null;
     var map = {
-      ayatollah_regime: 'I get that the Shah was no angel but really? What a wasted potential',
       hamas: 'Digmatists panicking over "The new middle east" unfolding',
       hezbollah: 'A thorn on the side of "the new middle east" who would rather saw their country burn than recognizing Israel',
       nasrallah: 'The leader of Hezbpllah and hopefully a relic of the past for the middle east. Good riddance!',
@@ -2189,7 +2147,6 @@ endingPicker = function(out, totv, aa, quickstats) {
     var ans2 = (typeof e !== "undefined" && e && Array.isArray(e.player_answers)) ? e.player_answers : [];
     if (ans1.concat(ans2).map(function(a){ return Number(a); }).indexOf(301702) === -1) return;
     var overrides = {
-      ayatollah_regime: "I get that the Shah was no angel but really? What a wasted potential",
       hamas: "Digmatists panicking over \"The new middle east\" unfolding",
       hezbollah: "A thorn on the side of \"the new middle east\" who would rather saw their country burn than recognizing Israel",
       nasrallah: "The leader of Hezbpllah and hopefully a relic of the past for the middle east. Good riddance!",
