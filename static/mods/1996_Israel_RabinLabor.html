@@ -702,7 +702,7 @@ campaignTrail_temp.answers_json = [
   { "model": "campaign_trail.answer", "pk": 301702, "fields": { "question": 3017, "description": "Yes, we must fight back against the cowards of peace." } },
   { "model": "campaign_trail.answer", "pk": 301703, "fields": { "question": 3017, "description": "Yes, we have to fight back against the cowards of peace." } },
   { "model": "campaign_trail.answer", "pk": 301801, "fields": { "question": 3018, "description": "We are keeping our course. A true leader shouldn't be bothered by naysayers." } },
-  { "model": "campaign_trail.answer", "pk": 301802, "fields": { "question": 3018, "description": "Let's be real here. Israelis are not enthused about Arafat, and I can't blame them for that. How about we recalibrate our relations with the PLO, demanding they take a firmer grip on the damn troublemakers on their side?" } },
+  { "model": "campaign_trail.answer", "pk": 301802, "fields": { "question": 3018, "description": "Let's be real here. I am suspicious of Arafat and Israelis aren't enthused about him either. How about we recalibrate our relations with the PLO, demanding they take a firmer grip on the damn troublemakers on their side?" } },
   { "model": "campaign_trail.answer", "pk": 301803, "fields": { "question": 3018, "description": "All these intermediate steps just allow hardliners more opportunities to sabotage. Enough with this misplaced caution. Bring Clinton on the line to organize a conference. We have to close the Israeli-Palestinian chapter for good, or else a right-wing comeback and a second Intifada are inevitable." } },
   { "model": "campaign_trail.answer", "pk": 301901, "fields": { "question": 3019, "description": "Go ahead, he should pay for his crimes." } },
   { "model": "campaign_trail.answer", "pk": 301902, "fields": { "question": 3019, "description": "Go ahead, he must pay for his crimes." } },
@@ -760,7 +760,7 @@ campaignTrail_temp.answer_feedback_json = [
 
   { "model": "campaign_trail.answer_feedback", "pk": 9902, "fields": { "answer": 301902, "candidate": 1002, "answer_feedback": "For some reason, the attempt failed, with Netanyahu again railing against your alleged weakness." } },
 
-  { "model": "campaign_trail.answer_feedback", "pk": 9903, "fields": { "answer": 301903, "candidate": 1002, "answer_feedback": "God knows if there will be another chance, Prime Minister." } },
+  { "model": "campaign_trail.answer_feedback", "pk": 9903, "fields": { "answer": 301903, "candidate": 1002, "answer_feedback": "God knows if there will be another chance, Prime Minister. Terrorism continues as usual." } },
 
   { "model": "campaign_trail.answer_feedback", "pk": 9931, "fields": { "answer": 302101, "candidate": 1002, "answer_feedback": "This strikes a healthy balance." } },
 
@@ -796,7 +796,7 @@ campaignTrail_temp.answer_feedback_json = [
 ];
 
 campaignTrail_temp.answer_score_global_json = [
-  { "model": "campaign_trail.answer_score_global", "pk": 8301, "fields": { "answer": 301301, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.18 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 8301, "fields": { "answer": 301301, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.2 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8501, "fields": { "answer": 301501, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8502, "fields": { "answer": 301502, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 8401, "fields": { "answer": 301401, "candidate": 1002, "affected_candidate": 1002, "global_multiplier": 0.00 } },
@@ -833,11 +833,14 @@ campaignTrail_temp.answer_score_global_json = [
 campaignTrail_temp.answer_score_state_json = [
   { "model": "campaign_trail.answer_score_state", "pk": 8601, "fields": { "answer": 301402, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.04 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8602, "fields": { "answer": 301403, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.06 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.05 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8603, "fields": { "answer": 301404, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.10 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8604, "fields": { "answer": 301404, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.00 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.05 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.00 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8603, "fields": { "answer": 301404, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.05 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8604, "fields": { "answer": 302402, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.02 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8605, "fields": { "answer": 302402, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.01 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.05 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.03 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89514, "fields": { "answer": 302401, "state": 6666, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.01 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 89515, "fields": { "answer": 302401, "state": 6665, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.01 } },
   { "model": "campaign_trail.answer_score_state", "pk": 87021, "fields": { "answer": 301702, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.55 } },
   { "model": "campaign_trail.answer_score_state", "pk": 87020, "fields": { "answer": 301702, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.5 } },
   { "model": "campaign_trail.answer_score_state", "pk": 87022, "fields": { "answer": 301702, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.5 } },
@@ -870,7 +873,7 @@ function getPeresTemplate() {
   question: "How do you wish to proceed with Oslo?",
     answers: {
       301801: "We are keeping our course. A true leader shouldn't be bothered by naysayers.",
-      301802: "Let's be real here. Israelis are not enthused about Arafat, and I can't blame them for that. How about we recalibrate our relations with the PLO, demanding they take a firmer grip on the damn troublemakers on their side?",
+      301802: "Let's be real here. I am suspicious of Arafat and Israelis aren't enthused about him either. How about we recalibrate our relations with the PLO, demanding they take a firmer grip on the damn troublemakers on their side?",
       301803: "All these intermediate steps just allow hardliners more opportunities to sabotage. Enough with this misplaced caution. Bring Clinton on the line to organize a conference. We have to close the Israeli-Palestinian chapter for good, or else a right-wing comeback and a second Intifada are inevitable."
     },
     feedback: {
@@ -880,7 +883,7 @@ function getPeresTemplate() {
     }
   };
 var QUESTION6_PERES = {
-  question: "There are voices in the country calling on you to give the defense ministry to Ehud Barak. Will you follow through?",
+  question: "While Rabin used to combine the prime ministership with being his own defense minister, some advisors think you should give this department to Ehud Barak. Will you follow through the advice?",
   answers: {
     301801: "Sure, having a general by my side can only help.",
     301802: "No, I want to maintain tight control over security matters, like Rabin did. Plus, I don't particularly appreciate this newcomer."
@@ -900,7 +903,7 @@ var QUESTION7_AYYASH = {
   feedback: {
     301901: "Using an explosive phone, Ayyash was killed on January 5. While the initial reaction was undoubtedly positive, Hamas was still active, launching a series of retaliatory attacks that shifted public opinion against you.",
     301902: "For some reason, the attempt failed, with Netanyahu again railing against your alleged weakness.",
-    301903: "God knows if there will be another chance, Prime Minister."
+    301903: "God knows if there will be another chance, Prime Minister. Terrorism continues as usual."
   }
 };
   function ensureGlobalScore(answerPk, defaultPk) {
@@ -964,7 +967,7 @@ var QUESTION7_AYYASH = {
     if (a.pk === 302401) {
       a.fields.question = 3024;
       a.fields.description = pickedScrewHistory
-        ? 'I knew this treaty would bear fruit. Continue targeting them; their breaking point may be near.'
+        ? 'I knew this treaty would bear fruit. Continue targeting them, their breaking point may be near.'
         : 'While we choose to go down the path of Oslo, we are still steadfast in our fight against terrorism, and this is a way to prove it.';
     }
     if (a.pk === 302402 || a.pk === 302403) {
@@ -993,9 +996,29 @@ var QUESTION7_AYYASH = {
   var s302401 = ensureGlobalScore(302401, 8941);
   var s302402 = ensureGlobalScore(302402, 8942);
   var s302403 = ensureGlobalScore(302403, 8943);
-  s302401.fields.global_multiplier = pickedScrewHistory ? 0.22 : -0.15;
+  s302401.fields.global_multiplier = pickedScrewHistory ? 0.2 : -0.15;
   s302402.fields.global_multiplier = pickedScrewHistory ? 0.00 : 0.1;
   s302403.fields.global_multiplier = pickedScrewHistory ? 0.00 : -0.05;
+  }
+  function applyQuestion25Overrides() {
+    var pickedPeresTakeover = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1);
+    var picked301703 = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301703) !== -1);
+    var s302504 = ensureGlobalScore(302504, 8974);
+    s302504.fields.global_multiplier = pickedPeresTakeover ? 0.07 : 0.05;
+  }
+  function applyPeresLateGlobalOverrides() {
+    var s301901 = ensureGlobalScore(301901, 8911);
+    var s301902 = ensureGlobalScore(301902, 8912);
+    var s301903 = ensureGlobalScore(301903, 8913);
+    var s302101 = ensureGlobalScore(302101, 8931);
+    var s302102 = ensureGlobalScore(302102, 8932);
+    var s302103 = ensureGlobalScore(302103, 8933);
+    s301901.fields.global_multiplier = -0.20;
+    s301902.fields.global_multiplier = -0.25;
+    s301903.fields.global_multiplier = -0.15;
+    s302101.fields.global_multiplier = 0.05;
+    s302102.fields.global_multiplier = -0.10;
+    s302103.fields.global_multiplier = -0.05;
   }
   function setQuestion6Variant(usePeres) {
     var roots = [];
@@ -1004,9 +1027,11 @@ var QUESTION7_AYYASH = {
     var q6 = usePeres ? QUESTION6_PERES : QUESTION6_RABIN;
     var pickedScrewHistory = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301404) !== -1);
     var pickedMinorityNormal = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301602) !== -1);
+    var pickedPeresTakeover = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1);
+    var picked301703 = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301703) !== -1);
     var q6Feedback = {
       301801: q6.feedback[301801],
-      301802: (pickedScrewHistory || pickedMinorityNormal) ? "You already lost the vote in the Knesset, so people just interpret this as backpaddling, earning you zero support." : q6.feedback[301802],
+      301802: ((pickedScrewHistory || pickedMinorityNormal) && !pickedPeresTakeover) ? "You already lost the vote in the Knesset, so people just interpret this as backpaddling, earning you zero support." : q6.feedback[301802],
       301803: q6.feedback[301803]
     };
     for (var ri = 0; ri < roots.length; ri++) {
@@ -1052,7 +1077,7 @@ var QUESTION7_AYYASH = {
     var s301802 = ensureGlobalScore(301802, 8802);
     var s301803 = ensureGlobalScore(301803, 8803);
     s301801.fields.global_multiplier = usePeres ? 0.04 : 0.00;
-    s301802.fields.global_multiplier = (pickedScrewHistory || pickedMinorityNormal) ? 0.00 : (usePeres ? -0.04 : 0.00);
+    s301802.fields.global_multiplier = (pickedScrewHistory && picked301703) ? 0.00 : (picked301703 ? 0.05 : (pickedPeresTakeover ? -0.04 : ((pickedScrewHistory || pickedMinorityNormal) ? 0.00 : -0.04)));
     s301803.fields.global_multiplier = 0.00;
     var s301901 = ensureGlobalScore(301901, 8911);
     var s301902 = ensureGlobalScore(301902, 8912);
@@ -1262,7 +1287,7 @@ var QUESTION7_AYYASH = {
       party: 'Hairy Not Scary',
       state: 'Brokelyn',
       priority: 1,
-      description: 'The true power behind the peace. In case Nadal suspects something, abort the mission immediately and report to your superiors.',
+      description: 'The true power behind the peace. In case she gets carried away and rewveal something, abort the mission immediately.',
       color_hex: '#7f1734',
       secondary_color_hex: null,
       is_active: 0,
@@ -1346,12 +1371,24 @@ var QUESTION7_AYYASH = {
     applyHippielLead(rabinHasAnswer(RABIN_HIPPIEL_ANSWER));
     applyScrewHistoryCoalitionOverride();
     applyScrewHistoryLebanonOverride();
+    applyPeresLateGlobalOverrides();
+    applyQuestion25Overrides();
     if (usePeres && campaignTrail_temp.peres_intro_seen) applyPeresTakeover();
-    if (usePeres && !window.israel96PeresPollCacheRefreshed) {
-      window.israel96PeresPollCacheRefreshed = true;
+    if (typeof e !== 'undefined' && e) {
+      e.player_answers = campaignTrail_temp.player_answers;
+      e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
+      e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
+      e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+    }
+    var answerCount = Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers.length : 0;
+    if (usePeres && window.israel96PeresLastAnswerCount !== answerCount) {
+      window.israel96PeresLastAnswerCount = answerCount;
       setTimeout(function(){ try { if (typeof mapCache === 'function') mapCache(true); } catch (err) {} }, 0);
     }
-    if (!usePeres) window.israel96PeresPollCacheRefreshed = false;
+    if (!usePeres) {
+      window.israel96PeresPollCacheRefreshed = false;
+      window.israel96PeresLastAnswerCount = null;
+    }
   }, 100);
 })();
 
@@ -1524,11 +1561,11 @@ function israel96InstallPagedEnding(title, pages, photoCredit, endingKey) {
     if (st.endingKey && window.israel96RabinEndingKey !== st.endingKey) return;
     clearInterval(interval);
     function render() {
-      var nav = '<div style="margin-top:14px;">';
+      var nav = '<div style="margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">';
       if (st.idx > 0) nav += '<button class="person_button" id="paged_ending_back" type="button">Back</button> ';
-      if (st.idx < st.pages.length - 1) nav += '<button class="person_button" id="paged_ending_next" type="button">Next</button>';
+      nav += '<span style="font-size:12px;opacity:0.8;">Page ' + (st.idx + 1) + ' of ' + st.pages.length + '</span>';
+      if (st.idx < st.pages.length - 1) nav += ' <button class="person_button" id="paged_ending_next" type="button">Next</button>';
       nav += '</div>';
-      d.innerHTML = '<h3><b>' + st.title + '</b></h3><br>' + st.pages[st.idx] + (st.idx === st.pages.length - 1 && st.photoCredit ? '<br><br><small>' + st.photoCredit + '</small>' : '') + nav;
       var back = document.getElementById('paged_ending_back');
       var next = document.getElementById('paged_ending_next');
       if (back) back.onclick = function(){ st.idx -= 1; render(); };
@@ -1758,13 +1795,13 @@ endingPicker = function(out, totv, aa, quickstats) {
     }
 
 
-    return customEnding;
+    israel96NormalizeResultOrder(aa); return customEnding;
   }
   var pickedScrewHistory = (typeof e !== 'undefined' && Array.isArray(e.player_answers) && e.player_answers.indexOf(301404) !== -1) || (Array.isArray(campaignTrail_temp.player_answers) && campaignTrail_temp.player_answers.indexOf(301404) !== -1);
   if (pickedScrewHistory) {
     window.israel96RabinEndingKey = "ring-of-peace";
     window.israel96PagedEndingState = null;
-    israel96RabinSetEndingImage('https://i.imgur.com/9prwd8r.jpeg');
+    israel96NormalizeResultOrder(aa); israel96RabinSetEndingImage('https://i.imgur.com/9prwd8r.jpeg');
     israel96RabinUseNormalEndingWindow({ gameBg: "#ffffff", resultsBg: "#ffffff", resultsBorder: "#cfcfcf", headerBg: "#ffffff", descBg: "#ffffff", descBorder: "#cfcfcf", textColor: "#000000", separateDesc: true });
     return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon turned into the war to get Lebanon out of the Syrian sphere of influence, which turned into the war to install a friendly regime in Lebanon, which turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened. It was finally brought to an end with an actual "Peace with Honor". Dasvidaniya Livan!<br><br>With the Lebanese normalization agreement signed, the Jewish state wakes up to a refreshing reality of non-hostile borders. While Israelis tourists are not gonna be scooping hummus with pita in Damascus anytime soon, they can at least dial back their long-cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to... stop it! Why can\'t I relax for a goddamn second?';
   }
@@ -1783,9 +1820,9 @@ endingPicker = function(out, totv, aa, quickstats) {
      return '<h3><b>Loser No More</b></h3><br><br>It always looked likely, but a lot of things could have gone wrong,  and we are talking about Peres. The elected prime minister could not have felt happier. For the first time in his life, he received an outright mandate from the people. The future feels bright and full of opportunities.<br><br>Can Peres save the peace process? I will let you decide.<br>Good job nonetheless.';
     }
     israel96RabinSetEndingImage('https://i.imgur.com/hwD0WSJ.jpeg');
-    return '<h3><b>New Horizons</b></h3><br><br>Just like in 1992, the crowd had gone wild. You again waited for them to tone down their voices for your speech, this time remembering to smile while delivering it. \"I will go on,\" you declared. \"That\'s the people\'s choice.\" After you left the stage, the phones began to ring. Clinton, Mubarak, Arafat,  all lined up to congratulate you, quite happy that the man they all know and have learned to respect is staying in charge.<br><br>It is May 23, 1997. Just 30 years ago, you were a complete wreck. The doubts over whether or not the army was ready for the upcoming Six-Day War, amplified after a tense meeting with the retired Ben-Gurion, were eating you alive. You stayed home that day on brief \"sick leave.\" Then you returned and, with the backing of the newly appointed defense minister Dayan, you commenced a preemptive strike called \"Operation Focus,\" achieving the crucial air supremacy that allowed Israel to win the war decisively. The then Syrian defense minister, Assad, inadvertently benefited from the loss, seizing the presidency just three years later. He remembered you well, and curiously enough, your role then made him confident in your ability to deliver at the negotiating table too. \"He is as serious as ever,\" said the emissary you sent to him. You know the window is short. You won\'t be here forever, and neither will Hafez. It\'s in your hands to decide whether to have faith in the Syrians and take the leap or not.';
+    return '<h3><b>New Horizons</b></h3><br><br>Just like in 1992, the crowd had gone wild. You again waited for them to tone down their voices before beginning your speech, this time remembering to smile as you delivered it.<br><br>"I will go on," you declared. "That\'s the people\'s choice."<br><br>After you left the stage, the phones began to ring. Bill Clinton, Hosni Mubarak, Yasser Arafat, all lined up to congratulate you, quite pleased that the man they know and have learned to respect is staying in charge.<br><br>It is May 23, 1997. Just 30 years ago, you were a complete wreck. Doubts over whether the army was ready for the upcoming Six-Day War, amplified by a tense meeting with the retired David Ben-Gurion, were eating you alive. You stayed home that day on brief "sick leave." Then you returned and, with the backing of the newly appointed defense minister Moshe Dayan, launched a preemptive strike, \"Operation Focus\", achieving the crucial air supremacy that allowed Israel to win the war decisively.<br><br>The then Syrian defense minister, Hafez al-Assad, seized the presidency just three years later. He remembered you well, and, curiously enough, your role then made him confident in your ability to deliver at the negotiating table as well.<br><br>"He is as serious as ever," said the emissary you sent to him.<br><br>You know the window is short. You won\'t be here forever, and neither will Hafez. It is in your hands to decide whether to place your faith in the Syrians, and take the leap, or not.';
   }
-  israel96RabinUseNormalEndingWindow({ gameBg: "#b61f2b", resultsBg: "#d94b57", resultsBorder: "#7d1620", headerBg: "#8d1721", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor, separateDesc: true });
+  israel96RabinUseNormalEndingWindow({ gameBg: "#204f95", resultsBg: "#2b63b7", resultsBorder: "#183f79", headerBg: "#12386e", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor, separateDesc: true });
   if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {
     window.israel96RabinEndingKey = "peres-loss";
    var peresLossPages = [
@@ -2321,6 +2358,16 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (window.israel96RabinHideEvLoop) clearInterval(window.israel96RabinHideEvLoop);
   window.israel96RabinHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
+
+
+
+
+
+
+
+
+
+
 
 
 
