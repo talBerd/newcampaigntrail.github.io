@@ -760,13 +760,12 @@ campaignTrail_temp.answer_score_global_json = [
   { "model": "campaign_trail.answer_score_global", "pk": 7004, "fields": { "answer": 300991, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7005, "fields": { "answer": 300992, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7006, "fields": { "answer": 300993, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.15 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7007, "fields": { "answer": 300301, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.10 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7007, "fields": { "answer": 300301, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7008, "fields": { "answer": 300302, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.04 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7009, "fields": { "answer": 300303, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.1 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7310, "fields": { "answer": 300304, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": 0.24 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7311, "fields": { "answer": 300304, "candidate": 1001, "affected_candidate": 1002, "global_multiplier": 0.12 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7312, "fields": { "answer": 300304, "candidate": 1001, "affected_candidate": 1003, "global_multiplier": -0.36 } },
-  { "model": "campaign_trail.answer_score_global", "pk": 7305, "fields": { "answer": 300301, "candidate": 1001, "affected_candidate": 1002, "global_multiplier": 0.04 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7311, "fields": { "answer": 300304, "candidate": 1001, "affected_candidate": 1002, "global_multiplier": 0.14 } },
+  { "model": "campaign_trail.answer_score_global", "pk": 7312, "fields": { "answer": 300304, "candidate": 1001, "affected_candidate": 1003, "global_multiplier": 0.00 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7306, "fields": { "answer": 300301, "candidate": 1001, "affected_candidate": 1003, "global_multiplier": 0.04 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7307, "fields": { "answer": 300303, "candidate": 1001, "affected_candidate": 1003, "global_multiplier": -0.10 } },
   { "model": "campaign_trail.answer_score_global", "pk": 7010, "fields": { "answer": 300401, "candidate": 1001, "affected_candidate": 1001, "global_multiplier": -0.35 } },
@@ -1168,12 +1167,11 @@ endingPicker = function(out, totv, aa, quickstats) {
 // Instant surprise ending: if answer 300101 is chosen, shorten the run and rename the candidates early.
 (function () {
   var SURPRISE_ANSWER_ID = 300101;
-  if (window.israel96BiberatedPrepLoop) clearInterval(window.israel96BiberatedPrepLoop);
-  window.israel96BiberatedPrepLoop = setInterval(function () {
-    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return;
-    if (!Array.isArray(campaignTrail_temp.player_answers)) return;
+  window.applyBiberatedSurpriseState = function(forceApply) {
+    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return false;
+    if (!Array.isArray(campaignTrail_temp.player_answers)) return false;
     var picked300101Now = campaignTrail_temp.player_answers.some(function (v) { return Number(v) === SURPRISE_ANSWER_ID; });
-    if (!picked300101Now) return;
+    if (!forceApply && !picked300101Now) return false;
     var lists = [];
     if (Array.isArray(campaignTrail_temp.candidate_json)) lists.push(campaignTrail_temp.candidate_json);
     if (typeof e !== "undefined" && Array.isArray(e.candidate_json)) lists.push(e.candidate_json);
@@ -1185,13 +1183,19 @@ endingPicker = function(out, totv, aa, quickstats) {
         if (c.pk === 1001) { c.fields.first_name = ""; c.fields.last_name = "Also not Bibi"; c.fields.party = "Likud Party"; }
       }
     }
+    campaignTrail_temp.candidate_last_name = "Also not Bibi";
+    campaignTrail_temp.running_mate_last_name = "Likud";
+    if (typeof e !== "undefined" && e) { e.candidate_last_name = "Also not Bibi"; e.running_mate_last_name = "Likud"; }
     if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) {
       campaignTrail_temp.global_parameter_json[0].fields.question_count = 2;
     }
     if (typeof e !== "undefined" && Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) {
       e.global_parameter_json[0].fields.question_count = 2;
     }
-  }, 25);
+    window.HistName = ["Also not Bibi (Likud)", "Not Bibi (Labor)"];
+    return true;
+  };
+  window.applyBiberatedSurpriseState();
 })();
 
   var SPECIAL_ADVISOR_URL = "https://i.imgur.com/frqkwCm.jpeg";
@@ -1718,6 +1722,11 @@ endingPicker = function(out, totv, aa, quickstats) {
       if (!selected) return;
 
       var selectedId = Number(selected.value);
+      if (selectedId === 300101) {
+        if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) campaignTrail_temp.global_parameter_json[0].fields.question_count = 2;
+        if (typeof e !== "undefined" && Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) e.global_parameter_json[0].fields.question_count = 2;
+        if (typeof window.applyBiberatedSurpriseState === "function") window.applyBiberatedSurpriseState(true);
+      }
       var qnNow = (campaignTrail_temp && typeof campaignTrail_temp.question_number === "number")
         ? campaignTrail_temp.question_number
         : ((typeof e !== "undefined" && e && typeof e.question_number === "number") ? e.question_number : -1);
@@ -1809,8 +1818,7 @@ endingPicker = function(out, totv, aa, quickstats) {
     } catch (err) {}
   }, true);
 
-  window.israel96NetLoop && clearInterval(window.israel96NetLoop);
-  window.israel96NetLoop = setInterval(function () {
+  function syncNetanyahuBranchState() {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return;
     try {
       ensureEitanCandidate();
@@ -1829,11 +1837,9 @@ endingPicker = function(out, totv, aa, quickstats) {
       var answeredNow = countAnswered(answers);
       var hasDropout = hasAnswer(answers, DROPOUT_ANSWER);
       var biberated = hasAnswer(answers, 300101);
-      var usePeres = answeredNow >= 5; // Question 6 onward
-      var showNow = mode > 0 && answeredNow >= 2 && answeredNow <= 5 && !hasDropout; // Eitan window Q3..Q6 unless he drops out
+      var usePeres = answeredNow >= 5;
+      var showNow = mode > 0 && answeredNow >= 2 && answeredNow <= 5 && !hasDropout;
 
-      // If we just pre-armed from Q2 submit, do not let the interval briefly disarm
-      // before the engine commits player_answers and advances question_number.
       if (!showNow && !hasDropout && preArmMode > 0 && Date.now() < preArmUntil) {
         showNow = true;
         mode = preArmMode;
@@ -1841,32 +1847,38 @@ endingPicker = function(out, totv, aa, quickstats) {
         preArmMode = 0;
       }
 
-      // Only mutate runtime candidate/opponent arrays when state actually changes.
-      // Prevents map-render race conditions between A(2) and openMap/getLatestRes.
-      if (currentShowNow !== showNow || (showNow && currentMode !== mode) || currentUsePeres !== usePeres) {
-        setMainOpponentActive(usePeres);
-        setLaborFace(usePeres);
-        setEitanActive(showNow);
-        setOpponents(showNow, usePeres);
-        applyPeresLead(usePeres);
-        applyBiberatedLead(biberated);
-        if (showNow) setEitanStateMultipliers(getEffectiveMap(mode, answers));
-        currentShowNow = showNow;
-        currentMode = mode;
-        currentUsePeres = usePeres;
-      } else if (showNow) {
-        // Keep decay/boost effects evolving even while the window stays active.
-        applyPeresLead(usePeres);
-        applyBiberatedLead(biberated);
-        setEitanStateMultipliers(getEffectiveMap(mode, answers));
-      } else {
-        applyPeresLead(usePeres);
-        applyBiberatedLead(biberated);
-      }
-    } catch (err) {
-      // Keep game loop resilient.
-    }
-  }, 120);
+      setMainOpponentActive(usePeres);
+      setLaborFace(usePeres);
+      setEitanActive(showNow);
+      setOpponents(showNow, usePeres);
+      applyPeresLead(usePeres);
+      applyBiberatedLead(biberated);
+      if (biberated && typeof window.applyBiberatedSurpriseState === "function") window.applyBiberatedSurpriseState();
+      if (showNow) setEitanStateMultipliers(getEffectiveMap(mode, answers));
+
+      currentShowNow = showNow;
+      currentMode = mode;
+      currentUsePeres = usePeres;
+    } catch (err) {}
+  }
+  syncNetanyahuBranchState();
+  if (!window.israel96ImmediateBibiAnswerHookInstalled && typeof n === "function") {
+    window.israel96ImmediateBibiAnswerHookInstalled = true;
+    var originalBibiAnswerHandler = n;
+    n = function(t) {
+      var result = originalBibiAnswerHandler(t);
+      try {
+        if (campaignTrail_temp && campaignTrail_temp.__activeCode2 === "1996_Israel_NetanyahuLikud") {
+          var clickedAnswer = Number(t);
+          if (clickedAnswer === 300101 && !Array.isArray(campaignTrail_temp.player_answers)) campaignTrail_temp.player_answers = [];
+          if (clickedAnswer === 300101 && campaignTrail_temp.player_answers.indexOf(300101) === -1) campaignTrail_temp.player_answers.push(300101);
+          if (clickedAnswer === 300101 && typeof window.applyBiberatedSurpriseState === "function") window.applyBiberatedSurpriseState();
+          syncNetanyahuBranchState();
+        }
+      } catch (err) {}
+      return result;
+    };
+  }
 })();
 
 // Re-assert custom historical results arrays in case another script overwrites them later.
@@ -2148,58 +2160,9 @@ var terms = [
 })();
 
 
-
-
-// Direct Biberated handoff after the Q2 feedback on answer 300101.
+// Direct Biberated handoff is now applied immediately in the click path, including no-advice mode.
 (function () {
-  var SURPRISE_ANSWER_ID = 300101;
-  if (window.israel96BiberatedOkLoop) clearInterval(window.israel96BiberatedOkLoop);
-  window.israel96BiberatedOkLoop = setInterval(function () {
-    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_NetanyahuLikud") return;
-    if (!Array.isArray(campaignTrail_temp.player_answers)) return;
-    if (!Array.isArray(campaignTrail_temp.player_answers) || !campaignTrail_temp.player_answers.some(function (v) { return Number(v) === SURPRISE_ANSWER_ID; })) return;
-    var btn = document.getElementById('ok_button');
-    var visit = document.getElementById('visit_window');
-    if (!btn || !visit || visit.style.display === 'none') return;
-    if ((visit.textContent || '').indexOf('Ohhhh, you want to sabotage Bibi?') === -1) return;
-    if (btn.getAttribute('data-biberated-hooked') === '1') return;
-    var clone = btn.cloneNode(true);
-    clone.setAttribute('data-biberated-hooked', '1');
-    btn.parentNode.replaceChild(clone, btn);
-    clone.onclick = function (evt) {
-      if (evt && typeof evt.preventDefault === 'function') evt.preventDefault();
-      if (evt && typeof evt.stopPropagation === 'function') evt.stopPropagation();
-      if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) {
-        campaignTrail_temp.global_parameter_json[0].fields.question_count = 2;
-      }
-      if (Array.isArray(campaignTrail_temp.candidate_json)) {
-        for (var ii = 0; ii < campaignTrail_temp.candidate_json.length; ii++) {
-          var cc = campaignTrail_temp.candidate_json[ii];
-          if (!cc || !cc.fields) continue;
-          if (cc.pk === 1001) { cc.fields.first_name = ""; cc.fields.last_name = "Also not Bibi"; cc.fields.party = "Likud Party"; }
-          if (cc.pk === 1002) { cc.fields.first_name = ""; cc.fields.last_name = "Not Bibi"; cc.fields.party = "Labor Party"; }
-        }
-      }
-      if (typeof e !== 'undefined' && Array.isArray(e.candidate_json)) {
-        for (var ii = 0; ii < e.candidate_json.length; ii++) {
-          var cc = e.candidate_json[ii];
-          if (!cc || !cc.fields) continue;
-          if (cc.pk === 1001) { cc.fields.first_name = ""; cc.fields.last_name = "Also not Bibi"; cc.fields.party = "Likud Party"; }
-          if (cc.pk === 1002) { cc.fields.first_name = ""; cc.fields.last_name = "Not Bibi"; cc.fields.party = "Labor Party"; }
-        }
-      }
-      window.HistName = ["Also not Bibi (Likud)", "Not Bibi (Labor)"];
-      if (typeof e !== 'undefined' && Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) {
-        e.global_parameter_json[0].fields.question_count = 2;
-      }
-      var noBtn = document.getElementById('no_feedback_button');
-      if (noBtn && typeof noBtn.click === 'function') {
-        noBtn.click();
-        return false;
-      }
-      return true;
-    };
-  }, 25);
+  if (typeof window.applyBiberatedSurpriseState === "function") window.applyBiberatedSurpriseState();
 })();
 
 

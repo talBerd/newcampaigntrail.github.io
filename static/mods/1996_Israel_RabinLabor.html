@@ -1,4 +1,4 @@
-﻿﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 
 
 /* ============================================================
@@ -698,13 +698,13 @@ campaignTrail_temp.answers_json = [
   { "model": "campaign_trail.answer", "pk": 301601, "fields": { "question": 3016, "description": "Whatever it takes, we have to salvage the government and continue with Oslo." } },
   { "model": "campaign_trail.answer", "pk": 301602, "fields": { "question": 3016, "description": "I won't bribe my way to peace. You either do it right or not do it at all." } },
   { "model": "campaign_trail.answer", "pk": 301701, "fields": { "question": 3017, "description": "No, and neither do I want any government official to be there. It will make it look less partisan." } },
-  { "model": "campaign_trail.answer", "pk": 301702, "fields": { "question": 3017, "description": "Yes, we must fight back against the cowards of peace." } },
+  { "model": "campaign_trail.answer", "pk": 301702, "fields": { "question": 3017, "description": "Yes, we have to fight back against the cowards of peace." } },
   { "model": "campaign_trail.answer", "pk": 301703, "fields": { "question": 3017, "description": "Yes, we have to fight back against the cowards of peace." } },
   { "model": "campaign_trail.answer", "pk": 301801, "fields": { "question": 3018, "description": "We are keeping our course. A true leader shouldn't be bothered by naysayers." } },
   { "model": "campaign_trail.answer", "pk": 301802, "fields": { "question": 3018, "description": "Let's be real here. I am suspicious of Arafat and Israelis aren't enthused about him either. How about we recalibrate our relations with the PLO, demanding they take a firmer grip on the damn troublemakers on their side?" } },
   { "model": "campaign_trail.answer", "pk": 301803, "fields": { "question": 3018, "description": "All these intermediate steps just allow hardliners more opportunities to sabotage. Enough with this misplaced caution. Bring Clinton on the line to organize a conference. We have to close the Israeli-Palestinian chapter for good, or else a right-wing comeback and a second Intifada are inevitable." } },
   { "model": "campaign_trail.answer", "pk": 301901, "fields": { "question": 3019, "description": "Go ahead, he should pay for his crimes." } },
-  { "model": "campaign_trail.answer", "pk": 301902, "fields": { "question": 3019, "description": "Go ahead, he must pay for his crimes." } },
+  { "model": "campaign_trail.answer", "pk": 301902, "fields": { "question": 3019, "description": "Go ahead, he should pay for his crimes." } },
   { "model": "campaign_trail.answer", "pk": 301903, "fields": { "question": 3019, "description": "No, this is not good timing." } },
   { "model": "campaign_trail.answer", "pk": 302101, "fields": { "question": 3021, "description": "Let's juxtapose the '92 optimism with criticism of my opponent's inexperience and character." } },
   { "model": "campaign_trail.answer", "pk": 302102, "fields": { "question": 3021, "description": "A quiet election season is to my benefit, so keep it positive." } },
@@ -745,7 +745,7 @@ campaignTrail_temp.answer_feedback_json = [
 
   { "model": "campaign_trail.answer_feedback", "pk": 9701, "fields": { "answer": 301701, "candidate": 1002, "answer_feedback": "Without your presence, attendance was much smaller, hampering the momentum." } },
 
-  { "model": "campaign_trail.answer_feedback", "pk": 9702, "fields": { "answer": 301702, "candidate": 1002, "answer_feedback": "After singing (and I am being charitable here) \"Shir LaShalom\" and uttering an ominous warning about violence eroding the foundation of democracy, you were shot three times by a far-right Jew while going down the stairs. You died in less than an hour." } },
+  { "model": "campaign_trail.answer_feedback", "pk": 9702, "fields": { "answer": 301702, "candidate": 1002, "answer_feedback": "After singing (and I am being charitable here) \"Shir LaShalom\" and uttering an ominous warning about violence eroding the foundation of democracy, you were shot three times by a far-right Jew while going down the stairs. You died in less than an hour. The teraful Clinton concluded the speech at your funeral with the words: \"Shalom Haver\"." } },
 
   { "model": "campaign_trail.answer_feedback", "pk": 9703, "fields": { "answer": 301703, "candidate": 1002, "answer_feedback": "After singing (and I am being charitable here) \"Shir LaShalom\" and uttering an ominous warning about violence eroding the foundation of democracy, you were shot three times by a far-right Jew while going down the stairs. Thanks to a bulletproof vest, you were able to survive the shooting, and the country breathed a sigh of relief." } },
 
@@ -1369,6 +1369,64 @@ var QUESTION7_AYYASH = {
       }
     }
   }
+  window.applyRabinScrewHistoryState = function(forceApply) {
+    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
+    var active = !!forceApply || rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER);
+    if (!active) return false;
+    applyAssadeenLead(true);
+    if (typeof e !== "undefined" && e) {
+      e.candidate_json = campaignTrail_temp.candidate_json;
+      e.opponents_list = campaignTrail_temp.opponents_list;
+      e.opponents_default_json = campaignTrail_temp.opponents_default_json;
+      e.opponents_weighted_json = campaignTrail_temp.opponents_weighted_json;
+      e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
+      e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+      e.player_answers = Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers.slice() : campaignTrail_temp.player_answers;
+    }
+    try { if (typeof mapCache === "function") mapCache(true); } catch (err) {}
+    return true;
+  };
+  window.applyRabinHippielState = function(forceApply) {
+    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
+    var active = !!forceApply || rabinHasAnswer(RABIN_HIPPIEL_ANSWER);
+    if (!active) return false;
+    applyHippielLead(true);
+    var lists = [];
+    if (Array.isArray(campaignTrail_temp.candidate_json)) lists.push(campaignTrail_temp.candidate_json);
+    if (typeof e !== "undefined" && Array.isArray(e.candidate_json)) lists.push(e.candidate_json);
+    for (var li = 0; li < lists.length; li++) {
+      var list = lists[li];
+      for (var i = 0; i < list.length; i++) {
+        var c = list[i];
+        if (!c || !c.fields) continue;
+        if (c.pk === 1002) { c.fields.first_name = 'Boaz'; c.fields.last_name = 'Wachtel'; c.fields.party = 'Ale Yarok (Green Leaf)'; c.fields.color_hex = '#6ea86a'; }
+        if (c.pk === 1001) { c.fields.first_name = 'Sakhi'; c.fields.last_name = 'Balata'; c.fields.party = 'Sakhim'; c.fields.color_hex = '#ffd400'; }
+      }
+    }
+    campaignTrail_temp.candidate_id = 1002;
+    if (!Array.isArray(campaignTrail_temp.opponents_list)) campaignTrail_temp.opponents_list = [1001];
+    campaignTrail_temp.candidate_last_name = 'Wachtel';
+    campaignTrail_temp.running_mate_last_name = 'Balata';
+    campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+    if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) campaignTrail_temp.global_parameter_json[0].fields.question_count = 6;
+    if (typeof e !== "undefined" && e) {
+      e.candidate_id = 1002;
+      if (!Array.isArray(e.opponents_list)) e.opponents_list = [1001];
+      e.candidate_last_name = 'Wachtel';
+      e.running_mate_last_name = 'Balata';
+      e.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+      if (Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) e.global_parameter_json[0].fields.question_count = 6;
+      e.candidate_json = campaignTrail_temp.candidate_json;
+      e.opponents_list = campaignTrail_temp.opponents_list;
+      e.opponents_default_json = campaignTrail_temp.opponents_default_json;
+      e.opponents_weighted_json = campaignTrail_temp.opponents_weighted_json;
+      e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
+      e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+      e.player_answers = Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers.slice() : campaignTrail_temp.player_answers;
+    }
+    try { if (typeof mapCache === "function") mapCache(true); } catch (err) {}
+    return true;
+  };
   function applyHippielLead(active) {
     var boazByState = { 6661: 1.45, 6662: 0.7, 6663: 0.7, 6664: 1.45, 6665: 1.45, 6666: 1, 6667: 3, 6668: 5};
     var sakhiByState = { 6661: 0.35, 6662: 0.35, 6663: 0.35, 6664: 0.35, 6665: 0.35, 6666: 0.35, 6667: 0.35, 6668: 0.35 };
@@ -1471,6 +1529,7 @@ var QUESTION7_AYYASH = {
     if (Array.isArray(campaignTrail_temp.player_answers)) {
       campaignTrail_temp.player_answers = campaignTrail_temp.player_answers.map(function(a){ return Number(a); });
     }
+            if (clickedAnswer === RABIN_HIPPIEL_ANSWER && typeof window.applyRabinHippielState === "function") window.applyRabinHippielState(true);
     if (typeof e !== 'undefined' && e) {
       e.candidate_id = Number(campaignTrail_temp.candidate_id || e.candidate_id || 1002);
       e.running_mate_id = Number(campaignTrail_temp.running_mate_id || e.running_mate_id || 0);
@@ -1479,6 +1538,11 @@ var QUESTION7_AYYASH = {
       e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
       e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
     }
+      e.candidate_json = campaignTrail_temp.candidate_json;
+      e.opponents_list = campaignTrail_temp.opponents_list;
+      e.opponents_default_json = campaignTrail_temp.opponents_default_json;
+      e.opponents_weighted_json = campaignTrail_temp.opponents_weighted_json;
+      e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
     var answerCount = Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers.length : 0;
     if (usePeres && window.israel96PeresLastAnswerCount !== answerCount) {
       window.israel96PeresLastAnswerCount = answerCount;
@@ -1506,6 +1570,7 @@ var QUESTION7_AYYASH = {
             campaignTrail_temp.player_answers = campaignTrail_temp.player_answers.map(function(a){ return Number(a); });
             var usePeresNow = (typeof shouldUsePeres === "function") ? shouldUsePeres() : false;
             if (typeof setQuestion6Variant === "function") setQuestion6Variant(usePeresNow);
+            if (clickedAnswer === RABIN_GOLAN_TRIGGER_ANSWER && typeof window.applyRabinScrewHistoryState === "function") window.applyRabinScrewHistoryState(true);
             if (typeof applyScrewHistoryCoalitionOverride === "function") applyScrewHistoryCoalitionOverride();
             if (typeof applyScrewHistoryLebanonOverride === "function") applyScrewHistoryLebanonOverride();
             if (typeof applyPeresLateGlobalOverrides === "function") applyPeresLateGlobalOverrides();
@@ -1520,6 +1585,12 @@ var QUESTION7_AYYASH = {
               e.player_answers = campaignTrail_temp.player_answers.slice();
               e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
               e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
+              e.candidate_json = campaignTrail_temp.candidate_json;
+              e.opponents_list = campaignTrail_temp.opponents_list;
+              e.opponents_default_json = campaignTrail_temp.opponents_default_json;
+              e.opponents_weighted_json = campaignTrail_temp.opponents_weighted_json;
+              e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
+              e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
               e.answer_feedback_json = campaignTrail_temp.answer_feedback_json;
             }
           }
@@ -1528,6 +1599,24 @@ var QUESTION7_AYYASH = {
       };
     }, 25);
   }
+  document.addEventListener("click", function (evt) {
+    try {
+      var target = evt.target;
+      if (!target) return;
+      if (target.id !== "view_electoral_map" && target.id !== "answer_select_button") return;
+      var answers = [];
+      if (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) answers = campaignTrail_temp.player_answers.slice();
+      else if (typeof e !== "undefined" && e && Array.isArray(e.player_answers)) answers = e.player_answers.slice();
+      if (target.id === "answer_select_button") {
+        var picked = document.querySelector("input[name='game_answers']:checked");
+        if (picked) answers.push(Number(picked.value));
+      }
+      var hasScrewHistory = answers.some(function(v){ return Number(v) === RABIN_GOLAN_TRIGGER_ANSWER; });
+      var hasHippiel = answers.some(function(v){ return Number(v) === RABIN_HIPPIEL_ANSWER; });
+      if (hasHippiel && typeof window.applyRabinHippielState === "function") window.applyRabinHippielState(true);
+      if (hasScrewHistory && typeof window.applyRabinScrewHistoryState === "function") window.applyRabinScrewHistoryState(true);
+    } catch (err) {}
+  }, true);
 })();
 
 (function() {
@@ -2124,7 +2213,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       id: "hamas",
       title: "Hamas",
       aliases: ["Hamas"],
-      body: "An offshoot of the Muslim Brotherhood, morphing from a charity organization to a terrorist group during the First Intifada. It is about time for Arafat to deal with these Islamic fundamentalists in a way we couldn't "
+      body: "An offshoot of the Muslim Brotherhood, morphing quite smoothly from a charity organization to a terrorist group during the First Intifada. It is about time for Arafat to deal with these Islamic fundamentalists in a way we couldn't "
     },
     {
       id: "sheikh_ahmed_yassin",
@@ -2495,20 +2584,3 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (window.israel96RabinHideEvLoop) clearInterval(window.israel96RabinHideEvLoop);
   window.israel96RabinHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
