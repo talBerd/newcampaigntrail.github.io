@@ -1,4 +1,4 @@
-﻿async function evalFromUrl(url, callback = null) {
+async function evalFromUrl(url, callback = null) {
     const res = await fetch(url);
     const code = await res.text();
     eval(code);
@@ -2294,13 +2294,13 @@ function divideElectoralVotesProp(e, t) {
                 const stateElectoralVotes = e.states_json[stateIndex].fields.electoral_votes
 
                 const candidateIndex = state.result.map(f => f.candidate).indexOf(candidate.pk)
-                const candidateResult = candidateIndex === -1 ? { votes: 0, percent: 0, electoral_votes: 0 } : state.result[candidateIndex]
+                const candidateResult = state.result[candidateIndex]
 
                 if (e.primary_states) {
                     const primaryStates = JSON.parse(e.primary_states)
                     const primaryMap = primaryStates.map(f=>f.state)
 
-                    if (primaryMap.includes(state.state) && candidateIndex !== -1) {
+                    if (primaryMap.includes(state.state)) {
                         allocation = dHondtAllocation(state.result.map(f=>f.votes),stateElectoralVotes, 0.15)
                         candidate.evvs += allocation[candidateIndex]
                     }
