@@ -1,4 +1,4 @@
-async function evalFromUrl(url, callback = null) {
+﻿async function evalFromUrl(url, callback = null) {
     const res = await fetch(url);
     const code = await res.text();
     eval(code);

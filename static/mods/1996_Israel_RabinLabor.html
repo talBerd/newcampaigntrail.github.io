@@ -1,4 +1,6 @@
 ﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+window.__israel96RabinLaborBuildTag = "RABIN_MOD_BUILD_2026_04_03_A";
+try { console.log("RABIN_MOD_BUILD_2026_04_03_A"); } catch (err) {}
 
 
 /* ============================================================
@@ -833,13 +835,11 @@ campaignTrail_temp.answer_score_state_json = [
   { "model": "campaign_trail.answer_score_state", "pk": 8601, "fields": { "answer": 301402, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.04 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8602, "fields": { "answer": 301403, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.06 } },
   { "model": "campaign_trail.answer_score_state", "pk": 8603, "fields": { "answer": 301404, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.05 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8604, "fields": { "answer": 302402, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.02 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 8605, "fields": { "answer": 302402, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.01 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8604, "fields": { "answer": 302402, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.04 } },
+  { "model": "campaign_trail.answer_score_state", "pk": 8605, "fields": { "answer": 302402, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.02 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89511, "fields": { "answer": 302401, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.05 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89512, "fields": { "answer": 302401, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.03 } },
   { "model": "campaign_trail.answer_score_state", "pk": 89513, "fields": { "answer": 302401, "state": 6667, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.02 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89514, "fields": { "answer": 302401, "state": 6666, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.01 } },
-  { "model": "campaign_trail.answer_score_state", "pk": 89515, "fields": { "answer": 302401, "state": 6665, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": -0.01 } },
   { "model": "campaign_trail.answer_score_state", "pk": 87021, "fields": { "answer": 301702, "state": 6661, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.55 } },
   { "model": "campaign_trail.answer_score_state", "pk": 87020, "fields": { "answer": 301702, "state": 6662, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.5 } },
   { "model": "campaign_trail.answer_score_state", "pk": 87022, "fields": { "answer": 301702, "state": 6663, "candidate": 1002, "affected_candidate": 1002, "state_multiplier": 0.5 } },
@@ -898,7 +898,7 @@ function getPeresTemplate() {
     var ans1 = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
     var ans2 = (typeof e !== "undefined" && e && Array.isArray(e.player_answers)) ? e.player_answers : [];
     var ans = ans1.concat(ans2).map(function(a){ return Number(a); });
-    return ans.indexOf(PERES_TRIGGER_ANSWER) !== -1;
+    return ans.indexOf(PERES_TRIGGER_ANSWER) !== -1 || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== "undefined" && e && e.__pickedPeresTakeover);
   }
   var QUESTION6_RABIN = {
   question: "How do you wish to proceed with Oslo?",
@@ -910,7 +910,7 @@ function getPeresTemplate() {
     feedback: {
       301801: "This is quite expected.",
       301802: "As you once said about President Ford's \"Reassessment\", it is a pretty innocent-sounding way to spell trouble in your relationship with Arafat. Israeli moderates are happy, though, and your numbers go up.",
-      301803: "No, honey, you are not going to see a happy ending to this tragedy in the mod. How about an alternative offer that you can't refuse?"
+      301803: "No honey, it is too delusionary even for a game. How about an alternative offer that you can't refuse?"
     }
   };
   var QUESTION6_RABIN_BACKPADDLE = {
@@ -970,6 +970,35 @@ var QUESTION7_AYYASH = {
     campaignTrail_temp.answer_score_state_json.push(created);
     return created;
   }
+  function applyHippielMixedScoreOverride() {
+    if (!rabinHasAnswer(301404) || !rabinHasAnswer(301803)) return;
+    var s301404 = ensureGlobalScore(301404, 8404);
+    var s301803 = ensureGlobalScore(301803, 8803);
+    if (s301404 && s301404.fields) s301404.fields.global_multiplier = 0.10;
+    if (s301803 && s301803.fields) s301803.fields.global_multiplier = 0.40;
+    var mixed301803 = {
+      6661: 0.25,
+      6662: 0.30,
+      6663: 0.30,
+      6664: 0.40,
+      6665: 0.45,
+      6666: 0.90,
+      6667: 1.20,
+      6668: 1.45
+    };
+    var stateIds = [6661,6662,6663,6664,6665,6666,6667,6668];
+    for (var i = 0; i < stateIds.length; i++) {
+      var stateId = stateIds[i];
+      var row301803 = ensureStateScore(301803, stateId, 988300 + i);
+      if (row301803 && row301803.fields) row301803.fields.state_multiplier = Number(mixed301803[stateId] || 0);
+    }
+    var s301404North = ensureStateScore(301404, 6662, 8603);
+    if (s301404North && s301404North.fields) s301404North.fields.state_multiplier = 0.15;
+    if (typeof e !== "undefined" && e) {
+      e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
+      e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
+    }
+  }
   function applyPeresLateStateOverrides(includeQuestion6) {
     var states = [6661,6662,6663,6664,6665,6666,6667,6668];
     var answerIds = (includeQuestion6 ? [301801,301802,301803] : []).concat([301901,301902,301903,302101,302102,302103,302201,302202,302203,302301,302302,302303,302401,302402,302403,302501,302502,302503,302504]);
@@ -988,7 +1017,7 @@ var QUESTION7_AYYASH = {
       302202: { 6661: 0.01, 6662: 0.01, 6663: 0.01, 6664: 0.01, 6665: 0.01, 6666: -0.02, 6667: 0.00, 6668: -0.05 },
       302301: pickedScrewHistory ? { 6661: 0.07, 6662: 0.07, 6663: 0.07, 6664: 0.07, 6665: 0.07, 6666: 0.02, 6667: 0.07, 6668: 0.01 } : { 6661: 0.02, 6662: 0.02, 6663: 0.02, 6664: 0.02, 6665: 0.02, 6666: 0.01, 6667: 0.01, 6668: 0.00 },
       302401: pickedScrewHistory ? { 6661: 0, 6662: 0.24, 6663: 0.22, 6664: 0.20, 6665: 0.20, 6666: 0.15, 6667: 0.20, 6668: 0.10 } : { 6661: -0.10, 6662: -0.20, 6663: -0.15, 6664: -0.10, 6665: -0.10, 6666: -0.08, 6667: -0.12, 6668: -0.05 },
-      302402: { 6661: 0.10, 6662: 0.10, 6663: 0.10, 6664: 0.10, 6665: 0.08, 6666: 0.05, 6667: 0.08, 6668: 0.01 },
+      302402: { 6661: 0.1, 6662: 0.16, 6663: 0.12, 6664: 0.10, 6665: 0.08, 6666: 0.05, 6667: 0.08, 6668: 0.01 },
       302403: { 6661: -0.05, 6662: -0.05, 6663: -0.05, 6664: -0.05, 6665: -0.02, 6666: -0.01, 6667: -0.05, 6668: 0.00 },
       302501: { 6661: -0.07, 6662: -0.07, 6663: -0.07, 6664: -0.07, 6665: -0.07, 6666: -0.02, 6667: -0.05, 6668: 0.00 },
       302502: { 6661: -0.05, 6662: -0.05, 6663: -0.05, 6664: -0.05, 6665: -0.05, 6666: -0.05, 6667: -0.01, 6668: -0.05 },
@@ -998,7 +1027,8 @@ var QUESTION7_AYYASH = {
       var answerPk = answerIds[ai];
       var globalRow = ensureGlobalScore(answerPk, 980000 + answerPk);
       var globalValue = Number(globalRow && globalRow.fields ? globalRow.fields.global_multiplier : 0) || 0;
-      if (globalRow && globalRow.fields) globalRow.fields.global_multiplier = 0.00;
+      var preserveScrewHistoryGlobal = pickedScrewHistory && (answerPk === 302202 || answerPk === 302301 || answerPk === 302401 || answerPk === 302402 || answerPk === 302403);
+      if (globalRow && globalRow.fields && !preserveScrewHistoryGlobal) globalRow.fields.global_multiplier = 0.00;
       for (var si = 0; si < states.length; si++) {
         var stateId = states[si];
         var stateRow = ensureStateScore(answerPk, stateId, 990000 + (answerPk * 10) + si);
@@ -1014,6 +1044,8 @@ function applyScrewHistoryCoalitionOverride() {
   if (campaignTrail_temp) roots.push(campaignTrail_temp);
   if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
   var pickedScrewHistory = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301404) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory));
+  var pickedMinorityNormal = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301602) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal));
+  var pickedPeresTakeover = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover));
   for (var ri = 0; ri < roots.length; ri++) {
     var root = roots[ri] || {};
     if (Array.isArray(root.answer_feedback_json)) {
@@ -1027,16 +1059,18 @@ function applyScrewHistoryCoalitionOverride() {
     var s301601 = Array.isArray(root.answer_score_global_json) ? root.answer_score_global_json.find(function(x){ return x && x.fields && x.fields.answer === 301601; }) : null;
     if (!s301601 && root === campaignTrail_temp) s301601 = ensureGlobalScore(301601, 8603);
     if (s301601 && s301601.fields) s301601.fields.global_multiplier = pickedScrewHistory ? -0.05 : -0.02;
-    var s301802 = Array.isArray(root.answer_score_global_json) ? root.answer_score_global_json.find(function(x){ return x && x.fields && x.fields.answer === 301802 && x.fields.candidate === 1002 && x.fields.affected_candidate === 1002; }) : null;
-    if (!s301802 && root === campaignTrail_temp) s301802 = ensureGlobalScore(301802, 8802);
-    if (s301802 && s301802.fields) s301802.fields.global_multiplier = 0.00;
-    if (Array.isArray(root.answer_score_state_json)) {
-      var state301802Map = { 6661: 0.10, 6662: 0.10, 6663: 0.10, 6664: 0.10, 6665: 0.10, 6666: 0.05, 6667: 0.10, 6668: 0.02 };
-      for (var si301802 = 0; si301802 < root.answer_score_state_json.length; si301802++) {
-        var row301802 = root.answer_score_state_json[si301802];
-        if (!row301802 || !row301802.fields || Number(row301802.fields.answer) !== 301802 || Number(row301802.fields.candidate) !== 1002 || Number(row301802.fields.affected_candidate) !== 1002) continue;
-        var state301802Id = Number(row301802.fields.state);
-        row301802.fields.state_multiplier = pickedScrewHistory ? 0.00 : (Object.prototype.hasOwnProperty.call(state301802Map, state301802Id) ? state301802Map[state301802Id] : row301802.fields.state_multiplier);
+    if (!pickedPeresTakeover) {
+      var s301802 = Array.isArray(root.answer_score_global_json) ? root.answer_score_global_json.find(function(x){ return x && x.fields && x.fields.answer === 301802 && x.fields.candidate === 1002 && x.fields.affected_candidate === 1002; }) : null;
+      if (!s301802 && root === campaignTrail_temp) s301802 = ensureGlobalScore(301802, 8802);
+      if (s301802 && s301802.fields) s301802.fields.global_multiplier = 0.00;
+      if (Array.isArray(root.answer_score_state_json)) {
+        var state301802Map = { 6661: 0.10, 6662: 0.10, 6663: 0.10, 6664: 0.10, 6665: 0.10, 6666: 0.05, 6667: 0.10, 6668: 0.02 };
+        for (var si301802 = 0; si301802 < root.answer_score_state_json.length; si301802++) {
+          var row301802 = root.answer_score_state_json[si301802];
+          if (!row301802 || !row301802.fields || Number(row301802.fields.answer) !== 301802 || Number(row301802.fields.candidate) !== 1002 || Number(row301802.fields.affected_candidate) !== 1002) continue;
+          var state301802Id = Number(row301802.fields.state);
+          row301802.fields.state_multiplier = (pickedScrewHistory || pickedMinorityNormal) ? 0.00 : (Object.prototype.hasOwnProperty.call(state301802Map, state301802Id) ? state301802Map[state301802Id] : row301802.fields.state_multiplier);
+        }
       }
     }
     var f302202 = Array.isArray(root.answer_feedback_json) ? root.answer_feedback_json.find(function(x){ return x && x.fields && x.fields.answer === 302202; }) : null;
@@ -1056,7 +1090,7 @@ function applyScrewHistoryCoalitionOverride() {
     }
     var s302301 = Array.isArray(root.answer_score_global_json) ? root.answer_score_global_json.find(function(x){ return x && x.fields && x.fields.answer === 302301; }) : null;
     if (!s302301 && root === campaignTrail_temp) s302301 = ensureGlobalScore(302301, 8951);
-    if (s302301 && s302301.fields) s302301.fields.global_multiplier = 0.07;
+    if (s302301 && s302301.fields) s302301.fields.global_multiplier = pickedScrewHistory ? 0.07 : 0.02;
   }
   }
   function applyScrewHistoryQuestion6Override() {
@@ -1064,6 +1098,9 @@ function applyScrewHistoryCoalitionOverride() {
   if (campaignTrail_temp) roots.push(campaignTrail_temp);
   if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
   var pickedScrewHistory = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301404) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory));
+  var pickedMinorityNormal = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301602) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal));
+  var pickedPeresTakeover = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover));
+  if (pickedPeresTakeover) return;
   for (var ri = 0; ri < roots.length; ri++) {
     var root = roots[ri] || {};
     var s301802 = Array.isArray(root.answer_score_global_json) ? root.answer_score_global_json.find(function(x){ return x && x.fields && x.fields.answer === 301802 && x.fields.candidate === 1002 && x.fields.affected_candidate === 1002; }) : null;
@@ -1075,227 +1112,103 @@ function applyScrewHistoryCoalitionOverride() {
       var row = root.answer_score_state_json[si];
       if (!row || !row.fields || Number(row.fields.answer) !== 301802 || Number(row.fields.candidate) !== 1002 || Number(row.fields.affected_candidate) !== 1002) continue;
       var stateId = Number(row.fields.state);
-      row.fields.state_multiplier = pickedScrewHistory ? 0.00 : (Object.prototype.hasOwnProperty.call(baseMap, stateId) ? baseMap[stateId] : row.fields.state_multiplier);
+      row.fields.state_multiplier = (pickedScrewHistory || pickedMinorityNormal) ? 0.00 : (Object.prototype.hasOwnProperty.call(baseMap, stateId) ? baseMap[stateId] : row.fields.state_multiplier);
     }
   }
   }
   function applyScrewHistoryLebanonOverride() {
-  var root = campaignTrail_temp || {};
-  var pickedScrewHistory = (typeof e !== 'undefined' && Array.isArray(e.player_answers) && e.player_answers.indexOf(301404) !== -1) || (Array.isArray(root.player_answers) && root.player_answers.indexOf(301404) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory);
-    var pickedMinorityNormal = (typeof e !== 'undefined' && Array.isArray(e.player_answers) && e.player_answers.indexOf(301602) !== -1) || (Array.isArray(root.player_answers) && root.player_answers.indexOf(301602) !== -1);
-  var q3024 = root.questions_json.find(function(x){ return x && x.pk === 3024; });
-  if (q3024 && q3024.fields) {
-    q3024.fields.description = pickedScrewHistory
-      ? 'Great news, everyone! With the help of the Syrians, Israel was able not only to disrupt the supply chain of "Hezbollah", thus weakening it significantly, but also to eliminate its elite members, including Nasrallah.'
-      : 'For years, Hezbollah has been sending rockets into northern Israel, over the Security Zone. Do you want to authorize an operation to silence their batteries for a little while?';
+  var roots = [];
+  if (campaignTrail_temp) roots.push(campaignTrail_temp);
+  if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
+  var pickedScrewHistory = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301404) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory));
+  var pickedMinorityNormal = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301602) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal));
+  var pickedPeresTakeover = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover));
+  for (var ri = 0; ri < roots.length; ri++) {
+    var root = roots[ri] || {};
+    var q3024 = Array.isArray(root.questions_json) ? root.questions_json.find(function(x){ return x && x.pk === 3024; }) : null;
+    if (q3024 && q3024.fields) {
+      q3024.fields.description = pickedScrewHistory
+        ? 'Great news, everyone! With the help of the Syrians, Israel was able not only to disrupt the supply chain of "Hezbollah", thus weakening it significantly, but also to eliminate its elite members, including Nasrallah.'
+        : 'For years, Hezbollah has been sending rockets into northern Israel, over the Security Zone. Do you want to authorize an operation to silence their batteries for a little while?';
+    }
+    if (Array.isArray(root.answers_json)) {
+      root.answers_json.forEach(function(a){
+        if (!a || !a.fields) return;
+        if (a.pk === 302401) {
+          a.fields.question = 3024;
+          a.fields.description = pickedScrewHistory
+            ? 'I knew this treaty would bear fruit. Continue targeting them, their breaking point may be near.'
+            : 'While we choose to go down the path of Oslo, we are still steadfast in our fight against terrorism, and this is a way to prove it.';
+        }
+        if (a.pk === 302402 || a.pk === 302403) {
+          a.fields.question = pickedScrewHistory ? 999999 : 3024;
+          if (!pickedScrewHistory) {
+            a.fields.description = a.pk === 302402
+              ? 'While we choose to go down the path of Oslo, we are still steadfast in our fight against terrorism, and this is a way to prove it.'
+              : 'It is too risky. Let\'s drop it for now.';
+          }
+        }
+      });
+    }
+    if (Array.isArray(root.answer_feedback_json)) {
+      root.answer_feedback_json.forEach(function(f){
+        if (!f || !f.fields) return;
+        if (f.fields.answer === 302401) {
+          f.fields.answer_feedback = pickedScrewHistory
+            ? "The citizens of Israel are ecstatic, and the soldiers in the barracks even more so. After years of stagnation, Israel's Afghanistan appears to be entering its final chapter."
+            : 'Operation Grapes of Wrath appeared successful until the army hit a UN compound, killing and injuring hundreds of civilians. Under international pressure, you were forced to call the operation off, angering the hawkish public. From the other side of the aisle, Arab voters who supported you over Bibi in overwhelming numbers are now accusing you of brutality and murmuring about sitting out this election.';
+        }
+        if (!pickedScrewHistory && f.fields.answer === 302402) {
+          f.fields.answer_feedback = 'Operation Grapes of Wrath ended successfully and neutralized Hezbollah for the time being.';
+        }
+        if (!pickedScrewHistory && f.fields.answer === 302403) {
+          f.fields.answer_feedback = 'As you wish.';
+        }
+      });
+    }
   }
-  root.answers_json.forEach(function(a){
-    if (!a || !a.fields) return;
-    if (a.pk === 302401) {
-      a.fields.question = 3024;
-      a.fields.description = pickedScrewHistory
-        ? 'I knew this treaty would bear fruit. Continue targeting them, their breaking point may be near.'
-        : 'While we choose to go down the path of Oslo, we are still steadfast in our fight against terrorism, and this is a way to prove it.';
-    }
-    if (a.pk === 302402 || a.pk === 302403) {
-      a.fields.question = pickedScrewHistory ? 999999 : 3024;
-      if (!pickedScrewHistory) {
-        a.fields.description = a.pk === 302402
-          ? 'While we choose to go down the path of Oslo, we are still steadfast in our fight against terrorism, and this is a way to prove it.'
-          : 'It is too risky. Let\'s drop it for now.';
-      }
-    }
-  });
-  root.answer_feedback_json.forEach(function(f){
-    if (!f || !f.fields) return;
-    if (f.fields.answer === 302401) {
-      f.fields.answer_feedback = pickedScrewHistory
-        ? "The citizens of Israel are ecstatic, and the soldiers in the barracks even more so. After years of stagnation, Israel's Afghanistan appears to be entering its final chapter."
-        : 'Operation Grapes of Wrath appeared successful until the army hit a UN compound, killing and injuring hundreds of civilians. Under international pressure, you were forced to call the operation off, angering the hawkish public. From the other side of the aisle, Arab voters who supported you over Bibi in overwhelming numbers are now accusing you of brutality and murmuring about sitting out this election.';
-    }
-    if (!pickedScrewHistory && f.fields.answer === 302402) {
-      f.fields.answer_feedback = 'Operation Grapes of Wrath ended successfully and neutralized Hezbollah for the time being.';
-    }
-    if (!pickedScrewHistory && f.fields.answer === 302403) {
-      f.fields.answer_feedback = 'As you wish.';
-    }
-  });
-  root.answers_json.forEach(function(a){
-    if (!a || !a.fields) return;
-    if (a.pk === 302401) {
-      a.fields.question = 3024;
-      a.fields.description = pickedScrewHistory
-        ? 'I knew this treaty would bear fruit. Continue targeting them, their breaking point may be near.'
-        : 'While we choose to go down the path of Oslo, we are still steadfast in our fight against terrorism, and this is a way to prove it.';
-    }
-    if (a.pk === 302402 || a.pk === 302403) {
-      a.fields.question = pickedScrewHistory ? 999999 : 3024;
-      if (!pickedScrewHistory) {
-        a.fields.description = a.pk === 302402
-          ? 'While we choose to go down the path of Oslo, we are still steadfast in our fight against terrorism, and this is a way to prove it.'
-          : 'It is too risky. Let\'s drop it for now.';
-      }
-    }
-  });
-  root.answer_feedback_json.forEach(function(f){
-    if (!f || !f.fields) return;
-    if (f.fields.answer === 302401) {
-      f.fields.answer_feedback = pickedScrewHistory
-        ? "The citizens of Israel are ecstatic, and the soldiers in the barracks even more so. After years of stagnation, Israel's Afghanistan appears to be entering its final chapter."
-        : 'Operation Grapes of Wrath appeared successful until the army hit a UN compound, killing and injuring hundreds of civilians. Under international pressure, you were forced to call the operation off, angering the hawkish public. From the other side of the aisle, Arab voters who supported you over Bibi in overwhelming numbers are now accusing you of brutality and murmuring about sitting out this election.';
-    }
-    if (!pickedScrewHistory && f.fields.answer === 302402) {
-      f.fields.answer_feedback = 'Operation Grapes of Wrath ended successfully and neutralized Hezbollah for the time being.';
-    }
-    if (!pickedScrewHistory && f.fields.answer === 302403) {
-      f.fields.answer_feedback = 'As you wish.';
-    }
-  });
+  var base302401 = pickedScrewHistory ? 0.2 : -0.15;
+  var base302402 = pickedScrewHistory ? 0.00 : 0.1;
+  var base302403 = pickedScrewHistory ? 0.00 : -0.05;
   var s302401 = ensureGlobalScore(302401, 8941);
   var s302402 = ensureGlobalScore(302402, 8942);
   var s302403 = ensureGlobalScore(302403, 8943);
-  s302401.fields.global_multiplier = pickedScrewHistory ? 0.00 : -0.15;
-  s302402.fields.global_multiplier = pickedScrewHistory ? 0.00 : 0.1;
-  (root.answer_score_state_json || []).forEach(function(s){
-    if (!s || !s.fields || s.fields.answer !== 302401) return;
-    if (pickedScrewHistory) {
-      var screwMap302401 = { 6661: 0.00, 6662: 0.24, 6663: 0.22, 6664: 0.20, 6665: 0.20, 6666: 0.15, 6667: 0.20, 6668: 0.10 };
-      if (Object.prototype.hasOwnProperty.call(screwMap302401, s.fields.state)) s.fields.state_multiplier = screwMap302401[s.fields.state];
-      return;
-    }
-    if (s.fields.state === 6662) s.fields.state_multiplier = 0.05;
-    if (s.fields.state === 6663) s.fields.state_multiplier = 0.03;
-    if (s.fields.state === 6667 || s.fields.state === 6666 || s.fields.state === 6665) s.fields.state_multiplier = (s.fields.state === 6667 ? -0.02 : -0.01);
-  });
+  if (pickedPeresTakeover && !pickedScrewHistory) {
+  } else {
+    if (s302401 && s302401.fields) s302401.fields.global_multiplier = base302401;
+    if (s302402 && s302402.fields) s302402.fields.global_multiplier = base302402;
+    if (s302403 && s302403.fields) s302403.fields.global_multiplier = base302403;
   }
+  if (Array.isArray(campaignTrail_temp.answer_score_state_json)) {
+    for (var si = 0; si < campaignTrail_temp.answer_score_state_json.length; si++) {
+      var row = campaignTrail_temp.answer_score_state_json[si];
+      if (!row || !row.fields || Number(row.fields.candidate) !== 1002 || Number(row.fields.affected_candidate) !== 1002) continue;
+      var answerId = Number(row.fields.answer);
+      var stateId = Number(row.fields.state);
+      if (answerId === 302401) {
+        if (pickedPeresTakeover && !pickedScrewHistory) {
+        } else if (stateId === 6662) row.fields.state_multiplier = -0.05;
+        else if (stateId === 6663) row.fields.state_multiplier = -0.03;
+        else if (stateId === 6667) row.fields.state_multiplier = -0.02;
+        else if (stateId === 6666 || stateId === 6665) row.fields.state_multiplier = -0.01;
+      }
+      if (answerId === 302402) {
+        if (pickedScrewHistory || pickedMinorityNormal) row.fields.state_multiplier = 0.00;
+        else if (stateId === 6662) row.fields.state_multiplier = 0.02;
+        else if (stateId === 6663) row.fields.state_multiplier = 0.01;
+      }
+    }
+  }
+  }
+
   function applyQuestion25Overrides() {
-    var pickedPeresTakeover = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1);
-    var picked301703 = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301703) !== -1);
+    var pickedPeresTakeover = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover);
+    var picked301703 = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301703) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__picked301703) || !!(typeof e !== 'undefined' && e && e.__picked301703);
     var picked301701 = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301701) !== -1);
     var s302504 = ensureGlobalScore(302504, 8974);
-    s302504.fields.global_multiplier = (picked301703 || picked301701) ? 0.07 : 0.05;
+    if (s302504 && s302504.fields) s302504.fields.global_multiplier = (picked301703 || picked301701) ? 0.07 : 0.05;
   }
-  function applyPeresLateGlobalOverrides() {
-    var s301901 = ensureGlobalScore(301901, 8911);
-    var s301902 = ensureGlobalScore(301902, 8912);
-    var s301903 = ensureGlobalScore(301903, 8913);
-    var s302101 = ensureGlobalScore(302101, 8931);
-    var s302102 = ensureGlobalScore(302102, 8932);
-    var s302103 = ensureGlobalScore(302103, 8933);
-    s301901.fields.global_multiplier = 0.00;
-    s301902.fields.global_multiplier = 0.00;
-    s301903.fields.global_multiplier = 0.00;
-    s302101.fields.global_multiplier = 0.05;
-    s302102.fields.global_multiplier = -0.10;
-    s302103.fields.global_multiplier = -0.05;
-  }
-  function setQuestion6Variant(usePeres) {
-    var roots = [];
-    if (campaignTrail_temp) roots.push(campaignTrail_temp);
-    if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
-    var q6 = usePeres ? QUESTION6_PERES : QUESTION6_RABIN;
-    var allAnswers = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }));
-    var pickedScrewHistory = allAnswers.indexOf(301404) !== -1 || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory);
-    var pickedMinorityNormal = allAnswers.indexOf(301602) !== -1 || !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal);
-    var pickedPeresTakeover = allAnswers.indexOf(301702) !== -1 || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover);
-    var picked301703 = allAnswers.indexOf(301703) !== -1 || !!(campaignTrail_temp && campaignTrail_temp.__picked301703) || !!(typeof e !== 'undefined' && e && e.__picked301703);
-    var q6Feedback = {
-      301801: q6.feedback[301801],
-      301802: ((pickedScrewHistory || pickedMinorityNormal) && !pickedPeresTakeover) ? "You already lost the vote in the Knesset, so people just interpret this as backpaddling, earning you zero support." : q6.feedback[301802],
-      301803: q6.feedback[301803]
-    };
-    for (var ri = 0; ri < roots.length; ri++) {
-      var root = roots[ri] || {};
-      if (!Array.isArray(root.questions_json) || !Array.isArray(root.answers_json) || !Array.isArray(root.answer_feedback_json)) continue;
-      var q6Obj = root.questions_json.find(function(x){ return x && x.pk === 3018; });
-      if (q6Obj && q6Obj.fields) {
-        q6Obj.fields.description = q6.question;
-        q6Obj.fields.likelihood = 1;
-      }
-      root.answers_json.forEach(function(a){
-        if (!a || !a.fields) return;
-        if (a.pk === 301801 || a.pk === 301802 || a.pk === 301803) {
-          a.fields.question = 3018;
-          if (Object.prototype.hasOwnProperty.call(q6.answers, a.pk)) {
-            a.fields.description = q6.answers[a.pk];
-          } else {
-            a.fields.question = 999999;
-          }
-        }
-        if (a.pk === 301901 || a.pk === 301902 || a.pk === 301903) {
-          a.fields.question = 3019;
-          a.fields.description = QUESTION7_AYYASH.answers[a.pk];
-        }
-      });
-      root.answer_feedback_json.forEach(function(f){
-        if (!f || !f.fields) return;
-        if (Object.prototype.hasOwnProperty.call(q6.feedback, f.fields.answer)) {
-          f.fields.answer_feedback = q6Feedback[f.fields.answer];
-        }
-        if (Object.prototype.hasOwnProperty.call(QUESTION7_AYYASH.feedback, f.fields.answer)) {
-          f.fields.answer_feedback = QUESTION7_AYYASH.feedback[f.fields.answer];
-        }
-      });
-      var q7Obj = root.questions_json.find(function(x){ return x && x.pk === 3019; });
-      if (q7Obj && q7Obj.fields) {
-        q7Obj.fields.description = QUESTION7_AYYASH.question;
-        q7Obj.fields.likelihood = 1;
-      }
-    }
 
-    var peres301801 = usePeres ? 0.04 : 0.00;
-    var peres301802 = (pickedScrewHistory && picked301703) ? 0.00 : (picked301703 ? 0.05 : (pickedPeresTakeover ? -0.04 : ((pickedScrewHistory || pickedMinorityNormal) ? 0.00 : -0.04)));
-    var peres301803 = 0.00;
-    for (var sri = 0; sri < roots.length; sri++) {
-      var scoreRoot = roots[sri] || {};
-      var s301801 = ensureRootGlobalScoreFor(scoreRoot, 301801, 8801, 1002);
-      var s301802 = ensureRootGlobalScoreFor(scoreRoot, 301802, 8802, 1002);
-      var s301803 = ensureRootGlobalScoreFor(scoreRoot, 301803, 8803, 1002);
-      var b301801 = ensureRootGlobalScoreFor(scoreRoot, 301801, 9801, 1001);
-      var b301802 = ensureRootGlobalScoreFor(scoreRoot, 301802, 9802, 1001);
-      var b301803 = ensureRootGlobalScoreFor(scoreRoot, 301803, 9803, 1001);
-      if (pickedPeresTakeover) {
-        if (s301801 && s301801.fields) { s301801.fields.global_multiplier = 0.00; }
-        if (s301802 && s301802.fields) { s301802.fields.global_multiplier = 0.00; }
-        if (s301803 && s301803.fields) { s301803.fields.global_multiplier = 0.00; }
-        if (b301801 && b301801.fields) { b301801.fields.candidate = 1002; b301801.fields.affected_candidate = 1002; b301801.fields.global_multiplier = -peres301801; }
-        if (b301802 && b301802.fields) { b301802.fields.candidate = 1002; b301802.fields.affected_candidate = 1002; b301802.fields.global_multiplier = -peres301802; }
-        if (b301803 && b301803.fields) { b301803.fields.candidate = 1002; b301803.fields.affected_candidate = 1002; b301803.fields.global_multiplier = -peres301803; }
-      } else {
-        if (s301801 && s301801.fields) { s301801.fields.global_multiplier = peres301801; }
-        if (s301802 && s301802.fields) { s301802.fields.global_multiplier = peres301802; }
-        if (s301803 && s301803.fields) { s301803.fields.global_multiplier = peres301803; }
-        if (b301801 && b301801.fields) { b301801.fields.candidate = 1002; b301801.fields.affected_candidate = 1002; b301801.fields.global_multiplier = 0.00; }
-        if (b301802 && b301802.fields) { b301802.fields.candidate = 1002; b301802.fields.affected_candidate = 1002; b301802.fields.global_multiplier = 0.00; }
-        if (b301803 && b301803.fields) { b301803.fields.candidate = 1002; b301803.fields.affected_candidate = 1002; b301803.fields.global_multiplier = 0.00; }
-      }
-    }
-    if (pickedScrewHistory || pickedMinorityNormal || pickedPeresTakeover) {
-      [6661,6662,6663,6664,6665,6666,6667,6668].forEach(function(stateId, idx) {
-        var stateRow = ensureStateScore(301802, stateId, 88021 + idx);
-        if (stateRow && stateRow.fields) stateRow.fields.state_multiplier = 0.00;
-      });
-    }
-  }
-  function rabinLatchBranchAnswer(answerId) {
-    var id = Number(answerId);
-    if (id === 301404) {
-      campaignTrail_temp.__pickedScrewHistory = true;
-      if (typeof e !== 'undefined' && e) e.__pickedScrewHistory = true;
-    }
-    if (id === 301602) {
-      campaignTrail_temp.__pickedMinorityNormal = true;
-      if (typeof e !== 'undefined' && e) e.__pickedMinorityNormal = true;
-    }
-    if (id === 301702) {
-      campaignTrail_temp.__pickedPeresTakeover = true;
-      if (typeof e !== 'undefined' && e) e.__pickedPeresTakeover = true;
-    }
-    if (id === 301703) {
-      campaignTrail_temp.__picked301703 = true;
-      if (typeof e !== 'undefined' && e) e.__picked301703 = true;
-    }
-  }
   function dataSets() {
     var sets = [];
     if (typeof campaignTrail_temp !== 'undefined' && campaignTrail_temp) sets.push(campaignTrail_temp);
@@ -1321,66 +1234,82 @@ function applyScrewHistoryCoalitionOverride() {
     }
   }
 
-  function applyPeresTakeover() {
-    var root = campaignTrail_temp || {};
-    var peres = getPeresTemplate();
-    var labor = Array.isArray(root.candidate_json) ? root.candidate_json.find(function(c){ return c && c.pk === 99002; }) : null;
-    if (!peres || !peres.fields) return;
-    root.candidate_last_name = peres.fields.last_name;
-    root.running_mate_last_name = labor && labor.fields ? labor.fields.last_name : 'Labor';
-    root.candidate_image_url = peres.fields.image_url;
-    root.running_mate_image_url = labor && labor.fields ? labor.fields.image_url : root.running_mate_image_url;
-    if (Array.isArray(root.candidate_json)) {
-      for (var i = 0; i < root.candidate_json.length; i++) {
-        var c = root.candidate_json[i];
-        if (!c || !c.fields) continue;
-        if (c.pk === 1002) {
-          c.fields.first_name = peres.fields.first_name;
-          c.fields.last_name = peres.fields.last_name;
-          c.fields.party = peres.fields.party;
-          c.fields.state = peres.fields.state;
-          c.fields.description = peres.fields.description;
-          c.fields.image_url = peres.fields.image_url;
-          c.fields.electoral_victory_message = peres.fields.electoral_victory_message;
-          c.fields.electoral_loss_message = peres.fields.electoral_loss_message;
-        }
-      }
-    }
-    var a = document.getElementById('candidate_pic'); if (a) a.src = peres.fields.image_url;
-    var b = document.getElementById('running_mate_pic'); if (b && labor && labor.fields) b.src = labor.fields.image_url;
-    var cImg = document.querySelector('#candidate_image img'); if (cImg) cImg.src = peres.fields.image_url;
-    var rImg = document.querySelector('#running_mate_image img'); if (rImg && labor && labor.fields) rImg.src = labor.fields.image_url;
-    var sign = document.getElementById('campaign_sign');
-    if (sign && sign.children && sign.children.length > 1) {
-      sign.children[0].textContent = peres.fields.last_name;
-      sign.children[1].textContent = labor && labor.fields ? labor.fields.last_name : 'Labor';
-    }
-    var summary = document.getElementById('candidate_summary');
-    if (summary && !document.getElementById('peres_intro_continue')) {
-      summary.innerHTML = '<ul><li>Name: ' + peres.fields.first_name + ' ' + peres.fields.last_name + '</li><li>Party: ' + peres.fields.party + '</li><li>Home State: ' + peres.fields.state + '</li></ul>' + peres.fields.description;
-    }
-  }
-  function pinCurrentQuestionAnswers() {
-    var root = campaignTrail_temp || {};
-    if (!Array.isArray(root.questions_json) || !Array.isArray(root.answers_json)) return;
-    var q = root.questions_json[root.question_number];
-    if (!q || !q.pk) return;
-    var current = [];
-    var rest = [];
-    for (var i = 0; i < root.answers_json.length; i++) {
-      var a = root.answers_json[i];
-      if (a && a.fields && a.fields.question === q.pk) current.push(a);
-      else rest.push(a);
-    }
-    root.answers_json = current.concat(rest);
-  }
-
   var RABIN_GOLAN_TRIGGER_ANSWER = 301404;
   var RABIN_PERES_TRIGGER_ANSWER = 301702;
   var RABIN_HIPPIEL_ANSWER = 301803;
+  var RABIN_HIPPIEL_QUESTION_COUNT = 6;
   var RABIN_GOLAN_STATE_ID = 6661;
   var RABIN_ASSADEEN_PK = 1010;
   var RABIN_ZOEY_PK = 1011;
+
+  window.applyRabinHippielSurpriseState = function(forceApply) {
+    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
+    if (!Array.isArray(campaignTrail_temp.player_answers)) return false;
+    var pickedNow = campaignTrail_temp.player_answers.some(function (v) { return Number(v) === RABIN_HIPPIEL_ANSWER; });
+    if (!forceApply && !pickedNow) return false;
+    if (campaignTrail_temp.__hippielSurpriseApplied) return true;
+    var boazColor = '#6ea86a';
+    var sakhiColor = '#ffd400';
+    var pickedScrewHistory = campaignTrail_temp.player_answers.some(function (v) { return Number(v) === RABIN_GOLAN_TRIGGER_ANSWER; }) || !!campaignTrail_temp.__pickedScrewHistory || !!(typeof e !== "undefined" && e && e.__pickedScrewHistory);
+    var boazByState = pickedScrewHistory
+      ? { 6661: 6.0, 6662: 4.8, 6663: 4.6, 6664: 7.0, 6665: 7.4, 6666: 16.0, 6667: 24.0, 6668: 36.0 }
+      : { 6661: 3.2, 6662: 2.6, 6663: 2.5, 6664: 3.5, 6665: 3.8, 6666: 6.0, 6667: 9.0, 6668: 12.0 };
+    var sakhiByState = pickedScrewHistory
+      ? { 6661: 0.14, 6662: 0.12, 6663: 0.12, 6664: 0.10, 6665: 0.10, 6666: 0.06, 6667: 0.04, 6668: 0.03 }
+      : { 6661: 0.22, 6662: 0.20, 6663: 0.20, 6664: 0.18, 6665: 0.18, 6666: 0.12, 6667: 0.10, 6668: 0.08 };
+    var roots = [];
+    if (campaignTrail_temp) roots.push(campaignTrail_temp);
+    if (typeof e !== "undefined" && e && e !== campaignTrail_temp) roots.push(e);
+    for (var ri = 0; ri < roots.length; ri++) {
+      var root = roots[ri];
+      if (!root) continue;
+      if (Array.isArray(root.candidate_json)) {
+        for (var li = 0; li < root.candidate_json.length; li++) {
+          var c = root.candidate_json[li];
+          if (!c || !c.fields) continue;
+          if (c.pk === 1002) { c.fields.first_name = 'Boaz'; c.fields.last_name = 'Wachtel'; c.fields.party = 'Ale Yarok (Green Leaf)'; c.fields.color_hex = boazColor; }
+          if (c.pk === 1001) { c.fields.first_name = 'Sakhi'; c.fields.last_name = 'Balata'; c.fields.party = 'Sakhim'; c.fields.color_hex = sakhiColor; }
+        }
+      }
+      if (Array.isArray(root.candidate_state_multiplier_json)) {
+        for (var mi = 0; mi < root.candidate_state_multiplier_json.length; mi++) {
+          var row = root.candidate_state_multiplier_json[mi];
+          if (!row || !row.fields) continue;
+          var cand = Number(row.fields.candidate);
+          var sid = Number(row.fields.state);
+          if (cand !== 1001 && cand !== 1002) continue;
+          if (typeof row.fields.__hippiel_surprise_base_mult === 'undefined') row.fields.__hippiel_surprise_base_mult = Number(row.fields.state_multiplier) || 0;
+          var base = row.fields.__hippiel_surprise_base_mult;
+          if (cand === 1002) row.fields.state_multiplier = Number((base * (boazByState[sid] || 3.0)).toFixed(4));
+          if (cand === 1001) row.fields.state_multiplier = Number((base * (sakhiByState[sid] || 0.18)).toFixed(4));
+        }
+      }
+    }
+    applyHippielMixedScoreOverride();
+    campaignTrail_temp.candidate_last_name = 'Wachtel';
+    campaignTrail_temp.running_mate_last_name = 'Balata';
+    campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+    campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+    if (typeof campaignTrail_temp.question_number === 'number') campaignTrail_temp.question_number = RABIN_HIPPIEL_QUESTION_COUNT - 1;
+    if (typeof e !== "undefined" && e) {
+      e.candidate_last_name = 'Wachtel';
+      e.running_mate_last_name = 'Balata';
+      e.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+      e.running_mate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+      e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+      e.candidate_json = campaignTrail_temp.candidate_json;
+      if (typeof e.question_number === 'number') e.question_number = RABIN_HIPPIEL_QUESTION_COUNT - 1;
+    }
+    israel96RabinSetQuestionCount(RABIN_HIPPIEL_QUESTION_COUNT);
+    campaignTrail_temp.__hippielSurpriseApplied = true;
+    if (typeof e !== "undefined" && e) e.__hippielSurpriseApplied = true;
+    if (!campaignTrail_temp.__hippielSurpriseMapRefreshed) {
+      campaignTrail_temp.__hippielSurpriseMapRefreshed = true;
+      try { if (typeof mapCache === 'function') mapCache(true); } catch (err) {}
+    }
+    return true;
+  };
+  window.applyRabinHippielSurpriseState();
 
   function rabinHasAnswer(id) {
     var ans = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
@@ -1389,41 +1318,7 @@ function applyScrewHistoryCoalitionOverride() {
     }
     return false;
   }
-  function dedupeNumericAnswers(list) {
-    if (!Array.isArray(list)) return list;
-    var seen = {};
-    var out = [];
-    for (var i = 0; i < list.length; i++) {
-      var key = String(Number(list[i]));
-      if (seen[key]) continue;
-      seen[key] = true;
-      out.push(Number(list[i]));
-    }
-    return out;
-  }
-  function dedupeScoreRows(root) {
-    if (!root) return;
-    if (Array.isArray(root.answer_score_global_json)) {
-      var seenG = {};
-      root.answer_score_global_json = root.answer_score_global_json.filter(function (row) {
-        if (!row || !row.fields) return false;
-        var key = [Number(row.fields.answer), Number(row.fields.candidate), Number(row.fields.affected_candidate)].join('|');
-        if (seenG[key]) return false;
-        seenG[key] = true;
-        return true;
-      });
-    }
-    if (Array.isArray(root.answer_score_state_json)) {
-      var seenS = {};
-      root.answer_score_state_json = root.answer_score_state_json.filter(function (row) {
-        if (!row || !row.fields) return false;
-        var key = [Number(row.fields.answer), Number(row.fields.state), Number(row.fields.candidate), Number(row.fields.affected_candidate)].join('|');
-        if (seenS[key]) return false;
-        seenS[key] = true;
-        return true;
-      });
-    }
-  }
+
 
   function ensureRabinSurpriseCandidate(list, pk, fields) {
     if (!Array.isArray(list)) return;
@@ -1432,6 +1327,7 @@ function applyScrewHistoryCoalitionOverride() {
     }
     list.push({ model: 'campaign_trail.candidate', pk: pk, fields: fields });
   }
+
   function applyAssadeenLead(active) {
     var ASSADEEN_PK = RABIN_ASSADEEN_PK;
     var GOLAN_STATE_ID = RABIN_GOLAN_STATE_ID;
@@ -1522,24 +1418,157 @@ function applyScrewHistoryCoalitionOverride() {
       }
     }
   }
-  window.applyRabinScrewHistoryState = function(forceApply) {
-    if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
-    var active = !!forceApply || rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER);
-    if (!active) return false;
-    applyAssadeenLead(true);
-    if (typeof e !== "undefined" && e) {
-      dedupeScoreRows(campaignTrail_temp);
-      e.candidate_json = campaignTrail_temp.candidate_json;
-      e.opponents_list = campaignTrail_temp.opponents_list;
-      e.opponents_default_json = campaignTrail_temp.opponents_default_json;
-      e.opponents_weighted_json = campaignTrail_temp.opponents_weighted_json;
-      e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
-      e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
-      e.player_answers = Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers.slice() : campaignTrail_temp.player_answers;
+  applyAssadeenLead(false);
+
+  function setQuestion6Variant(usePeres) {
+    var roots = [];
+    if (campaignTrail_temp) roots.push(campaignTrail_temp);
+    if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
+    var q6 = usePeres ? QUESTION6_PERES : QUESTION6_RABIN;
+    var pickedScrewHistory = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301404) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory);
+    var pickedMinorityNormal = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301602) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal);
+    var pickedPeresTakeover = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover);
+    var picked301703 = ((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301703) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__picked301703) || !!(typeof e !== 'undefined' && e && e.__picked301703);
+    var q6Feedback = {
+      301801: q6.feedback[301801],
+      301802: ((pickedScrewHistory || pickedMinorityNormal) && !pickedPeresTakeover) ? "You already lost the vote in the Knesset, so people just interpret this as backpaddling, earning you zero support." : q6.feedback[301802],
+      301803: q6.feedback[301803]
+    };
+    for (var ri = 0; ri < roots.length; ri++) {
+      var root = roots[ri] || {};
+      if (!Array.isArray(root.questions_json) || !Array.isArray(root.answers_json) || !Array.isArray(root.answer_feedback_json)) continue;
+      var q6Obj = root.questions_json.find(function(x){ return x && x.pk === 3018; });
+      if (q6Obj && q6Obj.fields) {
+        q6Obj.fields.description = q6.question;
+        q6Obj.fields.likelihood = 1;
+      }
+      root.answers_json.forEach(function(a){
+        if (!a || !a.fields) return;
+        if (a.pk === 301801 || a.pk === 301802 || a.pk === 301803) {
+          a.fields.question = 3018;
+          if (Object.prototype.hasOwnProperty.call(q6.answers, a.pk)) a.fields.description = q6.answers[a.pk];
+          else a.fields.question = 999999;
+        }
+        if (a.pk === 301901 || a.pk === 301902 || a.pk === 301903) {
+          a.fields.question = 3019;
+          a.fields.description = QUESTION7_AYYASH.answers[a.pk];
+        }
+      });
+      root.answer_feedback_json.forEach(function(f){
+        if (!f || !f.fields) return;
+        if (Object.prototype.hasOwnProperty.call(q6.feedback, f.fields.answer)) f.fields.answer_feedback = q6Feedback[f.fields.answer];
+        if (Object.prototype.hasOwnProperty.call(QUESTION7_AYYASH.feedback, f.fields.answer)) f.fields.answer_feedback = QUESTION7_AYYASH.feedback[f.fields.answer];
+      });
+      var q7Obj = root.questions_json.find(function(x){ return x && x.pk === 3019; });
+      if (q7Obj && q7Obj.fields) {
+        q7Obj.fields.description = QUESTION7_AYYASH.question;
+        q7Obj.fields.likelihood = 1;
+      }
     }
-    try { if (typeof mapCache === "function") mapCache(true); } catch (err) {}
-    return true;
-  };
+  }
+
+  function applyPeresTakeover() {
+    var peres = typeof getPeresTemplate === 'function' ? getPeresTemplate() : null;
+    var labor = Array.isArray(campaignTrail_temp.candidate_json) ? campaignTrail_temp.candidate_json.find(function(c){ return c && c.pk === 99002; }) : null;
+    if (!peres || !peres.fields) return;
+    campaignTrail_temp.candidate_last_name = peres.fields.last_name;
+    campaignTrail_temp.running_mate_last_name = labor && labor.fields ? labor.fields.last_name : 'Labor';
+    campaignTrail_temp.candidate_image_url = peres.fields.image_url;
+    campaignTrail_temp.running_mate_image_url = labor && labor.fields ? labor.fields.image_url : campaignTrail_temp.running_mate_image_url;
+    var roots = [];
+    if (campaignTrail_temp) roots.push(campaignTrail_temp);
+    if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
+    for (var ri = 0; ri < roots.length; ri++) {
+      var root = roots[ri] || {};
+      root.candidate_last_name = peres.fields.last_name;
+      root.running_mate_last_name = labor && labor.fields ? labor.fields.last_name : 'Labor';
+      root.candidate_image_url = peres.fields.image_url;
+      root.running_mate_image_url = labor && labor.fields ? labor.fields.image_url : root.running_mate_image_url;
+      if (Array.isArray(root.candidate_json)) {
+        for (var i = 0; i < root.candidate_json.length; i++) {
+          var c = root.candidate_json[i];
+          if (!c || !c.fields) continue;
+          if (c.pk === 1002) {
+            c.fields.first_name = peres.fields.first_name;
+            c.fields.last_name = peres.fields.last_name;
+            c.fields.party = peres.fields.party;
+            c.fields.state = peres.fields.state;
+            c.fields.description = peres.fields.description;
+            c.fields.image_url = peres.fields.image_url;
+            c.fields.electoral_victory_message = peres.fields.electoral_victory_message;
+            c.fields.electoral_loss_message = peres.fields.electoral_loss_message;
+          }
+        }
+      }
+    }
+    var a = document.getElementById('candidate_pic'); if (a) a.src = peres.fields.image_url;
+    var b = document.getElementById('running_mate_pic'); if (b && labor && labor.fields) b.src = labor.fields.image_url;
+    var cImg = document.querySelector('#candidate_image img'); if (cImg) cImg.src = peres.fields.image_url;
+    var rImg = document.querySelector('#running_mate_image img'); if (rImg && labor && labor.fields) rImg.src = labor.fields.image_url;
+    var sign = document.getElementById('campaign_sign');
+    if (sign && sign.children && sign.children.length > 1) {
+      sign.children[0].textContent = peres.fields.last_name;
+      sign.children[1].textContent = labor && labor.fields ? labor.fields.last_name : 'Labor';
+    }
+    var summary = document.getElementById('candidate_summary');
+    if (summary) {
+      summary.innerHTML = '<ul><li>Name: ' + peres.fields.first_name + ' ' + peres.fields.last_name + '</li><li>Party: ' + peres.fields.party + '</li><li>Home State: ' + peres.fields.state + '</li></ul>' + peres.fields.description;
+    }
+  }
+  function pinCurrentQuestionAnswers() {
+    var root = campaignTrail_temp || {};
+    if (!Array.isArray(root.questions_json) || !Array.isArray(root.answers_json)) return;
+    var q = root.questions_json[root.question_number];
+    if (!q || !q.pk) return;
+    var current = [];
+    var rest = [];
+    for (var i = 0; i < root.answers_json.length; i++) {
+      var a = root.answers_json[i];
+      if (a && a.fields && a.fields.question === q.pk) current.push(a);
+      else rest.push(a);
+    }
+    root.answers_json = current.concat(rest);
+  }
+
+
+  function dedupeScoreRows(root) {
+    if (!root) return;
+    if (Array.isArray(root.answer_score_global_json)) {
+      var seenGlobal = {};
+      root.answer_score_global_json = root.answer_score_global_json.filter(function(row) {
+        if (!row || !row.fields) return true;
+        var key = [Number(row.fields.answer) || 0, Number(row.fields.candidate) || 0, Number(row.fields.affected_candidate) || 0].join('|');
+        if (seenGlobal[key]) return false;
+        seenGlobal[key] = true;
+        return true;
+      });
+    }
+    if (Array.isArray(root.answer_score_state_json)) {
+      var seenState = {};
+      root.answer_score_state_json = root.answer_score_state_json.filter(function(row) {
+        if (!row || !row.fields) return true;
+        var key = [Number(row.fields.answer) || 0, Number(row.fields.state) || 0, Number(row.fields.candidate) || 0, Number(row.fields.affected_candidate) || 0].join('|');
+        if (seenState[key]) return false;
+        seenState[key] = true;
+        return true;
+      });
+    }
+  }
+
+  function applyPeresLateGlobalOverrides() {
+    var s301901 = ensureGlobalScore(301901, 8911);
+    var s301902 = ensureGlobalScore(301902, 8912);
+    var s301903 = ensureGlobalScore(301903, 8913);
+    var s302101 = ensureGlobalScore(302101, 8931);
+    var s302102 = ensureGlobalScore(302102, 8932);
+    var s302103 = ensureGlobalScore(302103, 8933);
+    s301901.fields.global_multiplier = 0.00;
+    s301902.fields.global_multiplier = 0.00;
+    s301903.fields.global_multiplier = 0.00;
+    s302101.fields.global_multiplier = 0.05;
+    s302102.fields.global_multiplier = -0.10;
+    s302103.fields.global_multiplier = -0.05;
+  }
   window.applyRabinPeresState = function(forceApply) {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
     var active = !!forceApply || rabinHasAnswer(RABIN_PERES_TRIGGER_ANSWER) || (typeof shouldUsePeres === "function" && shouldUsePeres());
@@ -1576,7 +1605,9 @@ function applyScrewHistoryCoalitionOverride() {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
     var active = !!forceApply || rabinHasAnswer(RABIN_HIPPIEL_ANSWER);
     if (!active) return false;
+    if (campaignTrail_temp.__hippielZoeyApplied) return true;
     applyHippielLead(true);
+    applyHippielMixedScoreOverride();
     var lists = [];
     if (Array.isArray(campaignTrail_temp.candidate_json)) lists.push(campaignTrail_temp.candidate_json);
     if (typeof e !== "undefined" && Array.isArray(e.candidate_json)) lists.push(e.candidate_json);
@@ -1594,7 +1625,10 @@ function applyScrewHistoryCoalitionOverride() {
     campaignTrail_temp.candidate_last_name = 'Wachtel';
     campaignTrail_temp.running_mate_last_name = 'Balata';
     campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
-    if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) campaignTrail_temp.global_parameter_json[0].fields.question_count = 6;
+    campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+    if (typeof campaignTrail_temp.question_number === 'number') campaignTrail_temp.question_number = RABIN_HIPPIEL_QUESTION_COUNT - 1;
+    if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) campaignTrail_temp.global_parameter_json[0].fields.question_count = RABIN_HIPPIEL_QUESTION_COUNT;
+    syncRabinLiveResultRows(rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER) ? [1002, 1001, RABIN_ASSADEEN_PK, RABIN_ZOEY_PK] : [1002, 1001]);
     if (typeof e !== "undefined" && e) {
       dedupeScoreRows(campaignTrail_temp);
       e.candidate_id = 1002;
@@ -1602,7 +1636,9 @@ function applyScrewHistoryCoalitionOverride() {
       e.candidate_last_name = 'Wachtel';
       e.running_mate_last_name = 'Balata';
       e.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
-      if (Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) e.global_parameter_json[0].fields.question_count = 6;
+      e.running_mate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
+      if (typeof e.question_number === 'number') e.question_number = RABIN_HIPPIEL_QUESTION_COUNT - 1;
+      if (Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) e.global_parameter_json[0].fields.question_count = RABIN_HIPPIEL_QUESTION_COUNT;
       e.candidate_json = campaignTrail_temp.candidate_json;
       e.opponents_list = campaignTrail_temp.opponents_list;
       e.opponents_default_json = campaignTrail_temp.opponents_default_json;
@@ -1610,13 +1646,48 @@ function applyScrewHistoryCoalitionOverride() {
       e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
       e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
       e.player_answers = Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers.slice() : campaignTrail_temp.player_answers;
+      e.final_state_results = campaignTrail_temp.final_state_results;
+      e.final_overall_results = campaignTrail_temp.final_overall_results;
     }
-    try { if (typeof mapCache === "function") mapCache(true); } catch (err) {}
+    campaignTrail_temp.__hippielZoeyApplied = true;
+    if (typeof e !== "undefined" && e) e.__hippielZoeyApplied = true;
+    if (!campaignTrail_temp.__hippielZoeyMapRefreshed) {
+      campaignTrail_temp.__hippielZoeyMapRefreshed = true;
+      try { if (typeof mapCache === "function") mapCache(true); } catch (err) {}
+    }
     return true;
   };
+  function syncRabinLiveResultRows(activeCandidateIds) {
+    var ids = Array.isArray(activeCandidateIds) ? activeCandidateIds.map(function (id) { return Number(id); }).filter(function (id, idx, arr) {
+      return !isNaN(id) && arr.indexOf(id) === idx;
+    }) : [];
+    var sets = dataSets();
+    for (var ds = 0; ds < sets.length; ds++) {
+      var root = sets[ds];
+      if (!root) continue;
+      if (Array.isArray(root.final_state_results)) {
+        for (var si = 0; si < root.final_state_results.length; si++) {
+          var stateRow = root.final_state_results[si];
+          if (!stateRow || !Array.isArray(stateRow.result)) continue;
+          for (var ai = 0; ai < ids.length; ai++) {
+            var candidateId = ids[ai];
+            var exists = stateRow.result.some(function (row) { return row && Number(row.candidate) === candidateId; });
+            if (!exists) stateRow.result.push({ candidate: candidateId, votes: 0, percent: 0, electoral_votes: 0 });
+          }
+        }
+      }
+      if (Array.isArray(root.final_overall_results)) {
+        for (var aj = 0; aj < ids.length; aj++) {
+          var overallId = ids[aj];
+          var overallExists = root.final_overall_results.some(function (row) { return row && Number(row.candidate) === overallId; });
+          if (!overallExists) root.final_overall_results.push({ candidate: overallId, popular_votes: 0, electoral_votes: 0 });
+        }
+      }
+    }
+  }
   function applyHippielLead(active) {
-    var boazByState = { 6661: 1.45, 6662: 0.7, 6663: 0.7, 6664: 1.45, 6665: 1.45, 6666: 4, 6667: 6, 6668: 10};
-    var sakhiByState = { 6661: 0.35, 6662: 0.35, 6663: 0.35, 6664: 0.35, 6665: 0.35, 6666: 0.35, 6667: 0.35, 6668: 0.35 };
+    var boazByState = { 6661: 6.0, 6662: 4.8, 6663: 4.6, 6664: 7.0, 6665: 7.4, 6666: 16.0, 6667: 24.0, 6668: 36.0 };
+    var sakhiByState = { 6661: 0.14, 6662: 0.12, 6663: 0.12, 6664: 0.10, 6665: 0.10, 6666: 0.06, 6667: 0.04, 6668: 0.03 };
     var golanSpecial = active && rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER);
     var zoeyFields = {
       first_name: 'First lady, Commander in Sniff and secret Mossad agent',
@@ -1698,20 +1769,65 @@ function applyScrewHistoryCoalitionOverride() {
       }
     }
   }
+
+  function rabinLatchBranchAnswer(answerId) {
+    var id = Number(answerId);
+    var roots = [];
+    if (campaignTrail_temp) roots.push(campaignTrail_temp);
+    if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
+    for (var ri = 0; ri < roots.length; ri++) {
+      var root = roots[ri];
+      if (!root) continue;
+      if (id === 301404) root.__pickedScrewHistory = true;
+      if (id === 301602) root.__pickedMinorityNormal = true;
+      if (id === 301702) root.__pickedPeresTakeover = true;
+      if (id === 301703) root.__picked301703 = true;
+      if (id === 301803) root.__pickedHippiel = true;
+    }
+  }
   document.addEventListener("click", function (evt) {
     try {
       var target = evt.target;
       if (!target || target.id !== "answer_select_button") return;
       var picked = document.querySelector("input[name='game_answers']:checked");
       if (!picked) return;
-      rabinLatchBranchAnswer(Number(picked.value));
+      var pickedId = Number(picked.value);
+      if (pickedId === 301803) {
+        if (!Array.isArray(campaignTrail_temp.player_answers)) campaignTrail_temp.player_answers = [];
+        if (campaignTrail_temp.player_answers.indexOf(301803) === -1) campaignTrail_temp.player_answers.push(301803);
+        if (typeof e !== 'undefined' && e) {
+          if (!Array.isArray(e.player_answers)) e.player_answers = [];
+          if (e.player_answers.indexOf(301803) === -1) e.player_answers.push(301803);
+        }
+        israel96RabinSetQuestionCount(RABIN_HIPPIEL_QUESTION_COUNT);
+        if (typeof window.applyRabinHippielSurpriseState === 'function') window.applyRabinHippielSurpriseState(true);
+      }
+      rabinLatchBranchAnswer(pickedId);
       applyScrewHistoryCoalitionOverride();
       if ((Number(picked.value) === 301404 || !!campaignTrail_temp.__pickedScrewHistory || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory)) && typeof setQuestion6Variant === 'function') setQuestion6Variant(false);
+      if (Number(picked.value) === 301702 || !!campaignTrail_temp.__pickedPeresTakeover || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover)) window.applyRabinPeresState(true);
+      if (Number(picked.value) === 301803 || !!campaignTrail_temp.__pickedHippiel || !!(typeof e !== 'undefined' && e && e.__pickedHippiel)) {
+        if (typeof window.applyRabinHippielSurpriseState === 'function') window.applyRabinHippielSurpriseState(true);
+        if ((Number(picked.value) === 301404 || !!campaignTrail_temp.__pickedScrewHistory || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory))) {
+          window.applyRabinHippielState(true);
+        }
+      }
       applyScrewHistoryQuestion6Override();
+      if (Number(picked.value) === 301404 || !!campaignTrail_temp.__pickedScrewHistory || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory)) applyAssadeenLead(true);
+      applyScrewHistoryLebanonOverride();
       if (typeof e !== 'undefined' && e) {
+      if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
         e.answer_feedback_json = campaignTrail_temp.answer_feedback_json;
         e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
         e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
+        e.questions_json = campaignTrail_temp.questions_json;
+        e.answers_json = campaignTrail_temp.answers_json;
+        e.candidate_json = campaignTrail_temp.candidate_json;
+        e.opponents_list = campaignTrail_temp.opponents_list;
+        e.opponents_default_json = campaignTrail_temp.opponents_default_json;
+        e.opponents_weighted_json = campaignTrail_temp.opponents_weighted_json;
+        e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
+        e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
       }
     } catch (err) {}
   }, true);
@@ -1722,11 +1838,17 @@ function applyScrewHistoryCoalitionOverride() {
     setQuestion6Variant(usePeres);
     pinCurrentQuestionAnswers();
     applyPeresLead(usePeres);
+    window.applyRabinPeresState();
     applyAssadeenLead(rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER));
-    applyHippielLead(rabinHasAnswer(RABIN_HIPPIEL_ANSWER));
+    applyHippielLead(rabinHasAnswer(RABIN_HIPPIEL_ANSWER) && rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER));
+    if (rabinHasAnswer(RABIN_HIPPIEL_ANSWER)) {
+      if (typeof window.applyRabinHippielSurpriseState === 'function') window.applyRabinHippielSurpriseState();
+      if (rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER) && typeof window.applyRabinHippielState === 'function') window.applyRabinHippielState();
+    }
     applyScrewHistoryCoalitionOverride();
     applyScrewHistoryQuestion6Override();
     applyScrewHistoryLebanonOverride();
+    if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
     applyPeresLateGlobalOverrides();
     applyQuestion25Overrides();
     if (usePeres) applyPeresTakeover();
@@ -1736,6 +1858,8 @@ function applyScrewHistoryCoalitionOverride() {
       e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
       e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
       e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+      e.questions_json = campaignTrail_temp.questions_json;
+      e.answers_json = campaignTrail_temp.answers_json;
     }
     var answerCount = Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers.length : 0;
     if (usePeres && window.israel96PeresLastAnswerCount !== answerCount) {
@@ -1747,6 +1871,69 @@ function applyScrewHistoryCoalitionOverride() {
       window.israel96PeresLastAnswerCount = null;
     }
   }, 100);
+  if (!window.israel96ImmediateAnswerHookInstalled) {
+    window.israel96ImmediateAnswerHookInstalled = true;
+    var israel96HookTimer = setInterval(function() {
+      if (typeof n !== "function" || !campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return;
+      clearInterval(israel96HookTimer);
+      var originalAnswerHandler = n;
+      n = function(t) {
+        var clickedAnswer = Number(t);
+        var result = originalAnswerHandler(t);
+        try {
+          if (campaignTrail_temp && campaignTrail_temp.__activeCode2 === "1996_Israel_RabinLabor" && clickedAnswer === 301702) {
+            setTimeout(function() {
+              try {
+                if (!Array.isArray(campaignTrail_temp.player_answers)) campaignTrail_temp.player_answers = [];
+                campaignTrail_temp.player_answers = campaignTrail_temp.player_answers.map(function(a){ return Number(a); });
+                if (campaignTrail_temp.player_answers.indexOf(301702) === -1) campaignTrail_temp.player_answers.push(301702);
+                campaignTrail_temp.__pickedPeresTakeover = true;
+                campaignTrail_temp.peres_intro_seen = false;
+                if (typeof e !== 'undefined' && e) {
+                  e.__pickedPeresTakeover = true;
+                  e.player_answers = campaignTrail_temp.player_answers.slice();
+                  e.peres_intro_seen = false;
+                }
+                if (typeof setQuestion6Variant === 'function') setQuestion6Variant(true);
+                if (typeof applyPeresLateGlobalOverrides === 'function') applyPeresLateGlobalOverrides();
+                if (typeof applyQuestion25Overrides === 'function') applyQuestion25Overrides();
+                if (typeof applyPeresLateStateOverrides === 'function') applyPeresLateStateOverrides(true);
+                if (typeof applyPeresTakeover === 'function') applyPeresTakeover();
+                if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
+                campaignTrail_temp.candidate_id = 1002;
+                if (typeof e !== 'undefined' && e) {
+                  e.candidate_id = 1002;
+                  e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
+                  e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
+                  e.answer_feedback_json = campaignTrail_temp.answer_feedback_json;
+                  e.questions_json = campaignTrail_temp.questions_json;
+                  e.answers_json = campaignTrail_temp.answers_json;
+                  e.candidate_json = campaignTrail_temp.candidate_json;
+                  e.opponents_list = campaignTrail_temp.opponents_list;
+                  e.opponents_default_json = campaignTrail_temp.opponents_default_json;
+                  e.opponents_weighted_json = campaignTrail_temp.opponents_weighted_json;
+                  e.candidate_issue_score_json = campaignTrail_temp.candidate_issue_score_json;
+                  e.candidate_state_multiplier_json = campaignTrail_temp.candidate_state_multiplier_json;
+                }
+                if (typeof window.applyRabinPeresState === 'function') window.applyRabinPeresState(true);
+                try { if (typeof mapCache === 'function') mapCache(true); } catch (err) {}
+              } catch (err) {}
+            }, 0);
+          }
+          if (campaignTrail_temp && campaignTrail_temp.__activeCode2 === "1996_Israel_RabinLabor" && clickedAnswer === 301803) {
+            if (!Array.isArray(campaignTrail_temp.player_answers)) campaignTrail_temp.player_answers = [];
+            if (campaignTrail_temp.player_answers.indexOf(301803) === -1) campaignTrail_temp.player_answers.push(301803);
+            if (typeof window.applyRabinHippielSurpriseState === 'function') window.applyRabinHippielSurpriseState();
+            if (typeof e !== 'undefined' && e) {
+              e.player_answers = campaignTrail_temp.player_answers.slice();
+            }
+            if (rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER) && typeof window.applyRabinHippielState === 'function') window.applyRabinHippielState();
+          }
+        } catch (err) {}
+        return result;
+      };
+    }, 25);
+  }
 })();
 (function() {
   var PERES_DEATH_ANSWER = 301702;
@@ -1758,36 +1945,55 @@ function applyScrewHistoryCoalitionOverride() {
     var peres = typeof getPeresTemplate === 'function' ? getPeresTemplate() : null;
     if (!peres || !peres.fields) return;
     var game = document.getElementById('game_window');
-    if (!game) return;
-    if (document.getElementById('peres_intro_continue')) return;
-    var candidateScreen = document.createElement('div');
-    candidateScreen.classList.add('inner_window_w_desc');
-    candidateScreen.id = 'inner_window_candidate';
-    game.style.position = 'relative';
-    candidateScreen.style.position = 'absolute';
-    candidateScreen.style.left = '50%';
-    candidateScreen.style.top = '12px';
-    candidateScreen.style.transform = 'translateX(-50%)';
-    candidateScreen.style.zIndex = '20';
-    candidateScreen.style.width = 'calc(100% - 24px)';
-    candidateScreen.style.maxWidth = '980px';
-    candidateScreen.innerHTML = '<div id="candidate_form"></div><div class="person_description_window" id="candidate_description_window"></div><p><button class="person_button" id="peres_intro_continue" type="button">Continue</button></p>';
-    if (typeof changeGameDisp === 'function') changeGameDisp(true);
-    game.appendChild(candidateScreen);
-    var descWin = document.getElementById('candidate_description_window');
-    if (descWin) {
-      descWin.innerHTML = '<div class="person_image" id="candidate_image"><img src="' + peres.fields.image_url + '" width="210" height="250"/></div><div class="person_summary" id="candidate_summary"><ul><li>Name: ' + peres.fields.first_name + ' ' + peres.fields.last_name + '</li><li>' + ((typeof e !== 'undefined' && e && e.PartyText) ? e.PartyText : 'Party:') + ' ' + peres.fields.party + '</li><li>' + ((typeof e !== 'undefined' && e && e.HomeStateText) ? e.HomeStateText : 'Home State:') + ' ' + peres.fields.state + '</li></ul>' + peres.fields.description + '</div>';
+    if (!game || document.getElementById('peres_intro_window')) return;
+    var overlayHtml = '' +
+      '<div class="overlay" id="peres_intro_overlay"></div>' +
+      '<div class="overlay_window" id="peres_intro_window">' +
+      '  <div class="overlay_window_content" id="peres_intro_content">' +
+      '    <div class="inner_window_w_desc">' +
+      '      <div class="person_description_window" id="candidate_description_window">' +
+      '        <div class="person_image" id="candidate_image">' +
+      '          <img src="' + peres.fields.image_url + '" width="210" height="250"/>' +
+      '        </div>' +
+      '        <div class="person_summary" id="candidate_summary">' +
+      '          <ul><li>Name: ' + peres.fields.first_name + ' ' + peres.fields.last_name + '</li><li>Party: ' + peres.fields.party + '</li><li>Home State: ' + peres.fields.state + '</li></ul>' + peres.fields.description +
+      '        </div>' +
+      '      </div>' +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="overlay_buttons" id="peres_intro_buttons">' +
+      '    <button class="person_button" id="peres_intro_continue" type="button">Continue</button><br>' +
+      '  </div>' +
+      '</div>';
+    game.insertAdjacentHTML('beforeend', overlayHtml);
+    var win = document.getElementById('peres_intro_window');
+    if (win) {
+      win.style.width = '820px';
+      win.style.maxWidth = '92vw';
+      win.style.left = '50%';
+      win.style.transform = 'translateX(-50%)';
+      win.style.marginLeft = '0';
     }
-    window.scrollTo(0, 0);
+    var content = document.getElementById('peres_intro_content');
+    if (content) {
+      content.style.maxHeight = '78vh';
+      content.style.overflow = 'hidden';
+    }
+    var summary = document.getElementById('candidate_summary');
+    if (summary) {
+      summary.style.maxHeight = '460px';
+      summary.style.overflowY = 'auto';
+      summary.style.overflowX = 'hidden';
+      summary.style.webkitOverflowScrolling = 'touch';
+    }
     var btn = document.getElementById('peres_intro_continue');
     if (btn) btn.onclick = function(evt) {
       if (evt && typeof evt.preventDefault === 'function') evt.preventDefault();
       if (evt && typeof evt.stopPropagation === 'function') evt.stopPropagation();
       campaignTrail_temp.peres_intro_seen = true;
       if (typeof e !== 'undefined' && e) e.peres_intro_seen = true;
-      var existingOverlay = document.getElementById('inner_window_candidate');
-      if (existingOverlay && existingOverlay.parentNode) existingOverlay.parentNode.removeChild(existingOverlay);
-      if (typeof changeGameDisp === 'function') changeGameDisp(false);
+      var ov = document.getElementById('peres_intro_overlay'); if (ov) ov.remove();
+      var winEl = document.getElementById('peres_intro_window'); if (winEl) winEl.remove();
       return false;
     };
   }
@@ -1796,6 +2002,10 @@ function applyScrewHistoryCoalitionOverride() {
     if (document.getElementById('peres_intro_continue')) return;
     if (document.getElementById('visit_window')) return;
     if (document.getElementById('feedback_window')) return;
+    campaignTrail_temp.peres_intro_seen = false;
+    if (typeof setQuestion6Variant === 'function') setQuestion6Variant(true);
+    if (typeof applyPeresTakeover === 'function') applyPeresTakeover();
+    if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
     buildPeresOverlay();
   }
   if (window.israel96PeresIntroLoop) clearInterval(window.israel96PeresIntroLoop);
@@ -2096,6 +2306,8 @@ endingPicker = function(out, totv, aa, quickstats) {
     if (typeof e !== 'undefined' && Array.isArray(e.candidate_json)) {
       var boaz = findCandidate(e.candidate_json, 1002);
       var sakhi = findCandidate(e.candidate_json, 1001);
+      var zoey = findCandidate(e.candidate_json, 1011);
+      var assadeen = findCandidate(e.candidate_json, 1010);
       if (boaz && boaz.fields) {
         boaz.fields.first_name = 'Boaz';
         boaz.fields.last_name = 'Wachtel';
@@ -2108,10 +2320,26 @@ endingPicker = function(out, totv, aa, quickstats) {
         sakhi.fields.party = 'Sakhim';
         sakhi.fields.color_hex = sakhiColor;
       }
+      if (zoey && zoey.fields) {
+        zoey.fields.first_name = 'Zoey';
+        zoey.fields.last_name = 'Israelovich';
+        zoey.fields.party = 'Hairy Not Scary';
+        zoey.fields.color_hex = '#7f1734';
+        zoey.fields.is_active = pickedScrewHistoryForHippiel ? 1 : 0;
+      }
+      if (assadeen && assadeen.fields) {
+        assadeen.fields.first_name = 'Hafez';
+        assadeen.fields.last_name = 'al-Assadeen';
+        assadeen.fields.party = "Ba'ath";
+        assadeen.fields.color_hex = '#000000';
+        assadeen.fields.is_active = pickedScrewHistoryForHippiel ? 1 : 0;
+      }
     }
     if (Array.isArray(campaignTrail_temp.candidate_json)) {
       var boaz2 = findCandidate(campaignTrail_temp.candidate_json, 1002);
       var sakhi2 = findCandidate(campaignTrail_temp.candidate_json, 1001);
+      var zoey2 = findCandidate(campaignTrail_temp.candidate_json, 1011);
+      var assadeen2 = findCandidate(campaignTrail_temp.candidate_json, 1010);
       if (boaz2 && boaz2.fields) {
         boaz2.fields.first_name = 'Boaz';
         boaz2.fields.last_name = 'Wachtel';
@@ -2124,6 +2352,20 @@ endingPicker = function(out, totv, aa, quickstats) {
         sakhi2.fields.party = 'Sakhim';
         sakhi2.fields.color_hex = sakhiColor;
       }
+      if (zoey2 && zoey2.fields) {
+        zoey2.fields.first_name = 'Zoey';
+        zoey2.fields.last_name = 'Israelovich';
+        zoey2.fields.party = 'Hairy Not Scary';
+        zoey2.fields.color_hex = '#7f1734';
+        zoey2.fields.is_active = pickedScrewHistoryForHippiel ? 1 : 0;
+      }
+      if (assadeen2 && assadeen2.fields) {
+        assadeen2.fields.first_name = 'Hafez';
+        assadeen2.fields.last_name = 'al-Assadeen';
+        assadeen2.fields.party = "Ba'ath";
+        assadeen2.fields.color_hex = '#000000';
+        assadeen2.fields.is_active = pickedScrewHistoryForHippiel ? 1 : 0;
+      }
     }
 
 
@@ -2135,7 +2377,7 @@ endingPicker = function(out, totv, aa, quickstats) {
     window.israel96PagedEndingState = null;
     israel96NormalizeResultOrder(aa); israel96RabinSetEndingImage('https://i.imgur.com/9prwd8r.jpeg');
     israel96RabinUseNormalEndingWindow({ gameBg: "#ffffff", resultsBg: "#ffffff", resultsBorder: "#cfcfcf", headerBg: "#ffffff", descBg: "#ffffff", descBorder: "#cfcfcf", textColor: "#000000", separateDesc: true });
-    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon, which turned into the war to get Lebanon out of the Syrian sphere of influence, which turned into the war to install a friendly regime in Lebanon, which turned into the war to protect the Israeli north from the Lebanese terrorist organization it emboldened, was finally brought to an end with an actual "Peace with Honor". Dasvidaniya Livan!<br><br>With the Lebanese normalization agreement signed, the Jewish state wakes up to a refreshing reality of non-hostile borders. While Israelis tourists are not gonna be scooping hummus with pita in Damascus anytime soon, they can at least dial back their long-cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to... stop it! Why can\'t I relax for a goddamn second?';
+    return '<h3><b>A ring of peace?</b></h3><br>And the winner of the election is... who cares? Let\'s talk about the bigger picture. After years of bloodshed, the war to expel the PLO from Lebanon, which turned into the war to get Lebanon out of the Syrian sphere of influence, which turned into the war to install a friendly regime in Lebanon, which turned into the war to protect the Israeli north from the Lebanese terrorist organization it inadvertently created, was finally brought to an end with an actual "Peace with Honor". Dasvidaniya Livan!<br><br>With the Lebanese normalization agreement signed, the Jewish state wakes up to a refreshing reality of non-hostile borders. While Israelis tourists are not gonna be scooping hummus with pita in Damascus anytime soon, they can at least dial back their long-cultivated anxiety. We are not surrounded by enemies, guys! Unless one of the nearby regimes collapses and is replaced by radical lunatics who will foment an insurgency among the still unemancipated Palestinians to... stop it! Its the middle east baby, what is the chance of that happening here anyway?';
   }
 
 
@@ -2185,50 +2427,9 @@ endingPicker = function(out, totv, aa, quickstats) {
       var picked = campaignTrail_temp.player_answers.some(function(v){ return Number(v) === HIPPIEL_ANSWER_ID; });
       if (!picked) return;
       armed = true;
-
-      var lists = [];
-      if (Array.isArray(campaignTrail_temp.candidate_json)) lists.push(campaignTrail_temp.candidate_json);
-      if (typeof e !== 'undefined' && Array.isArray(e.candidate_json)) lists.push(e.candidate_json);
-      for (var li = 0; li < lists.length; li++) {
-        var list = lists[li];
-        for (var i = 0; i < list.length; i++) {
-          var c = list[i];
-          if (!c || !c.fields) continue;
-          if (c.pk === 1002) {
-            c.fields.first_name = 'Boaz';
-            c.fields.last_name = 'Wachtel';
-            c.fields.party = 'Ale Yarok (Green Leaf)';
-            c.fields.color_hex = '#6ea86a';
-          }
-          if (c.pk === 1001) {
-            c.fields.first_name = 'Sakhi';
-            c.fields.last_name = 'Balata';
-            c.fields.party = 'Sakhim';
-            c.fields.color_hex = '#ffd400';
-          }
-        }
-      }
-
-      campaignTrail_temp.candidate_id = 1002;
-      if (!Array.isArray(campaignTrail_temp.opponents_list)) campaignTrail_temp.opponents_list = [1001];
-      campaignTrail_temp.candidate_last_name = 'Wachtel';
-      campaignTrail_temp.running_mate_last_name = 'Balata';
-      campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
-      if (Array.isArray(campaignTrail_temp.global_parameter_json) && campaignTrail_temp.global_parameter_json[0] && campaignTrail_temp.global_parameter_json[0].fields) {
-        campaignTrail_temp.global_parameter_json[0].fields.question_count = 6;
-      }
-      if (typeof e !== 'undefined') {
-        e.candidate_id = 1002;
-        if (!Array.isArray(e.opponents_list)) e.opponents_list = [1001];
-        e.candidate_last_name = 'Wachtel';
-        e.running_mate_last_name = 'Balata';
-        e.candidate_image_url = 'https://i.imgur.com/w6D5Wdn.png';
-        if (Array.isArray(e.global_parameter_json) && e.global_parameter_json[0] && e.global_parameter_json[0].fields) {
-          e.global_parameter_json[0].fields.question_count = 6;
-        }
-      }
-
-      
+      if (typeof window.applyRabinHippielSurpriseState === 'function') window.applyRabinHippielSurpriseState(true);
+      var pickedScrewHistoryNow = campaignTrail_temp.player_answers.some(function(v){ return Number(v) === 301404; });
+      if (pickedScrewHistoryNow && typeof window.applyRabinHippielState === 'function') window.applyRabinHippielState(true);
     } catch (err) {
     }
   }, 25);
@@ -2604,53 +2805,39 @@ endingPicker = function(out, totv, aa, quickstats) {
 })();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(function () {
+  if (window.israel96RabinLatestResPatched) return;
+  window.israel96RabinLatestResPatched = true;
+  var patchTimer = setInterval(function () {
+    if (typeof getLatestRes !== 'function') return;
+    clearInterval(patchTimer);
+    var originalGetLatestRes = getLatestRes;
+    getLatestRes = function (t) {
+      try {
+        if (campaignTrail_temp && campaignTrail_temp.__activeCode2 === '1996_Israel_RabinLabor' && Array.isArray(t) && typeof e !== 'undefined' && e) {
+          var activeIds = [];
+          if (typeof e.candidate_id !== 'undefined') activeIds.push(Number(e.candidate_id));
+          if (Array.isArray(e.opponents_list)) {
+            for (var oi = 0; oi < e.opponents_list.length; oi++) activeIds.push(Number(e.opponents_list[oi]));
+          }
+          activeIds = activeIds.filter(function (id, idx, arr) { return !isNaN(id) && arr.indexOf(id) === idx; });
+          for (var si = 0; si < t.length; si++) {
+            var state = t[si];
+            if (!state || !Array.isArray(state.result)) continue;
+            for (var ai = 0; ai < activeIds.length; ai++) {
+              var candidateId = activeIds[ai];
+              var exists = state.result.some(function (row) { return row && Number(row.candidate) === candidateId; });
+              if (!exists) {
+                state.result.push({ candidate: candidateId, votes: 0, percent: 0, electoral_votes: 0 });
+              }
+            }
+          }
+        }
+      } catch (err) {}
+      return originalGetLatestRes(t);
+    };
+  }, 25);
+})();
 
 (function () {
   function hideElectoralVotesUi() {
@@ -2690,6 +2877,25 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (window.israel96RabinHideEvLoop) clearInterval(window.israel96RabinHideEvLoop);
   window.israel96RabinHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
