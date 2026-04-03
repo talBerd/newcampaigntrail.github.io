@@ -1,4 +1,4 @@
-﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 window.__israel96RabinLaborBuildTag = "RABIN_MOD_BUILD_2026_04_03_A";
 try { console.log("RABIN_MOD_BUILD_2026_04_03_A"); } catch (err) {}
 
@@ -1095,9 +1095,6 @@ var QUESTION7_AYYASH = {
   function hasRallyBridgeAfterScrewHistory() {
     return rabinHasAnswer(301404) && (rabinHasAnswer(301701) || rabinHasAnswer(301703));
   }
-  function hasPeresLateBranch() {
-    return rabinHasAnswer(301702) || rabinHasAnswer(301701) || rabinHasAnswer(301703) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(campaignTrail_temp && campaignTrail_temp.__picked301703);
-  }
 
 function applyScrewHistoryCoalitionOverride() {
   var roots = [];
@@ -1105,7 +1102,7 @@ function applyScrewHistoryCoalitionOverride() {
   if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
   var pickedScrewHistory = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301404) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory));
   var pickedMinorityNormal = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301602) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal));
-  var pickedPeresTakeover = hasPeresLateBranch() || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover) || hasRallyBridgeAfterScrewHistory();
+  var pickedPeresTakeover = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover) || hasRallyBridgeAfterScrewHistory());
   for (var ri = 0; ri < roots.length; ri++) {
     var root = roots[ri] || {};
     if (Array.isArray(root.answer_feedback_json)) {
@@ -1159,7 +1156,7 @@ function applyScrewHistoryCoalitionOverride() {
   if (typeof e !== 'undefined' && e && e !== campaignTrail_temp) roots.push(e);
   var pickedScrewHistory = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301404) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory));
   var pickedMinorityNormal = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301602) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal));
-  var pickedPeresTakeover = hasPeresLateBranch() || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover) || hasRallyBridgeAfterScrewHistory();
+  var pickedPeresTakeover = (((typeof e !== 'undefined' && Array.isArray(e.player_answers) ? e.player_answers : []).concat(Array.isArray(campaignTrail_temp.player_answers) ? campaignTrail_temp.player_answers : []).map(function(a){ return Number(a); }).indexOf(301702) !== -1) || !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover) || hasRallyBridgeAfterScrewHistory());
   if (pickedPeresTakeover) return;
   for (var ri = 0; ri < roots.length; ri++) {
     var root = roots[ri] || {};
@@ -1241,9 +1238,6 @@ function applyScrewHistoryCoalitionOverride() {
   }
   if (Array.isArray(campaignTrail_temp.answer_score_state_json)) {
     var screwHistory302401 = { 6661: 0.00, 6662: 0.24, 6663: 0.22, 6664: 0.20, 6665: 0.15, 6666: 0.12, 6667: 0.15, 6668: 0.10 };
-    var peres302401 = { 6661: -0.10, 6662: -0.20, 6663: -0.15, 6664: -0.10, 6665: -0.10, 6666: -0.08, 6667: -0.12, 6668: -0.05 };
-    var peres302402 = { 6661: 0.10, 6662: 0.16, 6663: 0.12, 6664: 0.10, 6665: 0.08, 6666: 0.05, 6667: 0.08, 6668: 0.01 };
-    var peres302403 = { 6661: -0.05, 6662: -0.05, 6663: -0.05, 6664: -0.05, 6665: -0.02, 6666: -0.01, 6667: -0.05, 6668: 0.00 };
     for (var si = 0; si < campaignTrail_temp.answer_score_state_json.length; si++) {
       var row = campaignTrail_temp.answer_score_state_json[si];
       if (!row || !row.fields || Number(row.fields.candidate) !== 1002 || Number(row.fields.affected_candidate) !== 1002) continue;
@@ -1252,12 +1246,12 @@ function applyScrewHistoryCoalitionOverride() {
       if (answerId === 302401) {
         if (pickedScrewHistory) {
           if (Object.prototype.hasOwnProperty.call(screwHistory302401, stateId)) row.fields.state_multiplier = screwHistory302401[stateId];
-        } else if (Object.prototype.hasOwnProperty.call(peres302401, stateId)) {
-          row.fields.state_multiplier = peres302401[stateId];
-        }
+        } else if (pickedPeresTakeover && !pickedScrewHistory) {
+        } else if (stateId === 6662) row.fields.state_multiplier = -0.05;
+        else if (stateId === 6663) row.fields.state_multiplier = -0.03;
+        else if (stateId === 6667) row.fields.state_multiplier = -0.02;
+        else if (stateId === 6666 || stateId === 6665) row.fields.state_multiplier = -0.01;
       }
-      if (pickedPeresTakeover && !pickedScrewHistory && answerId === 302402 && Object.prototype.hasOwnProperty.call(peres302402, stateId)) row.fields.state_multiplier = peres302402[stateId];
-      if (pickedPeresTakeover && !pickedScrewHistory && answerId === 302403 && Object.prototype.hasOwnProperty.call(peres302403, stateId)) row.fields.state_multiplier = peres302403[stateId];
     }
   }
   if (pickedScrewHistory) {
@@ -1269,20 +1263,7 @@ function applyScrewHistoryCoalitionOverride() {
       if (mixedRow && mixedRow.fields) mixedRow.fields.state_multiplier = screwHistory302401[mixedStateId];
     }
   }
-  if (pickedPeresTakeover && !pickedScrewHistory) {
-    var stateIdsPeresLebanon = [6661,6662,6663,6664,6665,6666,6667,6668];
-    for (var ps = 0; ps < stateIdsPeresLebanon.length; ps++) {
-      var peresStateId = stateIdsPeresLebanon[ps];
-      var peresRow401 = ensureStateScore(302401, peresStateId, 995401 + ps);
-      var peresRow402 = ensureStateScore(302402, peresStateId, 995402 + ps);
-      var peresRow403 = ensureStateScore(302403, peresStateId, 995403 + ps);
-      if (peresRow401 && peresRow401.fields) peresRow401.fields.state_multiplier = peres302401[peresStateId];
-      if (peresRow402 && peresRow402.fields) peresRow402.fields.state_multiplier = peres302402[peresStateId];
-      if (peresRow403 && peresRow403.fields) peresRow403.fields.state_multiplier = peres302403[peresStateId];
-    }
-  }
   if (typeof e !== "undefined" && e) {
-    dedupeScoreRows(campaignTrail_temp);
     e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
     e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
   }
@@ -1937,7 +1918,6 @@ function applyScrewHistoryCoalitionOverride() {
     applyScrewHistoryLebanonOverride();
     if (typeof pinCurrentQuestionAnswers === 'function') pinCurrentQuestionAnswers();
     applyPeresLateGlobalOverrides();
-    if (typeof applyPeresLateStateOverrides === 'function') applyPeresLateStateOverrides(false);
     applyPeresLateEffectsForScrewHistory();
     applyQuestion25Overrides();
     applyZeroLateGlobalsForScrewHistory();
@@ -2484,7 +2464,7 @@ endingPicker = function(out, totv, aa, quickstats) {
      return '<h3><b>Loser No More</b></h3><br><br>It always looked likely, but a lot of things could have gone wrong,  and we are talking about Peres. The elected prime minister could not have felt happier. For the first time in his life, he received an outright mandate from the people. He smiled to the cameras, feeling that the future is bright and full of opportunities.<br><br>Can Peres save the peace process and bring about a new middle east? I will let you decide.';
     }
     israel96RabinSetEndingImage('https://i.imgur.com/hwD0WSJ.jpeg');
-    return '<h3><b>New Horizons</b></h3><br><br>Just like in 1992, the crowd had gone wild. You again waited for them to tone down their voices before beginning your speech, this time remembering to smile as you delivered it. I will go on," you declared. "That\'s the people\'s choice."<br><br>After you left the stage, the phones began to ring. Bill Clinton, Hosni Mubarak, Yasser Arafat, all lined up to congratulate you, quite pleased that the man they know and have learned to respect is staying in charge.<br><br>It is May 23, 1997. Just 30 years ago, you were a complete wreck. Doubts over whether the army was ready for the upcoming Six-Day War, amplified by a tense meeting with the retired David Ben-Gurion, were eating you alive. You stayed home that day on brief "sick leave". Then you returned and, with the backing of the newly appointed defense minister Moshe Dayan, launched a preemptive strike, \"Operation Focus\", achieving the crucial air supremacy that allowed Israel to win the war decisively.<br><br>The then Syrian defense minister, Hafez al-Assad, seized the presidency just three years later. He remembered you well, and, curiously enough, your role then made him confident in your ability to deliver at the negotiating table as well. "He is as serious as ever", said the emissary you sent to him.<br><br>You know the window is short. You won\'t be here forever, and neither will Hafez. It is in your hands to decide whether to place your faith in the Syrians, and take the leap, or not.';
+    return '<h3><b>New Horizons</b></h3><br><br>Just like in 1992, the crowd had gone wild. You again waited for them to tone down their voices before beginning your speech, this time remembering to smile as you delivered it. I will go on," you declared. "That\'s the people\'s choice."<br><br>After you left the stage, the phones began to ring. Bill Clinton, Hosni Mubarak, Yasser Arafat, all lined up to congratulate you, quite pleased that the man they know and have learned to respect is staying in charge.<br><br>It is May 23, 1997. Just 30 years ago, you were a complete wreck. Doubts over whether the army was ready for the upcoming Six-Day War, amplified by a tense meeting with the retired David Ben-Gurion, were eating you alive. You stayed home that day on brief "sick leave." Then you returned and, with the backing of the newly appointed defense minister Moshe Dayan, launched a preemptive strike, \"Operation Focus\", achieving the crucial air supremacy that allowed Israel to win the war decisively.<br><br>The then Syrian defense minister, Hafez al-Assad, seized the presidency just three years later. He remembered you well, and, curiously enough, your role then made him confident in your ability to deliver at the negotiating table as well. "He is as serious as ever", said the emissary you sent to him.<br><br>You know the window is short. You won\'t be here forever, and neither will Hafez. It is in your hands to decide whether to place your faith in the Syrians, and take the leap, or not.';
   }
   israel96RabinUseNormalEndingWindow({ gameBg: "#204f95", resultsBg: "#2b63b7", resultsBorder: "#183f79", headerBg: "#12386e", descBg: pinkThemeBase.descBg, descBorder: pinkThemeBase.descBorder, textColor: pinkThemeBase.textColor, separateDesc: true });
   if (activeCandidate && activeCandidate.fields && activeCandidate.fields.last_name === 'Peres') {
