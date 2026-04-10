@@ -1,4 +1,4 @@
-﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+﻿﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 window.__israel96RabinLaborBuildTag = "RABIN_MOD_BUILD_2026_04_03_A";
 try { console.log("RABIN_MOD_BUILD_2026_04_03_A"); } catch (err) {}
 
@@ -1588,6 +1588,7 @@ function applyScrewHistoryCoalitionOverride() {
         }
       }
     }
+    if (document.getElementById('peres_intro_window')) return;
     var a = document.getElementById('candidate_pic'); if (a) a.src = peres.fields.image_url;
     var b = document.getElementById('running_mate_pic'); if (b && labor && labor.fields) b.src = labor.fields.image_url;
     var cImg = document.querySelector('#candidate_image img'); if (cImg) cImg.src = peres.fields.image_url;
@@ -2063,17 +2064,25 @@ function applyScrewHistoryCoalitionOverride() {
       win.style.left = '50%';
       win.style.transform = 'translateX(-50%)';
       win.style.marginLeft = '0';
+      win.style.height = 'auto';
+      win.style.maxHeight = '88vh';
+      win.style.display = 'flex';
+      win.style.flexDirection = 'column';
     }
     var content = document.getElementById('peres_intro_content');
     if (content) {
-      content.style.maxHeight = '78vh';
-      content.style.overflow = 'hidden';
+      content.style.height = 'auto';
+      content.style.maxHeight = 'calc(88vh - 90px)';
+      content.style.flex = '1 1 auto';
+      content.style.overflowY = 'auto';
+      content.style.overflowX = 'hidden';
+      content.style.webkitOverflowScrolling = 'touch';
     }
     var summary = document.getElementById('candidate_summary');
     if (summary) {
-      summary.style.maxHeight = '460px';
-      summary.style.overflowY = 'auto';
-      summary.style.overflowX = 'hidden';
+      summary.style.maxHeight = 'none';
+      summary.style.overflowY = 'visible';
+      summary.style.overflowX = 'visible';
       summary.style.webkitOverflowScrolling = 'touch';
     }
     var btn = document.getElementById('peres_intro_continue');
@@ -2967,48 +2976,6 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (window.israel96RabinHideEvLoop) clearInterval(window.israel96RabinHideEvLoop);
   window.israel96RabinHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
