@@ -1,4 +1,4 @@
-﻿campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
+campaignTrail_temp.__activeCode2 = "1996_Israel_RabinLabor";
 window.__israel96RabinLaborBuildTag = "RABIN_MOD_BUILD_2026_04_03_A";
 try { console.log("RABIN_MOD_BUILD_2026_04_03_A"); } catch (err) {}
 
@@ -729,7 +729,7 @@ campaignTrail_temp.answers_json = [
 campaignTrail_temp.answer_feedback_json = [
   { "model": "campaign_trail.answer_feedback", "pk": 9301, "fields": { "answer": 301301, "candidate": 1002, "answer_feedback": "On 25 February 1994, a Jewish settler named Baruch Goldstein entered a mosque in Hebron during Ramadan and started shooting indiscriminately, killing dozens of people before being killed himself by the survivors. Rabin condemned the attack, and the far-right Kach party, of which Goldstein was a member, was swiftly banned, but the damage was done. Soon enough, yet more Israelis were blown up." } },
 
-  { "model": "campaign_trail.answer_feedback", "pk": 9501, "fields": { "answer": 301501, "candidate": 1002, "answer_feedback": "The intelligence wasted too much time looking for him in Gaza instead of the West Bank. Special-unit soldiers tried to get to him at the last minute, but the door behind which he was held was stronger than expected. Wachsman was shot, and you convened a press conference, taking full responsibility for the failure." } },
+  { "model": "campaign_trail.answer_feedback", "pk": 9501, "fields": { "answer": 301501, "candidate": 1002, "answer_feedback": "The intelligence wasted too much time looking for him in Gaza instead of the West Bank. Special unit soldiers tried to get to him at the last minute, but the door behind which he was held was stronger than expected. Wachsman was shot, and you convened a press conference, taking full responsibility for the failure." } },
 
   { "model": "campaign_trail.answer_feedback", "pk": 9502, "fields": { "answer": 301502, "candidate": 1002, "answer_feedback": "Congrats! Nachshon Wachsman was brought back alive and well." } },
 
@@ -1328,22 +1328,31 @@ function applyScrewHistoryCoalitionOverride() {
   var RABIN_GOLAN_STATE_ID = 6661;
   var RABIN_ASSADEEN_PK = 1010;
   var RABIN_ZOEY_PK = 1011;
+  var RABIN_ORIGINAL_STATE_BASES = {
+    1001: { 6661: 1.0, 6662: 0.75, 6663: 0.75, 6664: 1.0, 6665: 0.75, 6666: 1.3, 6667: 1.05, 6668: 2.2 },
+    1002: { 6661: 1.2, 6662: 1.0, 6663: 1.0, 6664: 1.0, 6665: 1.25, 6666: 0.9, 6667: 0.9, 6668: 0.5 }
+  };
+
+  function getRabinOriginalStateBase(candidateId, stateId, fallback) {
+    var cid = Number(candidateId);
+    var sid = Number(stateId);
+    if (RABIN_ORIGINAL_STATE_BASES[cid] && typeof RABIN_ORIGINAL_STATE_BASES[cid][sid] !== "undefined") {
+      return Number(RABIN_ORIGINAL_STATE_BASES[cid][sid]);
+    }
+    return Number(fallback) || 0;
+  }
 
   window.applyRabinHippielSurpriseState = function(forceApply) {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
-    if (!Array.isArray(campaignTrail_temp.player_answers)) return false;
-    var pickedNow = campaignTrail_temp.player_answers.some(function (v) { return Number(v) === RABIN_HIPPIEL_ANSWER; });
+    var mergedAnswers = syncRabinPlayerAnswers();
+    if (!Array.isArray(mergedAnswers)) return false;
+    var pickedNow = mergedAnswers.some(function (v) { return Number(v) === RABIN_HIPPIEL_ANSWER; });
     if (!forceApply && !pickedNow) return false;
-    if (campaignTrail_temp.__hippielSurpriseApplied) return true;
     var boazColor = '#6ea86a';
     var sakhiColor = '#ffd400';
-    var pickedScrewHistory = campaignTrail_temp.player_answers.some(function (v) { return Number(v) === RABIN_GOLAN_TRIGGER_ANSWER; }) || !!campaignTrail_temp.__pickedScrewHistory || !!(typeof e !== "undefined" && e && e.__pickedScrewHistory);
-    var boazByState = pickedScrewHistory
-      ? { 6661: 6.0, 6662: 4.8, 6663: 4.6, 6664: 7.0, 6665: 7.4, 6666: 16.0, 6667: 24.0, 6668: 36.0 }
-      : { 6661: 3.2, 6662: 2.6, 6663: 2.5, 6664: 3.5, 6665: 3.8, 6666: 6.0, 6667: 9.0, 6668: 12.0 };
-    var sakhiByState = pickedScrewHistory
-      ? { 6661: 0.14, 6662: 0.12, 6663: 0.12, 6664: 0.10, 6665: 0.10, 6666: 0.06, 6667: 0.04, 6668: 0.03 }
-      : { 6661: 0.22, 6662: 0.20, 6663: 0.20, 6664: 0.18, 6665: 0.18, 6666: 0.12, 6667: 0.10, 6668: 0.08 };
+    var pickedScrewHistory = rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER);
+    var surpriseMode = pickedScrewHistory ? 'golan' : 'base';
+    if (campaignTrail_temp.__hippielSurpriseApplied && campaignTrail_temp.__hippielSurpriseMode === surpriseMode) return true;
     var roots = [];
     if (campaignTrail_temp) roots.push(campaignTrail_temp);
     if (typeof e !== "undefined" && e && e !== campaignTrail_temp) roots.push(e);
@@ -1358,20 +1367,8 @@ function applyScrewHistoryCoalitionOverride() {
           if (c.pk === 1001) { c.fields.first_name = 'Sakhi'; c.fields.last_name = 'Balata'; c.fields.party = 'Sakhim'; c.fields.color_hex = sakhiColor; }
         }
       }
-      if (Array.isArray(root.candidate_state_multiplier_json)) {
-        for (var mi = 0; mi < root.candidate_state_multiplier_json.length; mi++) {
-          var row = root.candidate_state_multiplier_json[mi];
-          if (!row || !row.fields) continue;
-          var cand = Number(row.fields.candidate);
-          var sid = Number(row.fields.state);
-          if (cand !== 1001 && cand !== 1002) continue;
-          if (typeof row.fields.__hippiel_surprise_base_mult === 'undefined') row.fields.__hippiel_surprise_base_mult = Number(row.fields.state_multiplier) || 0;
-          var base = row.fields.__hippiel_surprise_base_mult;
-          if (cand === 1002) row.fields.state_multiplier = Number((base * (boazByState[sid] || 3.0)).toFixed(4));
-          if (cand === 1001) row.fields.state_multiplier = Number((base * (sakhiByState[sid] || 0.18)).toFixed(4));
-        }
-      }
     }
+    applyHippielLead(true);
     applyHippielMixedScoreOverride();
     campaignTrail_temp.candidate_last_name = 'Wachtel';
     campaignTrail_temp.running_mate_last_name = 'Balata';
@@ -1389,7 +1386,9 @@ function applyScrewHistoryCoalitionOverride() {
     }
     israel96RabinSetQuestionCount(RABIN_HIPPIEL_QUESTION_COUNT);
     campaignTrail_temp.__hippielSurpriseApplied = true;
+    campaignTrail_temp.__hippielSurpriseMode = surpriseMode;
     if (typeof e !== "undefined" && e) e.__hippielSurpriseApplied = true;
+    if (typeof e !== "undefined" && e) e.__hippielSurpriseMode = surpriseMode;
     if (!campaignTrail_temp.__hippielSurpriseMapRefreshed) {
       campaignTrail_temp.__hippielSurpriseMapRefreshed = true;
       try { if (typeof mapCache === 'function') mapCache(true); } catch (err) {}
@@ -1399,11 +1398,34 @@ function applyScrewHistoryCoalitionOverride() {
   window.applyRabinHippielSurpriseState();
 
   function rabinHasAnswer(id) {
-    var ans = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
-    for (var i = 0; i < ans.length; i++) {
-      if (Number(ans[i]) === Number(id)) return true;
+    var targetId = Number(id);
+    var merged = syncRabinPlayerAnswers();
+    for (var i = 0; i < merged.length; i++) {
+      if (Number(merged[i]) === targetId) return true;
     }
+    if (targetId === 301404) return !!(campaignTrail_temp && campaignTrail_temp.__pickedScrewHistory) || !!(typeof e !== 'undefined' && e && e.__pickedScrewHistory);
+    if (targetId === 301602) return !!(campaignTrail_temp && campaignTrail_temp.__pickedMinorityNormal) || !!(typeof e !== 'undefined' && e && e.__pickedMinorityNormal);
+    if (targetId === 301702) return !!(campaignTrail_temp && campaignTrail_temp.__pickedPeresTakeover) || !!(typeof e !== 'undefined' && e && e.__pickedPeresTakeover);
+    if (targetId === 301703) return !!(campaignTrail_temp && campaignTrail_temp.__picked301703) || !!(typeof e !== 'undefined' && e && e.__picked301703);
+    if (targetId === 301803) return !!(campaignTrail_temp && campaignTrail_temp.__pickedHippiel) || !!(typeof e !== 'undefined' && e && e.__pickedHippiel);
     return false;
+  }
+
+  function syncRabinPlayerAnswers() {
+    var ans1 = (campaignTrail_temp && Array.isArray(campaignTrail_temp.player_answers)) ? campaignTrail_temp.player_answers : [];
+    var ans2 = (typeof e !== 'undefined' && e && Array.isArray(e.player_answers)) ? e.player_answers : [];
+    var merged = [];
+    for (var i = 0; i < ans1.length; i++) {
+      var v1 = Number(ans1[i]);
+      if (!isNaN(v1) && merged.indexOf(v1) === -1) merged.push(v1);
+    }
+    for (var j = 0; j < ans2.length; j++) {
+      var v2 = Number(ans2[j]);
+      if (!isNaN(v2) && merged.indexOf(v2) === -1) merged.push(v2);
+    }
+    if (campaignTrail_temp) campaignTrail_temp.player_answers = merged.slice();
+    if (typeof e !== 'undefined' && e) e.player_answers = merged.slice();
+    return merged;
   }
 
 
@@ -1693,7 +1715,8 @@ function applyScrewHistoryCoalitionOverride() {
     if (!campaignTrail_temp || campaignTrail_temp.__activeCode2 !== "1996_Israel_RabinLabor") return false;
     var active = !!forceApply || rabinHasAnswer(RABIN_HIPPIEL_ANSWER);
     if (!active) return false;
-    if (campaignTrail_temp.__hippielZoeyApplied) return true;
+    var zoeyMode = rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER) ? 'golan' : 'base';
+    if (campaignTrail_temp.__hippielZoeyApplied && campaignTrail_temp.__hippielZoeyMode === zoeyMode) return true;
     applyHippielLead(true);
     applyHippielMixedScoreOverride();
     var lists = [];
@@ -1738,7 +1761,9 @@ function applyScrewHistoryCoalitionOverride() {
       e.final_overall_results = campaignTrail_temp.final_overall_results;
     }
     campaignTrail_temp.__hippielZoeyApplied = true;
+    campaignTrail_temp.__hippielZoeyMode = zoeyMode;
     if (typeof e !== "undefined" && e) e.__hippielZoeyApplied = true;
+    if (typeof e !== "undefined" && e) e.__hippielZoeyMode = zoeyMode;
     if (!campaignTrail_temp.__hippielZoeyMapRefreshed) {
       campaignTrail_temp.__hippielZoeyMapRefreshed = true;
       try { if (typeof mapCache === "function") mapCache(true); } catch (err) {}
@@ -1774,9 +1799,10 @@ function applyScrewHistoryCoalitionOverride() {
     }
   }
   function applyHippielLead(active) {
-    var boazByState = { 6661: 6.0, 6662: 4.8, 6663: 4.6, 6664: 7.0, 6665: 7.4, 6666: 16.0, 6667: 24.0, 6668: 36.0 };
-    var sakhiByState = { 6661: 0.14, 6662: 0.12, 6663: 0.12, 6664: 0.10, 6665: 0.10, 6666: 0.06, 6667: 0.04, 6668: 0.03 };
     var golanSpecial = active && rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER);
+    var stateIds = [6661,6662,6663,6664,6665,6666,6667,6668];
+    var boazDirectByState = { 6661: 8.0, 6662: 8.0, 6663: 7.5, 6664: 11.0, 6665: 12.5, 6666: 20.0, 6667: 35.0, 6668: 65.0 };
+    var sakhiDirectByState = { 6661: 0.10, 6662: 0.10, 6663: 0.10, 6664: 0.09, 6665: 0.08, 6666: 0.06, 6667: 0.04, 6668: 0.03 };
     var zoeyFields = {
       first_name: 'First lady, Commander in Sniff and secret Mossad agent',
       last_name: 'Zoey Israelovich',
@@ -1795,6 +1821,16 @@ function applyScrewHistoryCoalitionOverride() {
       candidate_score: 1,
       scrollable: false
     };
+    function ensureMultiplierRow(root, candidateId, stateId, defaultPk) {
+      if (!Array.isArray(root.candidate_state_multiplier_json)) root.candidate_state_multiplier_json = [];
+      for (var i = 0; i < root.candidate_state_multiplier_json.length; i++) {
+        var row = root.candidate_state_multiplier_json[i];
+        if (row && row.fields && Number(row.fields.candidate) === Number(candidateId) && Number(row.fields.state) === Number(stateId)) return row;
+      }
+      var created = { model: 'campaign_trail.candidate_state_multiplier', pk: defaultPk, fields: { candidate: candidateId, state: stateId, state_multiplier: 0 } };
+      root.candidate_state_multiplier_json.push(created);
+      return created;
+    }
     var sets = dataSets();
     for (var ds = 0; ds < sets.length; ds++) {
       var root = sets[ds];
@@ -1817,7 +1853,7 @@ function applyScrewHistoryCoalitionOverride() {
         }
         if (!foundIssue) root.candidate_issue_score_json.push({ model: 'campaign_trail.candidate_issue_score', pk: 9400 + ii, fields: { candidate: RABIN_ZOEY_PK, issue: issueId, issue_score: 0 } });
       }
-      var listKeys = ["opponents_default_json", "opponents_weighted_json"];
+      var listKeys = ['opponents_default_json', 'opponents_weighted_json'];
       for (var li = 0; li < listKeys.length; li++) {
         var key = listKeys[li];
         if (!Array.isArray(root[key])) continue;
@@ -1831,33 +1867,23 @@ function applyScrewHistoryCoalitionOverride() {
       if (!Array.isArray(root.opponents_list)) root.opponents_list = [1001];
       root.opponents_list = root.opponents_list.filter(function (id) { return Number(id) !== RABIN_ZOEY_PK; });
       if (golanSpecial && root.opponents_list.indexOf(RABIN_ZOEY_PK) === -1) root.opponents_list.push(RABIN_ZOEY_PK);
-      if (!Array.isArray(root.candidate_state_multiplier_json)) continue;
-      for (var i2 = 0; i2 < root.candidate_state_multiplier_json.length; i2++) {
-        var row = root.candidate_state_multiplier_json[i2];
-        if (!row || !row.fields) continue;
-        var cand = Number(row.fields.candidate);
-        var sid = Number(row.fields.state);
-        if (cand !== 1001 && cand !== 1002 && cand !== RABIN_ZOEY_PK) continue;
-        if (typeof row.fields.__hippiel_base_mult === "undefined") row.fields.__hippiel_base_mult = Number(row.fields.state_multiplier) || 0;
-        var base = row.fields.__hippiel_base_mult;
-        if (!active) { row.fields.state_multiplier = base; continue; }
-        if (cand === RABIN_ZOEY_PK) row.fields.state_multiplier = golanSpecial ? ((sid === RABIN_GOLAN_STATE_ID) ? 50000000 : 0) : 0;
-        if (cand === 1002) row.fields.state_multiplier = golanSpecial && sid === RABIN_GOLAN_STATE_ID ? 0 : Number((base * (boazByState[sid] || 0.667) * 1.55).toFixed(4));
-        if (cand === 1001) row.fields.state_multiplier = golanSpecial && sid === RABIN_GOLAN_STATE_ID ? 0 : Number((base * (sakhiByState[sid] || 0.333) * 1.05).toFixed(4));
-      }
-      var stateIds = [6661,6662,6663,6664,6665,6666,6667,6668];
       for (var ws = 0; ws < stateIds.length; ws++) {
         var stateId = stateIds[ws];
-        var foundZoey = false;
-        for (var mi = 0; mi < root.candidate_state_multiplier_json.length; mi++) {
-          var mrow = root.candidate_state_multiplier_json[mi];
-          if (mrow && mrow.fields && Number(mrow.fields.candidate) === RABIN_ZOEY_PK && Number(mrow.fields.state) === stateId) { foundZoey = true; break; }
+        var boazRow = ensureMultiplierRow(root, 1002, stateId, 9200 + ws);
+        var sakhiRow = ensureMultiplierRow(root, 1001, stateId, 9250 + ws);
+        var zoeyRow = ensureMultiplierRow(root, RABIN_ZOEY_PK, stateId, 9300 + ws);
+        if (!active) {
+          boazRow.fields.state_multiplier = getRabinOriginalStateBase(1002, stateId, boazRow.fields.state_multiplier);
+          sakhiRow.fields.state_multiplier = getRabinOriginalStateBase(1001, stateId, sakhiRow.fields.state_multiplier);
+          zoeyRow.fields.state_multiplier = 0;
+        } else {
+          boazRow.fields.state_multiplier = Number(boazDirectByState[stateId] || 0);
+          sakhiRow.fields.state_multiplier = Number(sakhiDirectByState[stateId] || 0);
+          zoeyRow.fields.state_multiplier = golanSpecial ? ((stateId === RABIN_GOLAN_STATE_ID) ? 50000000 : 0) : 0;
         }
-        if (!foundZoey) root.candidate_state_multiplier_json.push({ model: 'campaign_trail.candidate_state_multiplier', pk: 9300 + ws, fields: { candidate: RABIN_ZOEY_PK, state: stateId, state_multiplier: golanSpecial ? (stateId === RABIN_GOLAN_STATE_ID ? 50000000 : 0) : 0 } });
       }
     }
   }
-
   function rabinLatchBranchAnswer(answerId) {
     var id = Number(answerId);
     var roots = [];
@@ -1922,13 +1948,14 @@ function applyScrewHistoryCoalitionOverride() {
   if (window.israel96PeresTakeoverLoop) clearInterval(window.israel96PeresTakeoverLoop);
   window.israel96PeresTakeoverLoop = setInterval(function() {
     if (campaignTrail_temp.__activeCode2 !== '1996_Israel_RabinLabor') return;
+    syncRabinPlayerAnswers();
     var usePeres = shouldUsePeres();
     setQuestion6Variant(usePeres);
     pinCurrentQuestionAnswers();
     applyPeresLead(usePeres);
     window.applyRabinPeresState();
     applyAssadeenLead(rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER));
-    applyHippielLead(rabinHasAnswer(RABIN_HIPPIEL_ANSWER) && rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER));
+    applyHippielLead(rabinHasAnswer(RABIN_HIPPIEL_ANSWER));
     if (rabinHasAnswer(RABIN_HIPPIEL_ANSWER)) {
       if (typeof window.applyRabinHippielSurpriseState === 'function') window.applyRabinHippielSurpriseState();
       if (rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER) && typeof window.applyRabinHippielState === 'function') window.applyRabinHippielState();
@@ -1944,7 +1971,7 @@ function applyScrewHistoryCoalitionOverride() {
     applyZeroLateGlobalsForScrewHistory();
     if (usePeres) applyPeresTakeover();
     if (typeof e !== 'undefined' && e) {
-      e.player_answers = campaignTrail_temp.player_answers;
+      syncRabinPlayerAnswers();
       e.answer_feedback_json = campaignTrail_temp.answer_feedback_json;
       e.answer_score_global_json = campaignTrail_temp.answer_score_global_json;
       e.answer_score_state_json = campaignTrail_temp.answer_score_state_json;
@@ -1972,19 +1999,19 @@ function applyScrewHistoryCoalitionOverride() {
         var clickedAnswer = Number(t);
         var result = originalAnswerHandler(t);
         try {
+          syncRabinPlayerAnswers();
           if (campaignTrail_temp && campaignTrail_temp.__activeCode2 === "1996_Israel_RabinLabor" && clickedAnswer === 301702) {
             setTimeout(function() {
               try {
-                if (!Array.isArray(campaignTrail_temp.player_answers)) campaignTrail_temp.player_answers = [];
-                campaignTrail_temp.player_answers = campaignTrail_temp.player_answers.map(function(a){ return Number(a); });
+                syncRabinPlayerAnswers();
                 if (campaignTrail_temp.player_answers.indexOf(301702) === -1) campaignTrail_temp.player_answers.push(301702);
                 campaignTrail_temp.__pickedPeresTakeover = true;
                 campaignTrail_temp.peres_intro_seen = false;
                 if (typeof e !== 'undefined' && e) {
                   e.__pickedPeresTakeover = true;
-                  e.player_answers = campaignTrail_temp.player_answers.slice();
                   e.peres_intro_seen = false;
                 }
+                syncRabinPlayerAnswers();
                 if (typeof setQuestion6Variant === 'function') setQuestion6Variant(true);
                 if (typeof applyPeresLateGlobalOverrides === 'function') applyPeresLateGlobalOverrides();
                 if (typeof applyQuestion25Overrides === 'function') applyQuestion25Overrides();
@@ -2012,12 +2039,14 @@ function applyScrewHistoryCoalitionOverride() {
             }, 0);
           }
           if (campaignTrail_temp && campaignTrail_temp.__activeCode2 === "1996_Israel_RabinLabor" && clickedAnswer === 301803) {
-            if (!Array.isArray(campaignTrail_temp.player_answers)) campaignTrail_temp.player_answers = [];
+            syncRabinPlayerAnswers();
             if (campaignTrail_temp.player_answers.indexOf(301803) === -1) campaignTrail_temp.player_answers.push(301803);
+            campaignTrail_temp.__pickedHippiel = true;
             if (typeof window.applyRabinHippielSurpriseState === 'function') window.applyRabinHippielSurpriseState();
             if (typeof e !== 'undefined' && e) {
-              e.player_answers = campaignTrail_temp.player_answers.slice();
+              e.__pickedHippiel = true;
             }
+            syncRabinPlayerAnswers();
             if (rabinHasAnswer(RABIN_GOLAN_TRIGGER_ANSWER) && typeof window.applyRabinHippielState === 'function') window.applyRabinHippielState();
           }
         } catch (err) {}
@@ -2619,7 +2648,7 @@ endingPicker = function(out, totv, aa, quickstats) {
       id: "hamas",
       title: "Hamas",
       aliases: ["Hamas"],
-      body: "An offshoot of the Muslim Brotherhood, morphing quite smoothly from a charity organization to a terrorist group during the First Intifada. It is about time for Arafat to deal with these Islamic fundamentalists in a way we couldn't "
+      body: "An offshoot of the Muslim Brotherhood, morphing quite smoothly from a charity organization to a terrorist group during the First Intifada. It is about time for Arafat to deal with these Islamic fundamentalists in a way our democracy couldn't "
     },
     {
       id: "sheikh_ahmed_yassin",
@@ -2976,6 +3005,8 @@ endingPicker = function(out, totv, aa, quickstats) {
   if (window.israel96RabinHideEvLoop) clearInterval(window.israel96RabinHideEvLoop);
   window.israel96RabinHideEvLoop = setInterval(hideElectoralVotesUi, 50);
 })();
+
+
 
 
 
